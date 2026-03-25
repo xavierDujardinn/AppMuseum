@@ -15,7 +15,7 @@ import Main from './tabs/hub/main';
 
 SplashScreen.preventAutoHideAsync();
 
-const App = () => {
+const App: React.FC = () => {
     const [loaded, error] = useFonts({
         'Exo2-Black': Exo2_900Black,
         'Exo2-Bold': Exo2_700Bold,

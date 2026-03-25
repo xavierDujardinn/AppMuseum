@@ -7,11 +7,20 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Header = () => {
+interface HeaderProps {
+    onNavigate: (screen: 'home' | 'settings') => void;
+    currentScreen: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ onNavigate, currentScreen }) => {
     return (
         <View style={styles.headerContainer}>
-            {/* Left logo */}
-            <TouchableOpacity activeOpacity={0.7} style={styles.logoContainer}>
+            {/* Left logo navigates to home screen */}
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.logoContainer}
+                onPress={() => onNavigate('home')}
+            >
                 <Image
                     source={require('../../../assets/images/logoem.png')}
                     style={styles.logo}
@@ -22,14 +31,18 @@ const Header = () => {
             {/* Empty central space */}
             <View style={styles.centerSpace} />
 
-            {/* Setting button to the right */}
+            {/* Setting button to the right to navigate to settings */}
             <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => console.log('Settings pressed')}
+                onPress={() => onNavigate('settings')}
                 style={styles.iconContainer}
-            >
-                <Ionicons name="settings-outline" size={28} color="#1a1a1a" />
-            </TouchableOpacity>
+                >
+            <Ionicons
+                name={currentScreen === 'settings' ? "settings" : "settings-outline"}
+                size={28}
+                color="#1a1a1a"
+            />
+        </TouchableOpacity>
         </View>
     );
 };
