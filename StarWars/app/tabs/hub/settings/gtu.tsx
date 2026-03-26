@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import React, {useEffect, useState} from "react";
 import {getGtuText} from "@/scripts/gtuHandler";
+import {Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
-const Settings: React.FC = () => {
+const Gtu: React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [gtuText, setgtuText] = useState('');
 
@@ -21,62 +21,47 @@ const Settings: React.FC = () => {
         loadGtuText();
     }, []);
 
-    return (
+    return(
         <>
-            <View style={styles.content}>
-                <Text style={styles.title}>Paramètres</Text>
-            </View>
-
-            {/* general terms of use */}
-            <View style={styles.footer}>
-                <TouchableOpacity
-                    style={styles.termsButton}
-                    onPress={() => setModalVisible(true)}
-                >
-                    <Text style={styles.termsText}>Conditions d'utilisation</Text>
-                </TouchableOpacity>
-            </View>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => setModalVisible(false)}
+        {/* general terms of use */}
+        <View style={styles.footer}>
+            <TouchableOpacity
+                style={styles.termsButton}
+                onPress={() => setModalVisible(true)}
             >
-                <View style={styles.modalOverlay}>
-                    <View style={styles.modalContent}>
+                <Text style={styles.termsText}>Conditions d'utilisation</Text>
+            </TouchableOpacity>
+        </View>
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(false)}
+        >
+            <View style={styles.modalOverlay}>
+                <View style={styles.modalContent}>
 
-                        <View style={styles.modalHeader}>
-                            <Text style={styles.modalTitle}>Conditions d'utilisation</Text>
-                            <TouchableOpacity onPress={() => setModalVisible(false)}>
-                                <Text style={styles.closeIcon}>✕</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <ScrollView style={styles.scrollText}>
-                            <Text style={styles.genericText}>
-                                {gtuText}
-                            </Text>
-                        </ScrollView>
-
+                    <View style={styles.modalHeader}>
+                        <Text style={styles.modalTitle}>Conditions d'utilisation</Text>
+                        <TouchableOpacity onPress={() => setModalVisible(false)}>
+                            <Text style={styles.closeIcon}>✕</Text>
+                        </TouchableOpacity>
                     </View>
+
+                    <ScrollView style={styles.scrollText}>
+                        <Text style={styles.genericText}>
+                            {gtuText}
+                        </Text>
+                    </ScrollView>
+
                 </View>
-            </Modal>
-        </>
-);}
+            </View>
+        </Modal>
+    </>
+    );
+}
 
 const styles = StyleSheet.create({
-    content: {
-        flex: 1,
-        paddingTop: 40,
-    },
-    title: {
-        fontFamily: 'Exo2-Bold',
-        fontSize: 36,
-        color: '#000',
-        marginBottom: 40,
-        textAlign: 'center',
-        textTransform: 'uppercase',
-    },
     footer: {
         paddingBottom: 20,
         alignItems: 'center',
@@ -141,4 +126,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Settings;
+export default Gtu;

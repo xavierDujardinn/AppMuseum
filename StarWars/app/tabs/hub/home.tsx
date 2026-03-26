@@ -1,6 +1,11 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-const Home: React.FC = () => {
+
+interface HomeProps {
+    onNavigate: (screen: 'home' | 'settings' | 'error') => void;
+}
+
+const Home: React.FC<HomeProps> = ({onNavigate}) => {
 
     return (
         <View style={styles.content}>
@@ -9,7 +14,10 @@ const Home: React.FC = () => {
                 Découvrez nos{"\n"}expositions
             </Text>
 
-            <TouchableOpacity style={styles.mainButton}>
+            <TouchableOpacity
+                style={styles.mainButton}
+                onPress={() => onNavigate('error')}
+            >
                 <Text style={styles.mainButtonText}>Rejoindre une exposition</Text>
             </TouchableOpacity>
 

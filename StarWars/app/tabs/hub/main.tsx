@@ -1,15 +1,30 @@
-import React, {useState} from 'react';
+import React, {ReactElement, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Header from './header';
 import Home from './home';
-import Settings from './settings';
+import Settings from './settings/settings';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import Error from './error';
 
 const Main: React.FC = () => {
     const insets = useSafeAreaInsets();
 
-    // UseState to handle screen navigation without routes
-    const [currentScreen, setCurrentScreen] = useState<'home' | 'settings'>('home');
+    // useState to handle screen navigation without routes
+    const [currentScreen, setCurrentScreen] = useState<'home' | 'settings' | 'error'>('home');
+
+    const renderScreen = (errorMessage: string = "Unhandled error") : ReactElement => {
+        switch(currentScreen){
+            case 'home':
+                return <Home onNavigate={setCurrentScreen}/>;
+            case 'settings':
+                return <Settings />;
+
+            // Returns error by default
+            case 'error':
+            default:
+                return <Error onNavigate={setCurrentScreen} errorMessage={errorMessage}/>;
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -18,7 +33,7 @@ const Main: React.FC = () => {
 
             <Header onNavigate={setCurrentScreen} currentScreen={currentScreen} />
 
-            {currentScreen === 'home' ? <Home /> : <Settings />}
+            {renderScreen()}
         </View>
     );
 };
