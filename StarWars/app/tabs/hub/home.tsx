@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 interface HomeProps {
-    onNavigate: (screen: 'home' | 'settings' | 'error') => void;
+    onNavigate: (screen: 'connect') => void;
 }
 
 const Home: React.FC<HomeProps> = ({onNavigate}) => {
@@ -16,7 +16,7 @@ const Home: React.FC<HomeProps> = ({onNavigate}) => {
 
             <TouchableOpacity
                 style={styles.mainButton}
-                onPress={() => onNavigate('error')}
+                onPress={() => onNavigate('connect')}
             >
                 <Text style={styles.mainButtonText}>Rejoindre une exposition</Text>
             </TouchableOpacity>

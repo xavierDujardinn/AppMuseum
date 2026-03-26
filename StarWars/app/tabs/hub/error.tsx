@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
     },
     subtitle: {
-        fontFamily: 'Exo2-regular',
-        fontSize: 18,
+        fontFamily: 'Exo2-Bold',
+        fontSize: 20,
         textAlign: 'center',
         marginBottom: 40,
     },

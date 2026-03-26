@@ -5,12 +5,15 @@ import Home from './home';
 import Settings from './settings/settings';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import Error from './error';
+import Connect from "./connect";
+import Code from "./code";
+import Preview from "@/app/tabs/hub/preview";
 
 const Main: React.FC = () => {
     const insets = useSafeAreaInsets();
 
     // useState to handle screen navigation without routes
-    const [currentScreen, setCurrentScreen] = useState<'home' | 'settings' | 'error'>('home');
+    const [currentScreen, setCurrentScreen] = useState<'home' | 'settings' | 'error' | 'connect' | 'code' | 'preview'>('home');
 
     const renderScreen = (errorMessage: string = "Unhandled error") : ReactElement => {
         switch(currentScreen){
@@ -18,6 +21,12 @@ const Main: React.FC = () => {
                 return <Home onNavigate={setCurrentScreen}/>;
             case 'settings':
                 return <Settings />;
+            case 'connect':
+                return <Connect onNavigate={setCurrentScreen}/>;
+            case 'code':
+                return <Code onNavigate={setCurrentScreen}/>;
+            case 'preview':
+                return <Preview onNavigate={setCurrentScreen}/>;
 
             // Returns error by default
             case 'error':
