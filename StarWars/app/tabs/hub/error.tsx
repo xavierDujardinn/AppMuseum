@@ -1,6 +1,7 @@
 import React from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import Feather from '@expo/vector-icons/Feather';
+import styles from '../../../styles/hub/common'
 
 interface ErrorProps {
     onNavigate: (screen: 'home' | 'settings') => void;
@@ -16,8 +17,8 @@ const Error: React.FC<ErrorProps> = ({onNavigate, errorMessage}) =>{
 
             <Text style={styles.subtitle}>{errorMessage}</Text>
 
-            <TouchableOpacity style={styles.mainButton}>
-                <Text style={styles.mainButtonText}>Réessayer</Text>
+            <TouchableOpacity style={styles.connectMainButton}>
+                <Text style={styles.connectMainButtonText}>Réessayer</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -29,61 +30,5 @@ const Error: React.FC<ErrorProps> = ({onNavigate, errorMessage}) =>{
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    content: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-    },
-    title: {
-        fontFamily: 'Exo2-Bold',
-        fontSize: 36,
-        color: '#000',
-        marginBottom: 40,
-        textAlign: 'center',
-        textTransform: 'uppercase',
-    },
-    subtitle: {
-        fontFamily: 'Exo2-Bold',
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 40,
-    },
-    mainButton: {
-        backgroundColor: '#4A4E69',
-        paddingVertical: 25,
-        paddingHorizontal: 30,
-        borderRadius: 25,
-        width: '75%',
-        height: '10%',
-        alignItems: 'center',
-        marginBottom: 50,
-    },
-    mainButtonText: {
-        fontFamily: 'Exo2-SemiBold',
-        color: '#FFF',
-        fontSize: 20,
-    },
-    secondaryButton: {
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderColor: '#4A4E69',
-        borderWidth: 2,
-        paddingVertical: 25,
-        paddingHorizontal: 30,
-        borderRadius: 25,
-        width: '50%',
-        height: '10%',
-        alignItems: 'center',
-        marginBottom: 50,
-    },
-    secondaryButtonText: {
-        fontFamily: 'Exo2-SemiBold',
-        color: '#4A4E69',
-        fontSize: 14,
-    },
-});
 
 export default Error;
