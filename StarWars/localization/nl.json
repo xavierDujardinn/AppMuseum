@@ -1,0 +1,14 @@
+{
+  "common": {
+    "back": "Back",
+    "error": "Error"
+  },
+  "connect": {
+    "title": "Connection",
+    "bluetooth": "Bluetooth Connection",
+    "code": "Exhibition Code"
+  },
+  "home": {
+    "subtitle": "Discover our \nexhibitions"
+  }
+}

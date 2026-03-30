@@ -1,5 +1,5 @@
 import React, {ReactElement, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import Header from './header';
 import Home from './home';
 import Settings from './settings/settings';
@@ -8,6 +8,8 @@ import Error from './error';
 import Connect from "./connect";
 import Code from "./code";
 import Preview from "@/app/tabs/hub/preview";
+import styles from '../../../styles/hub/common'
+
 
 const Main: React.FC = () => {
     const insets = useSafeAreaInsets();
@@ -46,12 +48,5 @@ const Main: React.FC = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F2E9E4',
-    }
-});
 
 export default Main;

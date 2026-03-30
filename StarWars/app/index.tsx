@@ -12,6 +12,7 @@ import {
 } from '@expo-google-fonts/exo-2';
 
 import Main from './tabs/hub/main';
+import {LanguageProvider} from "@/app/hooks/languageContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,8 +51,10 @@ const App: React.FC = () => {
             {/* For top phone things*/}
             <StatusBar barStyle="light-content" backgroundColor="black" translucent />
 
+            <LanguageProvider>
             {/*Hub main tab*/}
-            <Main />
+                <Main />
+            </LanguageProvider>
 
             {/*For bottom phone things*/}
             <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }} />
