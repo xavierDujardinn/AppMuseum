@@ -6,12 +6,37 @@
   "connect": {
     "title": "Connexion",
     "bluetooth": "Connexion Bluetooth",
-    "code": "Code d’exposition"
+    "code": "Code d’exposition",
+    "choose" : "Choisissez une méthode de connexion"
   },
   "home": {
-    "subtitle": "Découvrez nos \nexpositions"
+    "subtitle": "Découvrez nos \nexpositions",
+    "join": "Rejoindre une exposition"
   },
   "settings": {
+    "title": "Paramètres",
     "language": "Langue"
+  },
+  "gtu": {
+    "error": "Erreur lors de la récupérations des conditions générales d'utilisation",
+    "later": "Erreur, réessayez plus tard.",
+    "title": "Conditions d'utilisation"
+  },
+  "code": {
+    "title": "Rejoindre une exposition",
+    "subtitle1": "Un code d’invitation devrait se trouver à l’entrée de l’exposition.",
+    "subtitle2": "Contactez un membre du personnel en cas de problème ou d’absence de ce code",
+    "enterCode": "Entrez le code de l'exposition",
+    "verify": "Vérifier le code"
+  },
+  "error": {
+    "title": "Erreur",
+    "retry": "Réessayer"
+  },
+  "preview": {
+    "title": "Exposition",
+    "desc": "Exposition temporaire",
+    "expoTitle": "Carrie Fisher : l’étoile rebelle",
+    "join" : "Rejoindre"
   }
 }
