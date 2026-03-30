@@ -1,0 +1,17 @@
+{
+  "common": {
+    "back": "Retour",
+    "error": "Erreur"
+  },
+  "connect": {
+    "title": "Connexion",
+    "bluetooth": "Connexion Bluetooth",
+    "code": "Code d’exposition"
+  },
+  "home": {
+    "subtitle": "Découvrez nos \nexpositions"
+  },
+  "settings": {
+    "language": "Langue"
+  }
+}
