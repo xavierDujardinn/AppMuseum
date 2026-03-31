@@ -1,14 +1,41 @@
 {
   "common": {
-    "back": "Back",
-    "error": "Error"
+    "back": "Zurück",
+    "error": "Fehler"
   },
   "connect": {
-    "title": "Connection",
-    "bluetooth": "Bluetooth Connection",
-    "code": "Exhibition Code"
+    "title": "Anmeldung",
+    "bluetooth": "Bluetooth-Verbindung",
+    "code": "Ausstellungscode",
+    "choose": "Wählen Sie eine Verbindungsmethode"
   },
   "home": {
-    "subtitle": "Discover our \nexpositions"
+    "subtitle": "Entdecken Sie unsere \nAusstellungen",
+    "join": "An einer Ausstellung teilnehmen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache"
+  },
+  "gtu": {
+    "error": "Fehler beim Abrufen der allgemeinen Geschäftsbedingungen",
+    "later": "Fehler, versuchen Sie es später noch einmal.",
+    "title": "Nutzungsbedingungen"
+  },
+  "code": {
+    "title": "An einer Ausstellung teilnehmen",
+    "subtitle1": "Ein Einladungscode sollte sich am Eingang der Ausstellung befinden.",
+    "subtitle2": "Kontaktieren Sie einen Mitarbeiter bei Problemen oder Fehlen dieses Codes",
+    "enterCode": "Geben Sie den Ausstellungscode ein",
+    "verify": "Code überprüfen"
+  },
+  "error": {
+    "title": "Fehler",
+    "retry": "Wiederholen"
+  },
+  "preview": {
+    "title": "Ausstellung",
+    "desc": "Temporäre Ausstellung",
+    "join": "Teilnehmen"
   }
 }

@@ -11,7 +11,7 @@ import {
     Exo2_400Regular
 } from '@expo-google-fonts/exo-2';
 
-import Main from './tabs/hub/main';
+import Main from '@/app/hub/tabs/main';
 import {LanguageProvider} from "@/app/hooks/languageContext";
 
 SplashScreen.preventAutoHideAsync();

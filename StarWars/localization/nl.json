@@ -1,14 +1,41 @@
 {
   "common": {
-    "back": "Back",
-    "error": "Error"
+    "back": "Terug",
+    "error": "Fout"
   },
   "connect": {
-    "title": "Connection",
-    "bluetooth": "Bluetooth Connection",
-    "code": "Exhibition Code"
+    "title": "Verbinding",
+    "bluetooth": "Bluetooth-verbinding",
+    "code": "Tentoonstellingscode",
+    "choose": "Kies een verbindingsmethode"
   },
   "home": {
-    "subtitle": "Discover our \nexhibitions"
+    "subtitle": "Ontdek onze \ntentoonstellingen",
+    "join": "Deelnemen aan een tentoonstelling"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "language": "Taal"
+  },
+  "gtu": {
+    "error": "Fout bij het ophalen van de algemene gebruiksvoorwaarden",
+    "later": "Fout, probeer het later opnieuw.",
+    "title": "Gebruiksvoorwaarden"
+  },
+  "code": {
+    "title": "Deelnemen aan een tentoonstelling",
+    "subtitle1": "Een uitnodigingscode moet zich bij de ingang van de tentoonstelling bevinden.",
+    "subtitle2": "Neem contact op met een medewerker in geval van problemen of bij afwezigheid van deze code",
+    "enterCode": "Voer de tentoonstellingscode in",
+    "verify": "Code verifiëren"
+  },
+  "error": {
+    "title": "Fout",
+    "retry": "Opnieuw proberen"
+  },
+  "preview": {
+    "title": "Tentoonstelling",
+    "desc": "Tijdelijke tentoonstelling",
+    "join": "Deelnemen"
   }
 }

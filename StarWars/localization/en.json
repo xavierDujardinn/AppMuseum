@@ -6,12 +6,36 @@
   "connect": {
     "title": "Connection",
     "bluetooth": "Bluetooth Connection",
-    "code": "Exhibition Code"
+    "code": "Exhibition Code",
+    "choose": "Choose a connection method"
   },
   "home": {
-    "subtitle": "Discover our \nexpositions"
+    "subtitle": "Discover our \nexhibitions",
+    "join": "Join an exhibition"
   },
   "settings": {
-    "language": "Langage"
+    "title": "Settings",
+    "language": "Language"
+  },
+  "gtu": {
+    "error": "Error while retrieving the general terms of use",
+    "later": "Error, please try again later.",
+    "title": "Terms of Use"
+  },
+  "code": {
+    "title": "Join an exhibition",
+    "subtitle1": "An invitation code should be located at the entrance of the exhibition.",
+    "subtitle2": "Contact a staff member in case of a problem or if the code is missing",
+    "enterCode": "Enter the exhibition code",
+    "verify": "Verify code"
+  },
+  "error": {
+    "title": "Error",
+    "retry": "Retry"
+  },
+  "preview": {
+    "title": "Exhibition",
+    "desc": "Temporary exhibition",
+    "join": "Join"
   }
 }
