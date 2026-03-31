@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {getGtuText} from "@/scripts/gtuHandler";
 import {Modal, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import styles from '../../../../styles/hub/common';
+import styles from '../../../styles/hub/common';
 import {useTranslation} from "@/app/hooks/languageContext";
 
 const Gtu: React.FC = () => {

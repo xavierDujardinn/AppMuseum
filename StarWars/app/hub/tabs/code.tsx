@@ -5,7 +5,7 @@ import styles from '../../../styles/hub/common';
 import {useTranslation} from "@/app/hooks/languageContext";
 
 interface ErrorProps {
-    onNavigate: (screen: 'connect' | 'preview' | 'error') => void;
+    onNavigate: (screen: 'connect' | 'expo' | 'error', params?: any) => void;
 }
 
 const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
@@ -14,11 +14,12 @@ const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
     const {trad} = useTranslation();
 
     const findExpositionByCode = () => {
-        if (verifyCode(code)){
-            onNavigate('preview');
+        const expoData = verifyCode(code);
+        if (expoData){
+            onNavigate('expo', expoData);
         }
         else{
-            onNavigate('error');
+            onNavigate('error', {message: "Code invalide"});
         }
     }
 

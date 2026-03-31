@@ -1,11 +1,10 @@
 import React from 'react'
 import {Text, TouchableOpacity, View} from "react-native";
-import Feather from "@expo/vector-icons/Feather";
 import styles from '../../../styles/hub/common'
 import {useTranslation} from "@/app/hooks/languageContext";
 
 interface ConnectProps {
-    onNavigate: (screen: 'home' | 'connect' | 'code') => void;
+    onNavigate: (screen: 'home' | 'connect' | 'code' | 'gallery') => void;
 }
 
 const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
@@ -17,17 +16,22 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
 
             <Text style={styles.subtitle}>{trad('connect.choose')}</Text>
 
-            <Feather name="bluetooth" size={75} color="#1a1a1a" />
             <TouchableOpacity style={styles.connectMainButton}>
                 <Text style={styles.connectMainButtonText}>{trad('connect.bluetooth')}</Text>
             </TouchableOpacity>
 
-            <Feather name="fast-forward" size={75} color="#1a1a1a" />
             <TouchableOpacity
                 style={styles.connectThirdButton}
                 onPress={() => onNavigate('code')}
             >
                 <Text style={styles.connectMainButtonText}>{trad('connect.code')}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.connectMainButton}
+                onPress={() => onNavigate('gallery')}
+            >
+                <Text style={styles.connectMainButtonText}>{trad('connect.gallery')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity

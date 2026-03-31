@@ -7,7 +7,8 @@
     "title": "Connexion",
     "bluetooth": "Connexion Bluetooth",
     "code": "Code d’exposition",
-    "choose" : "Choisissez une méthode de connexion"
+    "choose" : "Choisissez une méthode de connexion",
+    "gallery": "Gallerie"
   },
   "home": {
     "subtitle": "Découvrez nos \nexpositions",
@@ -36,7 +37,6 @@
   "preview": {
     "title": "Exposition",
     "desc": "Exposition temporaire",
-    "expoTitle": "Carrie Fisher : l’étoile rebelle",
     "join" : "Rejoindre"
   }
 }

@@ -137,7 +137,7 @@ Der Veranstalter behält sich das Recht vor, die vorliegenden Regelungen jederze
 Bei Fragen kann sich der Nutzer an das Personal vor Ort wenden oder die vom Veranstalter auf der offiziellen Website bereitgestellten Kontaktdaten verwenden.`;
 
 // Loads gtu. We'll have to adapt it to the translation module later
-export const getGtuText = async (lang) => {
+export const getGtuText = async (lang: string) => {
     console.log(lang);
     switch (lang){
         case 'fr':

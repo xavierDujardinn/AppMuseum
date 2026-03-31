@@ -39,6 +39,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     );
 };
 
+export default LanguageProvider;
+
 // custom hook
 export const useTranslation = () => {
     const context = useContext(LanguageContext);
