@@ -13,15 +13,13 @@ const Home: React.FC<HomeProps> = ({onNavigate}) => {
     return (
         <View style={styles.content}>
             <Text style={styles.title}>Escape Museum</Text>
-            <Text style={styles.subtitle}>
-                {trad('home.subtitle')}
-            </Text>
+            <Text style={styles.subtitle}>{trad('home.subtitle')}</Text>
 
             <TouchableOpacity
                 style={styles.mainButton}
                 onPress={() => onNavigate('connect')}
             >
-                <Text style={styles.mainButtonText}>Rejoindre une exposition</Text>
+                <Text style={styles.mainButtonText}>{trad('home.join')}</Text>
             </TouchableOpacity>
 
             <Image
