@@ -1,21 +1,25 @@
 import React from 'react'
 import {Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
 import {verifyCode} from '@/scripts/expoCodeVerifyer';
-import styles from '../../../styles/hub/common'
+import styles from '../../../styles/hub/common';
+import {useTranslation} from "@/app/hooks/languageContext";
 
 interface ErrorProps {
-    onNavigate: (screen: 'connect' | 'preview' | 'error') => void;
+    onNavigate: (screen: 'connect' | 'expo' | 'error', params?: any) => void;
 }
 
 const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
     const [code, setCode] = React.useState<string>('');
 
+    const {trad} = useTranslation();
+
     const findExpositionByCode = () => {
-        if (verifyCode(code)){
-            onNavigate('preview');
+        const expoData = verifyCode(code);
+        if (expoData){
+            onNavigate('expo', expoData);
         }
         else{
-            onNavigate('error');
+            onNavigate('error', {message: "Code invalide"});
         }
     }
 
@@ -28,13 +32,13 @@ const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.content}>
-                        <Text style={styles.title}>Rejoindre une exposition</Text>
-                        <Text style={styles.subtitle}>Un code d’invitation devrait se trouver à l’entrée de l’exposition.</Text>
-                        <Text style={styles.subtitle}>Contactez un membre du personnel en cas de problème ou d’absence de ce code</Text>
+                        <Text style={styles.title}>{trad('code.title')}</Text>
+                        <Text style={styles.subtitle}>{trad('code.subtitle1')}</Text>
+                        <Text style={styles.subtitle}>{trad('code.subtitle2')}</Text>
 
                         {/*Text input field*/}
                         <View style={styles.inputContainer}>
-                            <Text style={styles.label}>Entrez le code de l'exposition</Text>
+                            <Text style={styles.label}>{trad('code.enterCode')}</Text>
                             <TextInput
                                 style={styles.input}
                                 placeholder="Code"
@@ -50,14 +54,14 @@ const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
                             style={styles.codeMainButton}
                             onPress={findExpositionByCode}
                         >
-                            <Text style={styles.codeMainButtonText}>Vérifier le code</Text>
+                            <Text style={styles.codeMainButtonText}>{trad('code.verify')}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             style={styles.codeSecondaryButton}
                             onPress={() => {onNavigate('connect')}}
                         >
-                            <Text style={styles.secondaryButtonText}>Retour</Text>
+                            <Text style={styles.secondaryButtonText}>{trad('common.back')}</Text>
                         </TouchableOpacity>
                     </View>
                 </TouchableWithoutFeedback>

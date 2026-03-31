@@ -1,26 +1,29 @@
 import React, {useEffect, useState} from "react";
 import {getGtuText} from "@/scripts/gtuHandler";
 import {Modal, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import styles from '../../../../styles/hub/common'
+import styles from '../../../styles/hub/common';
+import {useTranslation} from "@/app/hooks/languageContext";
 
 const Gtu: React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [gtuText, setgtuText] = useState('');
 
+    const {locale, trad} = useTranslation();
+
     useEffect(() => {
         // load gtu file when component is loading
         const loadGtuText = async () => {
             try {
-                const content = await getGtuText();
+                const content = await getGtuText(locale);
                 setgtuText(content);
             }
             catch(e){
-                console.error(`Error while loading GTU : ${e}`);
-                setgtuText(`Erreur, réessayez plus tard.`);
+                console.error(`${trad('cgu.error')} : ${e}`);
+                setgtuText(trad('cgu.later'));
             }
         }
         loadGtuText();
-    }, []);
+    }, [locale]);
 
     return(
         <>
@@ -30,7 +33,7 @@ const Gtu: React.FC = () => {
                 style={styles.termsButton}
                 onPress={() => setModalVisible(true)}
             >
-                <Text style={styles.termsText}>Conditions d'utilisation</Text>
+                <Text style={styles.termsText}>{trad('gtu.title')}</Text>
             </TouchableOpacity>
         </View>
         <Modal
@@ -43,16 +46,14 @@ const Gtu: React.FC = () => {
                 <View style={styles.modalContent}>
 
                     <View style={styles.modalHeader}>
-                        <Text style={styles.modalTitle}>Conditions d'utilisation</Text>
+                        <Text style={styles.modalTitle}>{trad('gtu.title')}</Text>
                         <TouchableOpacity onPress={() => setModalVisible(false)}>
                             <Text style={styles.closeIcon}>✕</Text>
                         </TouchableOpacity>
                     </View>
 
                     <ScrollView style={styles.scrollText}>
-                        <Text style={styles.genericText}>
-                            {gtuText}
-                        </Text>
+                        <Text style={styles.genericText}>{gtuText}</Text>
                     </ScrollView>
 
                 </View>
