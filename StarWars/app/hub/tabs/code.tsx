@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
 import {verifyCode} from '@/scripts/expoCodeVerifyer';
 import styles from '../../../styles/hub/common';
@@ -9,7 +9,9 @@ interface ErrorProps {
 }
 
 const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
-    const [code, setCode] = React.useState<string>('');
+    const [code, setCode] = useState<string>('');
+
+    const {trad} = useTranslation();
 
     const {trad} = useTranslation();
 
