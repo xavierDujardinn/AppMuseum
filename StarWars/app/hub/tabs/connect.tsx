@@ -1,23 +1,86 @@
-import React from 'react'
-import {Text, TouchableOpacity, View} from "react-native";
+import React, {useState} from 'react'
+import {Text, TouchableOpacity, View, PermissionsAndroid, Platform} from "react-native";
 import styles from '../../../styles/hub/common'
 import {useTranslation} from "@/app/hooks/languageContext";
+import { BleManager } from 'react-native-ble-plx';
+import {verifyCode} from "@/scripts/expoCodeVerifyer";
 
 interface ConnectProps {
-    onNavigate: (screen: 'home' | 'connect' | 'code' | 'gallery') => void;
+    onNavigate: (screen: 'home' | 'connect' | 'code' | 'gallery' | 'expo', params?: any) => void;
 }
+
+const manager = new BleManager();
 
 const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
     const {trad} = useTranslation();
 
+    const [status, setStatus] = useState('bluetooth')
+
+    const handleBluetoothScan = async () => {
+
+        if (Platform.OS === 'android') {
+            try {
+                const granted = await PermissionsAndroid.requestMultiple([
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                ]);
+
+                const allGranted = Object.values(granted).every(
+                    (result) => result === PermissionsAndroid.RESULTS.GRANTED
+                );
+
+                if (!allGranted) {
+                    console.log("Détail des permissions :", granted);
+                    setStatus('error');
+                    return;
+                }
+            } catch (err) {
+                console.warn(err);
+                return;
+            }
+        }
+
+        setStatus('scanning');
+
+        await manager.startDeviceScan(null, null, (error, device) => {
+            if (error){
+                console.log(error);
+                setStatus('error');
+                return;
+            }
+
+            // Désactivé pour le bien des test parce que c'est vraiment nul à chier
+            //if (device && device.id === '04:1F:F8:BA:9C:34'){
+            if (true){
+                manager.stopDeviceScan();
+
+                const expoData = verifyCode("REBEL");
+
+                if (expoData){
+                    // Utilisation des params pour passer expoData
+                    onNavigate('expo', expoData);
+                }
+            }
+        });
+
+        setTimeout(() => {
+            manager.stopDeviceScan();
+            if (status === 'scanning') setStatus('bluetooth');
+        }, 100)
+    }
+
     return(
         <View style={styles.content}>
             <Text style={styles.title}>{trad('connect.title')}</Text>
-
+            <Text>{status}</Text>
             <Text style={styles.subtitle}>{trad('connect.choose')}</Text>
 
-            <TouchableOpacity style={styles.connectMainButton}>
-                <Text style={styles.connectMainButtonText}>{trad('connect.bluetooth')}</Text>
+            <TouchableOpacity
+                style={styles.connectMainButton}
+                onPress={handleBluetoothScan}
+            >
+                <Text style={styles.connectMainButtonText}>{status === 'scanning' ? "Recherche..." : trad('connect.bluetooth')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
