@@ -52,7 +52,7 @@
         {
           "isScanningEnabled": true,
           "modes": ["peripheral", "central"],
-          "bluetoothAlwaysPermission": "L'application utilise le Bluetooth pour détecter les salles du musée.",
+          "bluetoothAlwaysPermission": "L'application utilise le Bluetooth pour détecter les salles du musée."
         }
       ],
       "expo-font"
