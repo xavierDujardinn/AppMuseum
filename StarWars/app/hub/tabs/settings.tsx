@@ -14,8 +14,6 @@ const Settings: React.FC = () => {
                 <Text style={styles.title}>{trad('settings.title')}</Text>
             </View>
 
-            {/*Note : Please favorise usage of components so everything's logic is well abstracted, i think there are many libraries for what we need, use them.*/}
-
             <LanguageSelector/>
             <Gtu/>
         </>

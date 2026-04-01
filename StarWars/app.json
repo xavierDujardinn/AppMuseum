@@ -19,7 +19,15 @@
         "monochromeImage": "./assets/images/logoem.png"
       },
       "edgeToEdgeEnabled": false,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "targetSdkVersion": 34,
+      "compileSdkVersion": 34,
+      "package": "com.anonymous.StarWars"
     },
     "web": {
       "output": "static",
@@ -37,6 +45,14 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "react-native-ble-plx",
+        {
+          "isScanningEnabled": true,
+          "modes": ["peripheral", "central"],
+          "bluetoothAlwaysPermission": "L'application utilise le Bluetooth pour détecter les salles du musée."
         }
       ],
       "expo-font"
