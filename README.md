@@ -15,7 +15,7 @@ pour celui-là faudra redémarrer l'ordi
 
 ajouter fichier
 /StarWars/Android/local.properties
-sdk.dir=C:\\Users\\TON_NOM\\AppData\\Local\\Android\\Sdk
+sdk.dir=C:\\\Users\\\TON_NOM\\\AppData\\\Local\\\Android\\\Sdk
 
 ensuite
 npx expo run:android
