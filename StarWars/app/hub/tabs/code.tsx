@@ -13,8 +13,6 @@ const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
 
     const {trad} = useTranslation();
 
-    const {trad} = useTranslation();
-
     const findExpositionByCode = () => {
         const expoData = verifyCode(code);
         if (expoData){

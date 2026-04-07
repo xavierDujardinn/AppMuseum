@@ -49,10 +49,7 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
                 setStatus('error');
                 return;
             }
-
-            // Désactivé pour le bien des test parce que c'est vraiment nul à chier
-            //if (device && device.id === '04:1F:F8:BA:9C:34'){
-            if (true){
+            if (device && device.name ==='Expo'){
                 manager.stopDeviceScan();
 
                 const expoData = verifyCode("REBEL");
@@ -67,7 +64,7 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
         setTimeout(() => {
             manager.stopDeviceScan();
             if (status === 'scanning') setStatus('bluetooth');
-        }, 100)
+        }, 5000)
     }
 
     return(
