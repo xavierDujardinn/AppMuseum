@@ -542,6 +542,18 @@ const styles = StyleSheet.create({
         marginHorizontal: 4,
         marginBottom: 14,
     },
+    challengeLuxHint: {
+        fontFamily: 'Exo2-SemiBold',
+        color: '#4A4E69',
+        textAlign: 'center',
+        marginBottom: 8,
+    },
+    challengeSimLabel: {
+        fontFamily: 'Exo2-SemiBold',
+        color: '#1A1A1A',
+        marginBottom: 6,
+        textAlign: 'center',
+    },
     challengeGhostButton: {
         borderWidth: 1,
         borderColor: '#B6A4D0',
