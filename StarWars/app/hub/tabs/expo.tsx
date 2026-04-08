@@ -15,7 +15,7 @@ interface ExpoData {
 }
 
 interface PreviewProps {
-    onNavigate: (screen: 'home') => void;
+    onNavigate: (screen: 'home' | 'challenge') => void;
     expoData?: ExpoData;
 }
 
