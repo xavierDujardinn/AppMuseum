@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import Header from '../components/header';
+import Header from '../../common/components/header';
 import Home from './home';
-import Settings from './settings';
+import Settings from '../../common/tabs/settings';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import Error from './error';
 import Connect from "./connect";
