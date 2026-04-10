@@ -18,7 +18,7 @@ interface NavigationState {
 
 export type OnNavigateFunc = (screen: NavigationState['name'], params?: any) => void;
 
-const Main: React.FC = () => {
+const Hub: React.FC = () => {
     const insets = useSafeAreaInsets();
 
     // useState to handle screen navigation
@@ -62,4 +62,4 @@ const Main: React.FC = () => {
     );
 };
 
-export default Main;
+export default Hub;
