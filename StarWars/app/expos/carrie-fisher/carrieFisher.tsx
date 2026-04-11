@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Header from "@/app/common/components/header";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import Menu from "@/app/expos/carrie-fisher/menu";
 import Settings from "@/app/common/tabs/settings";
 import Error from "@/app/hub/tabs/error";
-import {useNavigation} from "@react-navigation/native";
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/app';
+import Challenge from "@/app/expos/carrie-fisher/challenge";
 
 interface NavigationState {
-    name: 'home' | 'settings' | 'error' | 'connect' | 'code' | 'expo' | 'gallery';
+    name: 'home' | 'settings' | 'error' | 'challenge';
     params?: any;
 }
 
@@ -18,7 +16,6 @@ export type OnNavigateFunc = (screen: NavigationState['name'], params?: any) => 
 
 const CarrieFisherScreen = () => {
     const insets = useSafeAreaInsets();
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     // useState to handle screen navigation
     const [route, setRoute] = useState<NavigationState>({ name: 'home' });
@@ -32,9 +29,13 @@ const CarrieFisherScreen = () => {
 
         switch(name) {
             case 'home':
-                return <Menu onNavigate={handleNavigate}/>;
+                return <Menu onNavigate={handleNavigate} skipIntro={params?.skipIntro} />;
             case 'settings':
                 return <Settings />;
+
+            /* Change this for the new challenges */
+            case 'challenge':
+                return <Challenge challengeId={params.challengeId} onNavigate={handleNavigate} />;
             case 'error':
             default:
                 return <Error onNavigate={handleNavigate} errorMessage={params?.message || "Unhandled error"}/>;
@@ -47,12 +48,6 @@ const CarrieFisherScreen = () => {
             <View style={{ height: insets.top, backgroundColor: 'black' }} />
             <Header onNavigate={handleNavigate} currentScreen={route.name} />
             {renderScreen()}
-
-            <TouchableOpacity
-                onPress={() => {navigation.navigate('Hub');}}
-            >
-                <Text>Retour au menu principal</Text>
-            </TouchableOpacity>
         </View>
     );
 };
@@ -60,7 +55,7 @@ const CarrieFisherScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F2E9E4',
+        backgroundColor: 'white',
     },
 })
 

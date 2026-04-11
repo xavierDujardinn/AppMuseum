@@ -39,11 +39,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     );
 };
 
-export default LanguageProvider;
-
 // custom hook
 export const useTranslation = () => {
     const context = useContext(LanguageContext);
     if (!context) throw new Error("useTranslation must be used in a LanguageProvider");
     return context;
 };
+
+export default LanguageProvider;
