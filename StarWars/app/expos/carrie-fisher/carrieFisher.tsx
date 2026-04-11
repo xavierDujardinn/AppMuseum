@@ -1,24 +1,20 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
-import Header from '../components/header';
-import Home from './home';
-import Settings from './settings';
+import {StyleSheet, View} from 'react-native';
+import Header from "@/app/common/components/header";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
-import Error from './error';
-import Connect from "./connect";
-import Code from "./code";
-import Expo from "@/app/hub/tabs/expo";
-import styles from '../../../styles/hub/common'
-import Gallery from "@/app/hub/tabs/gallery";
+import Menu from "@/app/expos/carrie-fisher/menu";
+import Settings from "@/app/common/tabs/settings";
+import Error from "@/app/hub/tabs/error";
+import Challenge from "@/app/expos/carrie-fisher/challenge";
 
 interface NavigationState {
-    name: 'home' | 'settings' | 'error' | 'connect' | 'code' | 'expo' | 'gallery';
+    name: 'home' | 'settings' | 'error' | 'challenge';
     params?: any;
 }
 
 export type OnNavigateFunc = (screen: NavigationState['name'], params?: any) => void;
 
-const Main: React.FC = () => {
+const CarrieFisherScreen = () => {
     const insets = useSafeAreaInsets();
 
     // useState to handle screen navigation
@@ -33,17 +29,13 @@ const Main: React.FC = () => {
 
         switch(name) {
             case 'home':
-                return <Home onNavigate={handleNavigate}/>;
-            case 'gallery':
-                return <Gallery onNavigate={handleNavigate}/>;
-            case 'expo':
-                return <Expo onNavigate={handleNavigate} expoData={params} />;
+                return <Menu onNavigate={handleNavigate} skipIntro={params?.skipIntro} />;
             case 'settings':
                 return <Settings />;
-            case 'connect':
-                return <Connect onNavigate={handleNavigate}/>;
-            case 'code':
-                return <Code onNavigate={handleNavigate}/>;
+
+            /* Change this for the new challenges */
+            case 'challenge':
+                return <Challenge challengeId={params.challengeId} onNavigate={handleNavigate} />;
             case 'error':
             default:
                 return <Error onNavigate={handleNavigate} errorMessage={params?.message || "Unhandled error"}/>;
@@ -54,12 +46,17 @@ const Main: React.FC = () => {
         <View style={styles.container}>
             {/* We fill the top phone things for the header */}
             <View style={{ height: insets.top, backgroundColor: 'black' }} />
-
             <Header onNavigate={handleNavigate} currentScreen={route.name} />
-
             {renderScreen()}
         </View>
     );
 };
 
-export default Main;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+})
+
+export default CarrieFisherScreen;
