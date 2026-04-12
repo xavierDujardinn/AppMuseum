@@ -460,6 +460,21 @@ const styles = StyleSheet.create({
         paddingHorizontal: 14,
         position: 'relative',
     },
+    challengeSceneShell: {
+        width: '100%',
+        position: 'relative',
+        overflow: 'hidden',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+    },
+    challengeSceneForeground: {
+        width: '100%',
+        alignItems: 'center',
+        zIndex: 1,
+        paddingHorizontal: 14,
+        paddingTop: 8,
+        paddingBottom: 20,
+    },
     challengeSky: {
         width: '100%',
         height: 180,
@@ -507,7 +522,6 @@ const styles = StyleSheet.create({
         color: '#D21F2B',
         textAlign: 'center',
         marginBottom: 14,
-        marginTop: -162,
     },
     challengeIndicatorTitle: {
         fontFamily: 'Exo2-Bold',
@@ -523,6 +537,21 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#8F8F8F',
         marginBottom: 18,
+    },
+    challengeIndicatorFrame: {
+        backgroundColor: '#25252E',
+        paddingVertical: 14,
+        paddingHorizontal: 12,
+        borderRadius: 8,
+        marginBottom: 18,
+        borderWidth: 1,
+        borderColor: '#14141A',
+    },
+    challengeIndicatorFill: {
+        width: '100%',
+        height: 72,
+        borderWidth: 1,
+        borderColor: '#4A4A55',
     },
     challengeIndicatorLight: {
         backgroundColor: '#EAEAEA',
@@ -541,12 +570,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginHorizontal: 4,
         marginBottom: 14,
-    },
-    challengeLuxHint: {
-        fontFamily: 'Exo2-SemiBold',
-        color: '#4A4E69',
-        textAlign: 'center',
-        marginBottom: 8,
     },
     challengeSimLabel: {
         fontFamily: 'Exo2-SemiBold',
