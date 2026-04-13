@@ -276,6 +276,51 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 50,
     },
+    backIconContainer: {
+        alignItems : 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+    },
+    settingsOptionsContainer: {
+        width: '100%',
+        paddingHorizontal: 24,
+        marginTop: 20,
+        marginBottom: 20,
+    },
+
+    settingRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        paddingVertical: 14,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(255,255,255,0.15)',
+    },
+
+    settingLabel: {
+        flex: 1,
+        marginRight: 16,
+        color: 'white',
+        fontSize: 16,
+        fontFamily: 'Exo2-Regular',
+    },
+    settingsScreen: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: 24,
+        paddingTop: 30,
+    },
+
+    settingsTopBlock: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+        marginBottom: 30,
+    },
 });
 
 export default styles;

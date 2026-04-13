@@ -14,7 +14,7 @@ const Menu: React.FC<MenuProps> = ({onNavigate, skipIntro}) => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const [isIntroPassed, setIsIntroPassed] = React.useState(skipIntro || false);
-    const [unLockedChallengesList, setUnLockedChallengesList] = React.useState([true, true, false]);
+    const [unLockedChallengesList, setUnLockedChallengesList] = React.useState([true, true, true]);
 
     return (
         <ImageBackground
@@ -75,6 +75,7 @@ const Menu: React.FC<MenuProps> = ({onNavigate, skipIntro}) => {
                             épreuve 3
                         </Text>
                     </TouchableOpacity>
+
 
                     <TouchableOpacity
                         style={styles.button}
