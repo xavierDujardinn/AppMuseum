@@ -1,13 +1,16 @@
 import { useTranslation } from "@/app/hooks/languageContext";
+import { verifyCode } from "@/scripts/expoCodeVerifyer";
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
 import { PermissionsAndroid, Platform, Text, TouchableOpacity, View } from "react-native";
+import { BleManager } from 'react-native-ble-plx';
+
 
 interface ConnectProps {
     onNavigate: (screen: 'home' | 'connect' | 'code' | 'gallery' | 'expo', params?: any) => void;
 }
 
-//const manager = new BleManager();
+const manager = new BleManager();
 
 const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
     const {trad} = useTranslation();
@@ -41,28 +44,28 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
 
         setStatus('scanning');
 
-    //     await manager.startDeviceScan(null, null, (error, device) => {
-    //         if (error){
-    //             console.log(error);
-    //             setStatus('error');
-    //             return;
-    //         }
-    //         if (device && device.name ==='Expo'){
-    //             manager.stopDeviceScan();
+        await manager.startDeviceScan(null, null, (error, device) => {
+            if (error){
+                console.log(error);
+                setStatus('error');
+                return;
+            }
+            if (device && device.name ==='Expo'){
+                manager.stopDeviceScan();
 
-    //             const expoData = verifyCode("REBEL");
+                const expoData = verifyCode("REBEL");
 
-    //             if (expoData){
-    //                 // Utilisation des params pour passer expoData
-    //                 onNavigate('expo', expoData);
-    //             }
-    //         }
-    //     });
+                if (expoData){
+                    // Utilisation des params pour passer expoData
+                    onNavigate('expo', expoData);
+                }
+            }
+        });
 
-    //     setTimeout(() => {
-    //         manager.stopDeviceScan();
-    //         if (status === 'scanning') setStatus('bluetooth');
-    //     }, 5000)
+        setTimeout(() => {
+            manager.stopDeviceScan();
+            if (status === 'scanning') setStatus('bluetooth');
+        }, 5000)
     }
 
     return(
