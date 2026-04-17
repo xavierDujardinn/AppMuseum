@@ -1,7 +1,8 @@
 import { ImageBackground } from "expo-image";
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
+import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import Funfact_lucas from './lucas-components/funfact';
 import Playing_lucas from "./lucas-components/playing";
 import Scoreboard_lucas from './lucas-components/scoreboard';
@@ -15,16 +16,70 @@ interface ChallengeProps {
   challengeState: ChallengeStates;
   onChallengeStateChange: (newState: ChallengeStates) => void;
   onNavigate: (screen: 'home' | 'settings' | 'error' | 'challenge', params?: any) => void;
+
+  elapsedTime: number;
+  isHintOpen: boolean;
+  hasStarted: boolean;
+  setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
+  setIsHintOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  setChallenge1Completed: React.Dispatch<React.SetStateAction<boolean>>;
+  formatTime: (totalSeconds: number) => string;
 }
 
 const Challenge: React.FC<ChallengeProps> = ({
   challengeId,
   challengeState,
   onChallengeStateChange,
-  onNavigate
+  onNavigate,
+  elapsedTime,
+  isHintOpen,
+  hasStarted,
+  setElapsedTime,
+  setIsHintOpen,
+  setHasStarted,
+  setChallenge1Completed,
+  formatTime,
 }) => {
   const handleStateChange = (newState: ChallengeStates): void => {
     onChallengeStateChange(newState);
+  };
+
+  const handleStartPlaying = () => {
+    setElapsedTime(0);
+    setIsHintOpen(false);
+    setHasStarted(true);
+    handleStateChange('playing');
+  };
+
+  const handleResumePlaying = () => {
+    setIsHintOpen(false);
+    handleStateChange('playing');
+  };
+
+  const handleOpenHint = () => {
+    setIsHintOpen(true);
+  };
+
+  const handleCloseHint = () => {
+    setIsHintOpen(false);
+  };
+
+  const handleWin = () => {
+    setChallenge1Completed(true);
+    handleStateChange('win');
+  };
+
+  const handleGoToFunfact = () => {
+    handleStateChange('funfact');
+  };
+
+  const handleGoToScoreboard = () => {
+    handleStateChange('scoreboard');
+  };
+
+  const handleBackToMenu = () => {
+    onNavigate('home', { skipIntro: true });
   };
 
   const renderChallenge = () => {
@@ -32,8 +87,13 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 0:
         return (
           <Playing_lucas
-            onWin={() => handleStateChange('win')}
-            onBack={() => onNavigate('home', { skipIntro: true })}
+            onWin={handleWin}
+            onBack={handleBackToMenu}
+            elapsedTime={elapsedTime}
+            isHintOpen={isHintOpen}
+            onOpenHint={handleOpenHint}
+            onCloseHint={handleCloseHint}
+            formatTime={formatTime}
           />
         );
 
@@ -41,16 +101,14 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 2:
       default:
         return (
-          <View style={styles.content}>
-            <Text>
-              Challenge très très dur {challengeId}
-            </Text>
+          <View style={styles_starwars.challengeContainer}>
+            <Text>Challenge très très dur {challengeId}</Text>
 
             <TouchableOpacity
-              style={styles.button}
+              style={styles_starwars.challengeButton}
               onPress={() => { handleStateChange('win'); }}
             >
-              <Text style={styles.textButton}>Cliquez moi dessus !</Text>
+              <Text style={styles_starwars.challengeButtonText}>Cliquez moi dessus !</Text>
             </TouchableOpacity>
           </View>
         );
@@ -62,8 +120,8 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 0:
         return (
           <Tutorial_lucas
-            onStart={() => handleStateChange('playing')}
-            onBack={() => onNavigate('home', { skipIntro: true })}
+            onStart={hasStarted ? handleResumePlaying : handleStartPlaying}
+            onBack={handleBackToMenu}
           />
         );
 
@@ -71,12 +129,12 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 2:
       default:
         return (
-          <View style={styles.content}>
+          <View style={styles_starwars.challengeContainer}>
             <TouchableOpacity
-              style={styles.button}
+              style={styles_starwars.challengeButton}
               onPress={() => { handleStateChange('playing'); }}
             >
-              <Text style={styles.textButton}>Cliquez pour passer le tuto</Text>
+              <Text style={styles_starwars.challengeButtonText}>Cliquez pour passer le tuto</Text>
             </TouchableOpacity>
           </View>
         );
@@ -88,7 +146,9 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 0:
         return (
           <Scoreboard_lucas
-            onNext={() => onNavigate('home', { skipIntro: true })}
+            onNext={handleBackToMenu}
+            elapsedTime={elapsedTime}
+            formatTime={formatTime}
           />
         );
 
@@ -98,13 +158,13 @@ const Challenge: React.FC<ChallengeProps> = ({
         return (
           <ImageBackground
             source={require('@/assets/images/expos/carrieFisher/space_background.jpg')}
-            style={styles.backgroundImage}
+            style={styles_starwars.challengeBackgroundImage}
           >
             <TouchableOpacity
-              style={styles.button}
+              style={styles_starwars.challengeButton}
               onPress={() => { onNavigate('home', { skipIntro: true }); }}
             >
-              <Text style={styles.textButton}>Retourner au menu</Text>
+              <Text style={styles_starwars.challengeButtonText}>Retourner au menu</Text>
             </TouchableOpacity>
           </ImageBackground>
         );
@@ -116,8 +176,8 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 0:
         return (
           <Win_lucas
-            onCardPress={() => handleStateChange('funfact')}
-            onBackToMenu={() => onNavigate('home', { skipIntro: true })}
+            onCardPress={handleGoToFunfact}
+            onBackToMenu={handleBackToMenu}
           />
         );
 
@@ -125,16 +185,16 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 2:
       default:
         return (
-          <View style={styles.content}>
+          <View style={styles_starwars.challengeContainer}>
             <Text>
               Vous avez réussis le challenge {challengeId} - écran de victoire à venir!
             </Text>
 
             <TouchableOpacity
-              style={styles.button}
+              style={styles_starwars.challengeButton}
               onPress={() => { handleStateChange('funfact'); }}
             >
-              <Text style={styles.textButton}>Pour aller vers la suite !</Text>
+              <Text style={styles_starwars.challengeButtonText}>Pour aller vers la suite !</Text>
             </TouchableOpacity>
           </View>
         );
@@ -146,7 +206,7 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 0:
         return (
           <Funfact_lucas
-            onScoreboard={() => handleStateChange('scoreboard')}
+            onScoreboard={handleGoToScoreboard}
           />
         );
 
@@ -154,16 +214,16 @@ const Challenge: React.FC<ChallengeProps> = ({
       case 2:
       default:
         return (
-          <View style={styles.content}>
+          <View style={styles_starwars.challengeContainer}>
             <Text>
               Funfact le challenge {challengeId} est finit ! (c'est pas vraiemnt un funfact, c'est encore en construction)
             </Text>
 
             <TouchableOpacity
-              style={styles.button}
+              style={styles_starwars.challengeButton}
               onPress={() => { handleStateChange('scoreboard'); }}
             >
-              <Text style={styles.textButton}>Voir le tableau des scores !</Text>
+              <Text style={styles_starwars.challengeButtonText}>Voir le tableau des scores !</Text>
             </TouchableOpacity>
           </View>
         );
@@ -191,35 +251,5 @@ const Challenge: React.FC<ChallengeProps> = ({
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  button: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: 'red',
-    borderStyle: 'solid',
-    paddingVertical: 25,
-    paddingHorizontal: 30,
-    borderRadius: 25,
-    width: '80%',
-    alignItems: 'center',
-    marginBottom: 50,
-  },
-  textButton: {
-    textAlign: 'center',
-    fontFamily: 'Exo2-SemiBold',
-    color: '#F0A820',
-    fontSize: 24,
-  },
-  backgroundImage: {
-    flex: 1,
-  },
-});
 
 export default Challenge;

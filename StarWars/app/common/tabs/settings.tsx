@@ -1,8 +1,8 @@
 import LanguageSelector from "@/app/common/components/languageSelector";
 import { useTranslation } from "@/app/hooks/languageContext";
+import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
 import { Switch, Text, View } from 'react-native';
-import styles from '../../../styles/hub/common';
 import Gtu from '../components/gtu';
 
 const Settings: React.FC = () => {
@@ -18,7 +18,6 @@ const Settings: React.FC = () => {
 
       <View style={styles.settingsTopBlock}>
         <LanguageSelector />
-        <Gtu />
       </View>
 
       <View style={styles.settingsOptionsContainer}>
@@ -52,6 +51,8 @@ const Settings: React.FC = () => {
           />
         </View>
       </View>
+
+      <Gtu />
     </View>
   );
 };

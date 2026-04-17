@@ -3,8 +3,9 @@ import Settings from "@/app/common/tabs/settings";
 import Challenge from "@/app/expos/carrie-fisher/challenge";
 import Menu from "@/app/expos/carrie-fisher/menu";
 import Error from "@/app/hub/tabs/error";
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact' | 'scoreboard';
@@ -29,7 +30,49 @@ const CarrieFisherScreen = () => {
     { name: 'home' }
   ]);
 
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [isHintOpen, setIsHintOpen] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [challenge1Completed, setChallenge1Completed] = useState(false);
+
   const route = history[history.length - 1];
+
+  const currentChallengeState =
+    route.name === 'challenge'
+      ? route.params?.challengeState ?? 'tutorial'
+      : null;
+
+  const currentChallengeId =
+    route.name === 'challenge'
+      ? route.params?.challengeId ?? 0
+      : null;
+
+  const resetLucasChallenge = () => {
+    setElapsedTime(0);
+    setIsHintOpen(false);
+    setHasStarted(false);
+  };
+
+  const formatTime = (totalSeconds: number) => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  };
+
+  useEffect(() => {
+    const shouldRun =
+      currentChallengeId === 0 &&
+      currentChallengeState === 'playing' &&
+      !isHintOpen;
+
+    if (!shouldRun) return;
+
+    const interval = setInterval(() => {
+      setElapsedTime((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentChallengeId, currentChallengeState, isHintOpen]);
 
   const handleNavigate: OnNavigateFunc = (name, params) => {
     setHistory(prev => {
@@ -40,6 +83,11 @@ const CarrieFisherScreen = () => {
         JSON.stringify(current.params) === JSON.stringify(params)
       ) {
         return prev;
+      }
+
+      // Reset uniquement quand on retourne au menu des épreuves
+      if (name === 'home') {
+        resetLucasChallenge();
       }
 
       return [...prev, { name, params }];
@@ -127,6 +175,7 @@ const CarrieFisherScreen = () => {
           <Menu
             onNavigate={handleNavigate}
             skipIntro={params?.skipIntro}
+            challenge1Completed={challenge1Completed}
           />
         );
 
@@ -140,6 +189,14 @@ const CarrieFisherScreen = () => {
             challengeState={params?.challengeState ?? 'tutorial'}
             onChallengeStateChange={updateCurrentChallengeState}
             onNavigate={handleNavigate}
+            elapsedTime={elapsedTime}
+            isHintOpen={isHintOpen}
+            hasStarted={hasStarted}
+            setElapsedTime={setElapsedTime}
+            setIsHintOpen={setIsHintOpen}
+            setHasStarted={setHasStarted}
+            setChallenge1Completed={setChallenge1Completed}
+            formatTime={formatTime}
           />
         );
 
@@ -155,8 +212,8 @@ const CarrieFisherScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={{ height: insets.top, backgroundColor: 'black' }} />
+    <View style={styles_starwars.carrieFisherContainer}>
+      <View style={[styles_starwars.carrieFisherSafeAreaTop, { height: insets.top }]} />
 
       <Header
         onNavigate={handleNavigate}
@@ -168,12 +225,5 @@ const CarrieFisherScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});
 
 export default CarrieFisherScreen;

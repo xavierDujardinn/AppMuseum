@@ -1,42 +1,46 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import { Image } from 'expo-image';
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 interface WinProps {
   onCardPress: () => void;
   onBackToMenu: () => void;
 }
 
-const Win_lucas: React.FC<WinProps> = ({ onCardPress, onBackToMenu }) => {
+const Win_lucas: React.FC<WinProps> = ({
+  onCardPress,
+  onBackToMenu,
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={styles_starwars.winLucasContainer}>
       <Image
         source={require('@/assets/images/expos/carrieFisher/lucas/tatooine.png')}
-        style={styles.backgroundImage}
+        style={styles_starwars.winLucasBackgroundImage}
         contentFit="cover"
       />
 
-      <View style={styles.overlay}>
-        <Text style={styles.title}>
+      <View style={styles_starwars.winLucasOverlay}>
+        <Text style={styles_starwars.winLucasTitle}>
           Bravo vous avez retrouvé{"\n"}R2D2 !
         </Text>
 
         <Image
           source={require('@/assets/images/expos/carrieFisher/lucas/R2D2.png')}
-          style={styles.r2d2}
+          style={styles_starwars.winLucasR2D2}
           contentFit="contain"
         />
 
-        <TouchableOpacity style={styles.cardButton} onPress={onCardPress}>
+        <TouchableOpacity style={styles_starwars.winLucasCardButton} onPress={onCardPress}>
           <Image
             source={require('@/assets/images/expos/carrieFisher/carte.png')}
-            style={styles.card}
+            style={styles_starwars.winLucasCard}
             contentFit="contain"
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.backButton} onPress={onBackToMenu}>
-          <Text style={styles.backButtonText}>
+        <TouchableOpacity style={styles_starwars.winLucasBackButton} onPress={onBackToMenu}>
+          <Text style={styles_starwars.winLucasBackButtonText}>
             Retour au menu des challenges
           </Text>
         </TouchableOpacity>
@@ -44,70 +48,5 @@ const Win_lucas: React.FC<WinProps> = ({ onCardPress, onBackToMenu }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-
-  backgroundImage: {
-    ...StyleSheet.absoluteFillObject,
-  },
-
-  overlay: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: 90,
-    paddingBottom: 30,
-    paddingHorizontal: 20,
-  },
-
-  title: {
-    color: '#C62828',
-    fontSize: 24,
-    textAlign: 'center',
-    fontFamily: 'Exo2-Bold',
-    marginBottom: 20,
-    textShadow: '0px 0px 8px rgba(255,255,255,0.2)',
-  } as any,
-
-  r2d2: {
-    width: 260,
-    height: 360,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-
-  cardButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: -10,
-    marginBottom: 20,
-  },
-
-  card: {
-    width: 110,
-    height: 90,
-  },
-
-  backButton: {
-    marginTop: 'auto',
-    backgroundColor: 'rgba(0, 0, 0, 0.18)',
-    borderWidth: 1.5,
-    borderColor: 'red',
-    borderStyle: 'solid',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    borderRadius: 25,
-    width: '85%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  backButtonText: {
-    textAlign: 'center',
-    fontFamily: 'Exo2-SemiBold',
-    color: '#F0A820',
-    fontSize: 20,
-  },
-});
 
 export default Win_lucas;

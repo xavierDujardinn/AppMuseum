@@ -1,9 +1,9 @@
 import Expo from "@/app/hub/tabs/expo";
 import Gallery from "@/app/hub/tabs/gallery";
+import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import styles from '../../../styles/hub/common';
 import Header from '../../common/components/header';
 import Settings from '../../common/tabs/settings';
 import Code from "./code";
@@ -86,7 +86,7 @@ const Hub: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ height: insets.top, backgroundColor: 'black' }} />
+      <View style={[styles.safeAreaTop, { height: insets.top}]} />
 
       <Header
         onNavigate={handleNavigate}

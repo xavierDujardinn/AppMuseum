@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {getGtuText} from "@/scripts/gtuHandler";
-import {Modal, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import styles from '../../../styles/hub/common';
-import {useTranslation} from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/hooks/languageContext";
+import { getGtuText } from "@/scripts/gtuHandler";
+import styles from '@/styles/hub/common';
+import React, { useEffect, useState } from "react";
+import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 const Gtu: React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);

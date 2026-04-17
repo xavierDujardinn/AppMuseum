@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import {Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
-import {verifyCode} from '@/scripts/expoCodeVerifyer';
-import styles from '../../../styles/hub/common';
-import {useTranslation} from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/hooks/languageContext";
+import { verifyCode } from '@/scripts/expoCodeVerifyer';
+import styles from '@/styles/hub/common';
+import React, { useState } from 'react';
+import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
 interface ErrorProps {
     onNavigate: (screen: 'connect' | 'expo' | 'error', params?: any) => void;
@@ -26,10 +26,10 @@ const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={{ flex: 1 }}
+            style={styles.screen}
         >
             {/*Avoid keyboad to break everything*/}
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.content}>
                         <Text style={styles.title}>{trad('code.title')}</Text>

@@ -1,7 +1,7 @@
+import styles from '@/styles/hub/common';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
-import styles from '../../../styles/hub/common';
 
 interface HeaderProps {
   onNavigate: (screen: 'home' | 'settings') => void;

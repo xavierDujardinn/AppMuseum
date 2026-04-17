@@ -1,11 +1,11 @@
-import React from 'react'
-import {Image, Text, TouchableOpacity, View} from "react-native";
-import styles from '../../../styles/hub/common';
-import {useTranslation} from "@/app/hooks/languageContext";
-import {EXPO_IMAGES} from "@/config/config";
+import { useTranslation } from "@/app/hooks/languageContext";
+import { RootStackParamList } from '@/app/index';
+import { EXPO_IMAGES } from "@/config/config";
+import styles from '@/styles/hub/common';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/app/index';
+import React from 'react';
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface ExpoData {
     title: Record<string, string>;
