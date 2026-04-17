@@ -1,8 +1,8 @@
-import React, { createContext, useState, useContext } from 'react';
-import fr from '../../localization/fr.json';
-import en from '../../localization/en.json';
-import nl from '../../localization/nl.json';
-import de from '../../localization/de.json';
+import de from '@/localization/de.json';
+import en from '@/localization/en.json';
+import fr from '@/localization/fr.json';
+import nl from '@/localization/nl.json';
+import React, { createContext, useContext, useState } from 'react';
 
 type Language = 'fr' | 'en' | 'nl' | 'de';
 const translations = { fr, en, nl, de };

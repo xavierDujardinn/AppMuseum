@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
-import {Text, TouchableOpacity, View, PermissionsAndroid, Platform} from "react-native";
-import styles from '../../../styles/hub/common'
-import {useTranslation} from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/hooks/languageContext";
+import { verifyCode } from "@/scripts/expoCodeVerifyer";
+import styles from '@/styles/hub/common';
+import React, { useState } from 'react';
+import { PermissionsAndroid, Platform, Text, TouchableOpacity, View } from "react-native";
 import { BleManager } from 'react-native-ble-plx';
-import {verifyCode} from "@/scripts/expoCodeVerifyer";
+
 
 interface ConnectProps {
     onNavigate: (screen: 'home' | 'connect' | 'code' | 'gallery' | 'expo', params?: any) => void;
