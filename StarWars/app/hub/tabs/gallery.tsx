@@ -1,7 +1,7 @@
-import React from 'react'
-import styles from '../../../styles/hub/common';
-import {ScrollView, Text, TouchableOpacity, View} from "react-native";
-import {useTranslation} from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/hooks/languageContext";
+import styles from '@/styles/hub/common';
+import React from 'react';
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import expos from '../../../config/expos.json';
 import Preview from "../components/preview";
 
@@ -17,13 +17,13 @@ const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
             <Text style={styles.title}>{trad('preview.title')}</Text>
 
             <ScrollView
-                style={{ flex: 1, width: '100%' }}
-                contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
+                style={styles.galleryScroll}
+                contentContainerStyle={styles.galleryScrollContent}
             >
                 {expos.map((expo, index) => (
                     <TouchableOpacity
                         key={index}
-                        style={{ width: '100%', marginBottom: 20 }}
+                        style={styles.galleryItem}
                         onPress={() => onNavigate('expo', expo )}
                     >
                         <Preview
