@@ -9,14 +9,16 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 interface MenuProps {
     onNavigate: (screen: 'home' | 'challenge', params?: any) => void;
     skipIntro?: boolean;
-    challenge1Completed: boolean;
 }
 
-const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro, challenge1Completed }) => {
+const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const [isIntroPassed, setIsIntroPassed] = React.useState(skipIntro || false);
+
+    // On gèrera ça plus tard avec le système de sauvegarde
     const [unLockedChallengesList, setUnLockedChallengesList] = React.useState([true, true, true]);
+    const [completedChallengesList, setCompletedChallengesList] = React.useState([true, false, false]);
 
     return (
         <ImageBackground
@@ -49,7 +51,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro, challenge1Completed 
                               >
                                   épreuve 1
                               </Text>
-                              {challenge1Completed && (
+                              { completedChallengesList[0] && (
                                 <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
                               )}
                             </View>
@@ -65,6 +67,9 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro, challenge1Completed 
                             >
                                 épreuve 2
                             </Text>
+                            { completedChallengesList[1] && (
+                                <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
+                            )}
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -77,6 +82,9 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro, challenge1Completed 
                             >
                                 épreuve 3
                             </Text>
+                            { completedChallengesList[2] && (
+                                <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
+                            )}
                         </TouchableOpacity>
 
                         <TouchableOpacity
