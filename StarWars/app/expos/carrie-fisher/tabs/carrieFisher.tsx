@@ -1,10 +1,10 @@
 import Header from "@/app/common/components/header";
 import Settings from "@/app/common/tabs/settings";
-import Challenge from "@/app/expos/carrie-fisher/challenge";
-import Menu from "@/app/expos/carrie-fisher/menu";
+import Challenge from "@/app/expos/carrie-fisher/tabs/challenge";
+import Menu from "@/app/expos/carrie-fisher/tabs/menu";
 import Error from "@/app/hub/tabs/error";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -30,49 +30,7 @@ const CarrieFisherScreen = () => {
     { name: 'home' }
   ]);
 
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [isHintOpen, setIsHintOpen] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
-  const [challenge1Completed, setChallenge1Completed] = useState(false);
-
   const route = history[history.length - 1];
-
-  const currentChallengeState =
-    route.name === 'challenge'
-      ? route.params?.challengeState ?? 'tutorial'
-      : null;
-
-  const currentChallengeId =
-    route.name === 'challenge'
-      ? route.params?.challengeId ?? 0
-      : null;
-
-  const resetLucasChallenge = () => {
-    setElapsedTime(0);
-    setIsHintOpen(false);
-    setHasStarted(false);
-  };
-
-  const formatTime = (totalSeconds: number) => {
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-  };
-
-  useEffect(() => {
-    const shouldRun =
-      currentChallengeId === 0 &&
-      currentChallengeState === 'playing' &&
-      !isHintOpen;
-
-    if (!shouldRun) return;
-
-    const interval = setInterval(() => {
-      setElapsedTime((prev) => prev + 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [currentChallengeId, currentChallengeState, isHintOpen]);
 
   const handleNavigate: OnNavigateFunc = (name, params) => {
     setHistory(prev => {
@@ -85,34 +43,7 @@ const CarrieFisherScreen = () => {
         return prev;
       }
 
-      // Reset uniquement quand on retourne au menu des épreuves
-      if (name === 'home') {
-        resetLucasChallenge();
-      }
-
       return [...prev, { name, params }];
-    });
-  };
-
-  const updateCurrentChallengeState = (newState: ChallengeStates) => {
-    setHistory(prev => {
-      const updated = [...prev];
-      const current = updated[updated.length - 1];
-
-      if (current.name !== 'challenge') return prev;
-
-      const previousChallengeHistory = current.params?.challengeHistory || ['tutorial'];
-
-      updated[updated.length - 1] = {
-        ...current,
-        params: {
-          ...current.params,
-          challengeState: newState,
-          challengeHistory: [...previousChallengeHistory, newState],
-        },
-      };
-
-      return updated;
     });
   };
 
@@ -175,7 +106,6 @@ const CarrieFisherScreen = () => {
           <Menu
             onNavigate={handleNavigate}
             skipIntro={params?.skipIntro}
-            challenge1Completed={challenge1Completed}
           />
         );
 
@@ -186,17 +116,7 @@ const CarrieFisherScreen = () => {
         return (
           <Challenge
             challengeId={params?.challengeId ?? 0}
-            challengeState={params?.challengeState ?? 'tutorial'}
-            onChallengeStateChange={updateCurrentChallengeState}
             onNavigate={handleNavigate}
-            elapsedTime={elapsedTime}
-            isHintOpen={isHintOpen}
-            hasStarted={hasStarted}
-            setElapsedTime={setElapsedTime}
-            setIsHintOpen={setIsHintOpen}
-            setHasStarted={setHasStarted}
-            setChallenge1Completed={setChallenge1Completed}
-            formatTime={formatTime}
           />
         );
 
