@@ -1,7 +1,7 @@
 import { normalize } from '@/styles/responsive';
 import { StyleSheet } from 'react-native';
 
-export const styles_starwars = StyleSheet.create({
+const styles_starwars = StyleSheet.create({
     carrieFisherContainer: {
         flex: 1,
         backgroundColor: 'white',
@@ -247,7 +247,6 @@ export const styles_starwars = StyleSheet.create({
         textShadowOffset: { width: 0, height: 0 },
         textShadowRadius: 6,
     },
-
     playingLucasHintButton: {
         width: normalize(48),
         height: normalize(48),
@@ -400,20 +399,28 @@ export const styles_starwars = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
     },
 
-    funfactLucasOverlay: {
-        flex: 1,
+    funfactLucasImageGroup: {
+        width: '100%',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingTop: normalize(120),
-        paddingBottom: normalize(35),
-        paddingHorizontal: normalize(18),
+        justifyContent: 'center',
+        gap: normalize(1),
     },
 
     funfactLucasImage: {
         width: '92%',
-        height: normalize(400),
+        height: normalize(300),
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
+    funFactText:{
+        fontFamily: 'Exo2-Bold',
+        color: '#4A4E69',
+        fontSize: normalize(25),
+        lineHeight: normalize(20),
+        textAlign: 'center',
+        textAlignVertical: 'center',
+    },
     funfactLucasScoreButton: {
         width: '88%',
         minHeight: normalize(82),
