@@ -9,5 +9,25 @@
     "image" : "carrie",
     "code" : "REBEL",
     "main_screen_name" : "CarrieFisher"
+  },{
+    "title": {
+      "en" : "Carrie Fisher: The Rebel Star",
+      "fr" : "Carrie Fisher : l’étoile rebelle",
+      "nl" : "Carrie Fisher: De rebelse ster",
+      "de" : "Carrie Fisher: Der rebellische Stern"
+    },
+    "image" : "carrie",
+    "code" : "REBEL",
+    "main_screen_name" : "CarrieFisher"
+  },{
+    "title": {
+      "en" : "Carrie Fisher: The Rebel Star",
+      "fr" : "Carrie Fisher : l’étoile rebelle",
+      "nl" : "Carrie Fisher: De rebelse ster",
+      "de" : "Carrie Fisher: Der rebellische Stern"
+    },
+    "image" : "carrie",
+    "code" : "REBEL",
+    "main_screen_name" : "CarrieFisher"
   }
 ]

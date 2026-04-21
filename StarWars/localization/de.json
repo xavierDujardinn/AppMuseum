@@ -37,5 +37,8 @@
     "title": "Ausstellung",
     "desc": "Temporäre Ausstellung",
     "join": "Teilnehmen"
+  },
+  "gallery": {
+    "title": "Ausstellungsgalerie"
   }
 }

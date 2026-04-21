@@ -1,4 +1,4 @@
-import { useTranslation } from '@/app/hooks/languageContext';
+import { useTranslation } from '@/app/common/hooks/languageContext';
 import React, { useState } from 'react';
 import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import styles from '../../../styles/hub/common';

@@ -1,5 +1,5 @@
 import LanguageSelector from "@/app/common/components/languageSelector";
-import { useTranslation } from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
 import { Switch, Text, View } from 'react-native';
@@ -53,6 +53,7 @@ const Settings: React.FC = () => {
       </View>
 
       <Gtu />
+        <Text style={styles.versionText}>v1.0.0 - Escape Museum</Text>
     </View>
   );
 };

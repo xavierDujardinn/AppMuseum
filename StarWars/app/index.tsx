@@ -6,7 +6,7 @@ import * as NavigationBar from 'expo-navigation-bar'; // Import pour Android
 import {useFonts, Exo2_900Black, Exo2_700Bold, Exo2_600SemiBold, Exo2_400Regular} from '@expo-google-fonts/exo-2';
 import Hub from '@/app/hub/tabs/hub';
 import CarrieFisher from '@/app/expos/carrie-fisher/tabs/carrieFisher';
-import {LanguageProvider} from "@/app/hooks/languageContext";
+import {LanguageProvider} from "@/app/common/hooks/languageContext";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Navigation types
