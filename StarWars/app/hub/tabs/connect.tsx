@@ -1,4 +1,4 @@
-import { useTranslation } from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import { verifyCode } from "@/scripts/expoCodeVerifyer";
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
@@ -7,7 +7,7 @@ import { BleManager } from 'react-native-ble-plx';
 
 
 interface ConnectProps {
-    onNavigate: (screen: 'home' | 'connect' | 'code' | 'gallery' | 'expo', params?: any) => void;
+    onNavigate: (screen: 'home' | 'connect' | 'code' | 'expo', params?: any) => void;
 }
 
 const manager = new BleManager();
@@ -86,13 +86,6 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
                 onPress={() => onNavigate('code')}
             >
                 <Text style={styles.connectMainButtonText}>{trad('connect.code')}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={styles.connectMainButton}
-                onPress={() => onNavigate('gallery')}
-            >
-                <Text style={styles.connectMainButtonText}>{trad('connect.gallery')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity

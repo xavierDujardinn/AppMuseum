@@ -1,7 +1,7 @@
 import { normalize } from '@/styles/responsive';
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F2E9E4',
@@ -51,12 +51,14 @@ export const styles = StyleSheet.create({
     },
     middleImage: {
         width: '100%',
+        marginTop: normalize(15),
         height: normalize(130),
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
     },
     versionText: {
+        alignSelf: 'center',
         position: 'absolute',
         bottom: normalize(20),
         fontSize: normalize(12),
@@ -353,15 +355,19 @@ export const styles = StyleSheet.create({
     },
     galleryScroll: {
         flex: 1,
-        width: '100%',
+        width: '100%'
     },
     galleryScrollContent: {
         flexGrow: 1,
-        paddingBottom: normalize(20),
+    },
+    galleryBackground: {
+        backgroundColor:'#4A4E69',
+        borderRadius: normalize(20),
+        padding: normalize(5),
     },
     galleryItem: {
         width: '100%',
-        marginBottom: normalize(20),
+        marginBottom: normalize(2),
     },
     safeAreaTop: {
         backgroundColor: 'black',

@@ -1,5 +1,5 @@
-import { useTranslation } from "@/app/hooks/languageContext";
-import { RootStackParamList } from '@/app/index';
+import { useTranslation } from "@/app/common/hooks/languageContext";
+import { RootStackParamList } from '@/app';
 import { EXPO_IMAGES } from "@/config/config";
 import styles from '@/styles/hub/common';
 import { useNavigation } from '@react-navigation/native';

@@ -37,5 +37,8 @@
     "title": "Tentoonstelling",
     "desc": "Tijdelijke tentoonstelling",
     "join": "Deelnemen"
+  },
+  "gallery": {
+    "title": "Galerie van de tentoonstellingen"
   }
 }

@@ -1,4 +1,4 @@
-import { useTranslation } from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import styles from '@/styles/hub/common';
 import Feather from '@expo/vector-icons/Feather';
 import React from 'react';
