@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import {useTranslation} from "@/app/hooks/languageContext";
+import {useTranslation} from "@/app/common/hooks/languageContext";
 import {EXPO_IMAGES} from "@/config/config";
 
 interface PreviewProps {

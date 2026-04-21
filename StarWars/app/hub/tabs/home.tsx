@@ -1,10 +1,11 @@
 import styles from '@/styles/hub/common';
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from "react-native";
-import { useTranslation } from '../../hooks/languageContext';
+import { Text, TouchableOpacity, View } from "react-native";
+import { useTranslation } from '../../common/hooks/languageContext';
+import Gallery from "@/app/hub/tabs/gallery";
 
 interface HomeProps {
-    onNavigate: (screen: 'connect') => void;
+    onNavigate: any;
 }
 
 const Home: React.FC<HomeProps> = ({onNavigate}) => {
@@ -22,12 +23,7 @@ const Home: React.FC<HomeProps> = ({onNavigate}) => {
                 <Text style={styles.mainButtonText}>{trad('home.join')}</Text>
             </TouchableOpacity>
 
-            <Image
-                source={require('../../../assets/images/escapemuseum.png')}
-                style={styles.middleImage}
-                resizeMode="contain"
-            />
-            <Text style={styles.versionText}>v1.0.0 - Escape Museum</Text>
+            <Gallery onNavigate={onNavigate}/>
         </View>
     );
 }

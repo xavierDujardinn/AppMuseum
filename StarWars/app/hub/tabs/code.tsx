@@ -1,4 +1,4 @@
-import { useTranslation } from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import { verifyCode } from '@/scripts/expoCodeVerifyer';
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';

@@ -1,4 +1,4 @@
-import { useTranslation } from "@/app/hooks/languageContext";
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import { getGtuText } from "@/scripts/gtuHandler";
 import styles from '@/styles/hub/common';
 import React, { useEffect, useState } from "react";
@@ -23,7 +23,7 @@ const Gtu: React.FC = () => {
             }
         }
         loadGtuText();
-    }, [locale]);
+    }, [locale, trad]);
 
     return(
         <>
