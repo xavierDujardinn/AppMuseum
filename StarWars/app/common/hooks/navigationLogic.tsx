@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
 // we use generic type for this
-export function useNavigationLogic<destination extends string>(initialScreen: destination) {
+function useNavigationLogic<destination extends string>(initialScreen: destination) {
     const [route, setRoute] = useState<{ name: destination; params?: any }>({ name: initialScreen });
     const [history, setHistory] = useState<{ name: destination; params?: any }[]>([]);
 
@@ -30,3 +30,5 @@ export function useNavigationLogic<destination extends string>(initialScreen: de
         canGoBack: history.length > 0
     };
 }
+
+export default useNavigationLogic;
