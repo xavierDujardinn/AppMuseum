@@ -9,7 +9,7 @@ import Code from "./code";
 import Connect from "./connect";
 import Error from './error';
 import Home from './home';
-import {useNavigationLogic} from "@/app/common/hooks/navigationLogic";
+import useNavigationLogic from "@/app/common/hooks/navigationLogic";
 
 interface NavigationState {
     name: 'home' | 'settings' | 'error' | 'connect' | 'code' | 'expo';

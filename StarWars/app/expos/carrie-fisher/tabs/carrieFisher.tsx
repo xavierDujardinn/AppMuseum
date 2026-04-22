@@ -7,7 +7,7 @@ import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import React from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import {useNavigationLogic} from "@/app/common/hooks/navigationLogic";
+import useNavigationLogic from "@/app/common/hooks/navigationLogic";
 
 export type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact' | 'scoreboard';
 
