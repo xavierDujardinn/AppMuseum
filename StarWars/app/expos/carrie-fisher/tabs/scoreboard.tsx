@@ -1,8 +1,9 @@
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
-import {ImageBackground} from 'expo-image';
-import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import {BG_LIST, formatTime} from "@/app/expos/carrie-fisher/utils";
+import { ImageBackground } from 'expo-image';
+import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import { BG_LIST, formatTime } from "@/app/expos/carrie-fisher/utils";
+import { getScores, saveNewScore, ScoreEntry } from '@/app/common/scripts/storage';
 
 interface TableauLucasProps {
     challengeId: number;
@@ -10,9 +11,27 @@ interface TableauLucasProps {
     elaspedTime: number;
 }
 
-const Scoreboard: React.FC<TableauLucasProps> = ({challengeId, onNext, elaspedTime}) => {
-    // On ira mettre et chercher ces infos dans les sauvegardes
-    // Pour l'instant c'est que du fake
+const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedTime }) => {
+    const [leaderboard, setLeaderboard] = useState<ScoreEntry[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const handleScoreLogic = async () => {
+            try {
+                const updatedScores = await saveNewScore("carrieFisher",challengeId, elaspedTime);
+                setLeaderboard(updatedScores);
+            } catch (error) {
+                console.error("Erreur Scoreboard:", error);
+                const existing = await getScores(challengeId);
+                setLeaderboard(existing);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        handleScoreLogic();
+    }, [challengeId, elaspedTime]);
+
     return (
         <View style={styles_starwars.scoreboardLucasContainer}>
             <ImageBackground
@@ -30,19 +49,32 @@ const Scoreboard: React.FC<TableauLucasProps> = ({challengeId, onNext, elaspedTi
                         Ton temps : {formatTime(elaspedTime)}
                     </Text>
 
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Lucas : 5000</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Xavier : 4999</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Gatien : 3500</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Loïc : 3000</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Thokar : 2999</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Malo : 2000</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Durand : 1500</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Erdem : 1450</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Louis : 1000</Text>
-                    <Text style={styles_starwars.scoreboardLucasScoreLine}>Marine : 100</Text>
+                    {isLoading ? (
+                        <ActivityIndicator size="large" color="#F0A820" style={{ marginTop: 20 }} />
+                    ) : (
+                        leaderboard.map((entry, index) => (
+                            <Text
+                                key={`${index}-${entry.name}`}
+                                style={[
+                                    styles_starwars.scoreboardLucasScoreLine,
+                                    // Faudra changer pour le bon name
+                                    entry.name === "Unknow" && { color: '#00D2FF' }
+                                ]}
+                            >
+                                {index + 1}. {entry.name} : {formatTime(entry.time)}
+                            </Text>
+                        ))
+                    )}
+
+                    {!isLoading && leaderboard.length === 0 && (
+                        <Text style={styles_starwars.scoreboardLucasScoreLine}>Aucun score enregistré</Text>
+                    )}
                 </View>
 
-                <TouchableOpacity style={styles_starwars.scoreboardLucasNextButton} onPress={onNext}>
+                <TouchableOpacity
+                    style={styles_starwars.scoreboardLucasNextButton}
+                    onPress={onNext}
+                >
                     <Text style={styles_starwars.scoreboardLucasNextButtonText}>Suivant</Text>
                 </TouchableOpacity>
             </View>

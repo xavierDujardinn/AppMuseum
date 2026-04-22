@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export const useTimer = (initialIsActive: boolean = true) => {
+const useTimer = (initialIsActive: boolean = true) => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isActive, setIsActive] = useState(initialIsActive);
 
@@ -27,3 +27,5 @@ export const useTimer = (initialIsActive: boolean = true) => {
 
     return { elapsedTime, isActive, stopTimer, startTimer, resetTimer };
 };
+
+export default useTimer;
