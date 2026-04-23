@@ -586,6 +586,10 @@ const styles_starwars = StyleSheet.create({
         height: 60,
         marginLeft: 20,
     },
+    gameEngine: {
+        flex: 1,
+        backgroundColor: 'transparent',
+    },
 });
 
 export default styles_starwars;
