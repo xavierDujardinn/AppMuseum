@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text, View } from "react-native";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import { ImageBackground } from "expo-image";
+import { formatTime } from "@/app/expos/carrie-fisher/utils";
+import Hint from "@/app/expos/carrie-fisher/tabs/hintModal";
 import { useTimer } from "@/app/expos/carrie-fisher/hooks/useTimer";
 import { Gyroscope } from 'expo-sensors';
 import { GameEngine } from 'react-native-game-engine';
@@ -134,7 +136,6 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
     const { elapsedTime, stopTimer } = useTimer(true);
     const [gyroData, setGyroData] = useState({ x: 0, y: 0, z: 0 });
     const [layout, setLayout] = useState<{ width: number; height: number } | null>(null);
-    const [gameId, setGameId] = useState(0);
     const engineRef = useRef<any>(null);
 
     useEffect(() => {
@@ -178,13 +179,17 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
             source={require('@/assets/images/expos/carrieFisher/death_star.png')}
             style={styles_starwars.menuBackgroundImage}
         >
+            <View style={styles_starwars.playingLucasTopBar}>
+                <Text style={styles_starwars.playingLucasTimerText}>{formatTime(elapsedTime)}</Text>
+                <Hint challengeId={1} theme={'light'} />
+            </View>
+
             <View
                 style={{ flex: 1, marginBottom: verticalScale(20) }}
                 onLayout={(e) => setLayout(e.nativeEvent.layout)}
             >
                 {layout && (
                     <GameEngine
-                        key={gameId}
                         ref={(ref) => { engineRef.current = ref; }}
                         systems={[updatePhysics]}
                         entities={createWorld(layout.width, layout.height)}
