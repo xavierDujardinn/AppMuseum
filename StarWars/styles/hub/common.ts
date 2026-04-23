@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
     languageSelectorCheck: {
         color: '#4A4E69',
         fontWeight: 'bold',
-    }
+    },
 });
 
 export default styles;
