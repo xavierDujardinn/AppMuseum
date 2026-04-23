@@ -1,5 +1,5 @@
 import { useTranslation } from "@/app/common/hooks/languageContext";
-import { getGtuText } from "@/scripts/gtuHandler";
+import { getGtuText } from "@/app/common/scripts/gtuHandler";
 import styles from '@/styles/hub/common';
 import React, { useEffect, useState } from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";

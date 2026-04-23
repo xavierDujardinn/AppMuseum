@@ -4,7 +4,7 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import {formatTime} from "@/app/expos/carrie-fisher/utils";
 import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
-import {useTimer} from "@/app/expos/carrie-fisher/hooks/useTimer";
+import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 
 interface PlayingLucasProps {
     onWin: (time: number) => void;
