@@ -4,7 +4,7 @@ import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import { ImageBackground } from "expo-image";
 import { formatTime } from "@/app/expos/carrie-fisher/utils";
 import Hint from "@/app/expos/carrie-fisher/tabs/hintModal";
-import { useTimer } from "@/app/expos/carrie-fisher/hooks/useTimer";
+import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 import { Gyroscope } from 'expo-sensors';
 import { GameEngine } from 'react-native-game-engine';
 import Matter from 'matter-js';
