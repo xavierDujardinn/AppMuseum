@@ -2,7 +2,7 @@ import styles from '@/styles/hub/common';
 import React from 'react';
 import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import expos from '../../../config/expos.json';
-import Preview from "../components/preview";
+import Preview from "./preview";
 import {useTranslation} from "@/app/common/hooks/languageContext";
 
 interface GalleryProps {

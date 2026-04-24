@@ -16,9 +16,9 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
     const {trad} = useTranslation();
 
     const [status, setStatus] = useState('bluetooth')
+    const [canScan, setCanScan] = useState(true);
 
-    const handleBluetoothScan = async () => {
-
+    const askFromPermissions = async () => {
         if (Platform.OS === 'android') {
             try {
                 const granted = await PermissionsAndroid.requestMultiple([
@@ -34,37 +34,54 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
                 if (!allGranted) {
                     console.log("Détail des permissions :", granted);
                     setStatus('error');
-                    return;
+                    return false;
+                }
+                else{
+                    return true;
                 }
             } catch (err) {
                 console.warn(err);
-                return;
+                return false;
             }
         }
+    }
 
-        setStatus('scanning');
+    const handleBluetoothScan = async () => {
+        if (!canScan || status === 'scanning') return;
+        setCanScan(false);
 
-        await manager.startDeviceScan(null, null, (error, device) => {
-            if (error){
-                console.log(error);
-                setStatus('error');
-                return;
-            }
-            if (device && device.name ==='Expo'){
-                manager.stopDeviceScan();
+        const permissionsGranted = await askFromPermissions();
 
-                const expoData = verifyCode("REBEL");
-
-                if (expoData){
-                    // Utilisation des params pour passer expoData
-                    onNavigate('expo', expoData);
+        if (permissionsGranted && (status !== 'error' || 'found')) {
+            await manager.startDeviceScan(null, null, (error, device) => {
+                setStatus('scanning');
+                if (error) {
+                    console.log(error);
+                    setStatus('error');
+                    return;
                 }
-            }
-        });
+                if (device && device.name) {
+                    let name = device.name?.split('_');
+
+                    if (name[0] === 'EXPO') {
+                        console.log(device);
+                        manager.stopDeviceScan();
+                        setStatus('found');
+
+                        const expoData = verifyCode(name[1]);
+
+                        if (expoData) {
+                            onNavigate('expo', expoData);
+                        }
+                    }
+                }
+            });
+        }
 
         setTimeout(() => {
             manager.stopDeviceScan();
-            if (status === 'scanning') setStatus('bluetooth');
+            setStatus('bluetooth');
+            setCanScan(true);
         }, 5000)
     }
 
@@ -77,6 +94,7 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
             <TouchableOpacity
                 style={styles.connectMainButton}
                 onPress={handleBluetoothScan}
+                disabled={!canScan}
             >
                 <Text style={styles.connectMainButtonText}>{status === 'scanning' ? "Recherche..." : trad('connect.bluetooth')}</Text>
             </TouchableOpacity>
