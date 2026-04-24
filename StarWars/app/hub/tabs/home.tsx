@@ -2,7 +2,7 @@ import styles from '@/styles/hub/common';
 import React from 'react';
 import { Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from '../../common/hooks/languageContext';
-import Gallery from "@/app/hub/tabs/gallery";
+import Gallery from "@/app/hub/components/gallery";
 
 interface HomeProps {
     onNavigate: any;
