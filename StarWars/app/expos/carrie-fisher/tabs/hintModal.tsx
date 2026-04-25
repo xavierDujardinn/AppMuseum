@@ -1,7 +1,8 @@
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import React, {useState} from 'react';
-import { Modal, ScrollView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { Modal, ScrollView, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import {Image} from "expo-image";
+import ThemedText from '@/app/common/components/themedText';
 
 interface HintModalProps {
     challengeId: number,
@@ -42,16 +43,16 @@ const HintModal: React.FC<HintModalProps> = ({challengeId, theme}) => {
                         <TouchableWithoutFeedback>
                             <View style={styles_starwars.hintModalContent}>
                                 <View style={styles_starwars.hintModalHeader}>
-                                    <Text style={styles_starwars.hintModalTitle}>Indice</Text>
+                                    <ThemedText style={styles_starwars.hintModalTitle} weight="bold">Indice</ThemedText>
                                     <TouchableOpacity onPress={() => setIsOpened(false)}>
-                                        <Text style={styles_starwars.hintModalCloseIcon}>✕</Text>
+                                        <ThemedText style={styles_starwars.hintModalCloseIcon} weight="bold">✕</ThemedText>
                                     </TouchableOpacity>
                                 </View>
 
                                 <ScrollView style={styles_starwars.hintModalScrollText}>
-                                    <Text style={styles_starwars.hintModalText}>
+                                    <ThemedText style={styles_starwars.hintModalText}>
                                         R2D2 se trouve dans une zone où le magnétomètre semble indiquer une direction particulière.
-                                    </Text>
+                                    </ThemedText>
                                 </ScrollView>
                             </View>
                         </TouchableWithoutFeedback>

@@ -1,8 +1,9 @@
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import {Image,ImageBackground} from 'expo-image';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import {BG_LIST} from "@/app/expos/carrie-fisher/utils";
+import ThemedText from '@/app/common/components/themedText';
 
 interface WinProps {
     challengeId: number;
@@ -20,9 +21,9 @@ const Win: React.FC<WinProps> = ({challengeId, onCardPress, onBackToMenu}) => {
             />
 
             <View style={styles_starwars.winLucasOverlay}>
-                <Text style={styles_starwars.winLucasTitle}>
+                <ThemedText style={styles_starwars.winLucasTitle} weight="bold">
                     Bravo vous avez retrouvé{"\n"}R2D2 !
-                </Text>
+                </ThemedText>
 
                 <Image
                     source={require('@/assets/images/expos/carrieFisher/lucas/R2D2.png')}
@@ -39,9 +40,9 @@ const Win: React.FC<WinProps> = ({challengeId, onCardPress, onBackToMenu}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles_starwars.winLucasBackButton} onPress={onBackToMenu}>
-                    <Text style={styles_starwars.winLucasBackButtonText}>
+                    <ThemedText style={styles_starwars.winLucasBackButtonText} weight="bold">
                         Retour au menu des challenges
-                    </Text>
+                    </ThemedText>
                 </TouchableOpacity>
             </View>
         </View>

@@ -15,7 +15,20 @@
   },
   "settings": {
     "title": "Settings",
-    "language": "Language"
+    "language": "Language",
+    "currentUserName": "Current user name",
+    "userNamePlaceholder": "e.g. Leia Organa",
+    "fontSize": "Font size",
+    "fontSizeSmall": "Small",
+    "fontSizeNormal": "Normal",
+    "fontSizeMedium": "Medium",
+    "fontSizeLarge": "Large",
+    "fontFamily": "Font",
+    "fontExo": "Exo",
+    "fontSystem": "System",
+    "fontSerif": "Serif",
+    "colorBlindMode": "Color-blind mode",
+    "highContrast": "High contrast"
   },
   "gtu": {
     "error": "Error while retrieving the general terms of use",

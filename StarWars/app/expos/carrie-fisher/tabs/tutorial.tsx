@@ -1,7 +1,8 @@
 import React from 'react';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
-import {TouchableOpacity, View, Text} from "react-native";
+import {TouchableOpacity, View} from "react-native";
 import {ImageBackground} from "expo-image";
+import ThemedText from '@/app/common/components/themedText';
 
 interface TutorialProps {
     challengeId: number;
@@ -23,15 +24,15 @@ const Tutorial: React.FC<TutorialProps> = ({challengeId, onStart, onBack}) => {
                 <View style={styles_starwars.tutorialLucasOverlay}>
                     <View style={styles_starwars.tutorialLucasContent}>
                         <View style={styles_starwars.tutorialLucasTextWrapper}>
-                            <Text style={styles_starwars.tutorialLucasText}>{tutorialText}</Text>
+                            <ThemedText style={styles_starwars.tutorialLucasText}>{tutorialText}</ThemedText>
                         </View>
 
                         <TouchableOpacity style={styles_starwars.tutorialLucasButton} onPress={onStart}>
-                            <Text style={styles_starwars.tutorialLucasButtonText}>En avant!</Text>
+                            <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">En avant!</ThemedText>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles_starwars.tutorialLucasButton} onPress={onBack}>
-                            <Text style={styles_starwars.tutorialLucasButtonText}>Retourner au choix de challenge</Text>
+                            <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">Retourner au choix de challenge</ThemedText>
                         </TouchableOpacity>
                     </View>
                 </View>

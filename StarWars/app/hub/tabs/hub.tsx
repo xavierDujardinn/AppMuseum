@@ -10,6 +10,7 @@ import Connect from "./connect";
 import Error from './error';
 import Home from './home';
 import useNavigationLogic from "@/app/common/hooks/navigationLogic";
+import { useTranslation } from "@/app/common/hooks/languageContext";
 
 interface NavigationState {
     name: 'home' | 'settings' | 'error' | 'connect' | 'code' | 'expo';
@@ -18,6 +19,7 @@ interface NavigationState {
 
 const Hub: React.FC = () => {
     const insets = useSafeAreaInsets();
+    const { themeColors } = useTranslation();
 
     const { route, handleNavigate, handleBack, canGoBack } = useNavigationLogic<NavigationState['name']>('home');
 
@@ -47,8 +49,8 @@ const Hub: React.FC = () => {
     };
 
     return (
-        <View style={styles.container}>
-        <View style={[styles.safeAreaTop, { height: insets.top}]} />
+        <View style={[styles.container, { backgroundColor: themeColors.background }]}>
+        <View style={[styles.safeAreaTop, { height: insets.top, backgroundColor: themeColors.secondaryAccent }]} />
 
         <Header
             onNavigate={handleNavigate}

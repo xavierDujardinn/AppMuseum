@@ -15,7 +15,20 @@
   },
   "settings": {
     "title": "Einstellungen",
-    "language": "Sprache"
+    "language": "Sprache",
+    "currentUserName": "Name des aktuellen Benutzers",
+    "userNamePlaceholder": "z. B. Leia Organa",
+    "fontSize": "Schriftgroesse",
+    "fontSizeSmall": "Klein",
+    "fontSizeNormal": "Normal",
+    "fontSizeMedium": "Mittel",
+    "fontSizeLarge": "Gross",
+    "fontFamily": "Schriftart",
+    "fontExo": "Exo",
+    "fontSystem": "System",
+    "fontSerif": "Serif",
+    "colorBlindMode": "Farbenblindmodus",
+    "highContrast": "Hoher Kontrast"
   },
   "gtu": {
     "error": "Fehler beim Abrufen der allgemeinen Geschäftsbedingungen",

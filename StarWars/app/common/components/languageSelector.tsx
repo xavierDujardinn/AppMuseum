@@ -1,6 +1,7 @@
 import { useTranslation } from '@/app/common/hooks/languageContext';
+import ThemedText from '@/app/common/components/themedText';
 import React, { useState } from 'react';
-import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Pressable, TouchableOpacity, View } from 'react-native';
 import styles from '../../../styles/hub/common';
 
 const LANGUAGES = [
@@ -11,7 +12,7 @@ const LANGUAGES = [
 ];
 
 const LanguageSelector: React.FC = () => {
-    const { locale, setLocale, trad } = useTranslation();
+    const { locale, setLocale, trad, themeColors } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
 
     const currentLang = LANGUAGES.find(l => l.id === locale) || LANGUAGES[0];
@@ -23,17 +24,17 @@ const LanguageSelector: React.FC = () => {
 
     return (
         <View style={styles.languageSelectorContainer}>
-            <Text style={styles.languageSelectorLabel}>{trad('settings.language')}</Text>
+            <ThemedText style={[styles.languageSelectorLabel, { color: themeColors.text }]} weight="bold">{trad('settings.language')}</ThemedText>
 
             <TouchableOpacity
-                style={styles.languageSelectorDropdownButton}
+                style={[styles.languageSelectorDropdownButton, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}
                 onPress={() => setIsOpen(true)}
             >
                 <View style={styles.languageSelectorLeftPart}>
-                    <Text style={styles.languageSelectorFlag}>{currentLang.flag}</Text>
-                    <Text style={styles.languageSelectorLanguageName}>{currentLang.name}</Text>
+                    <ThemedText style={styles.languageSelectorFlag}>{currentLang.flag}</ThemedText>
+                    <ThemedText style={[styles.languageSelectorLanguageName, { color: themeColors.text }]} weight="semibold">{currentLang.name}</ThemedText>
                 </View>
-                <Text style={styles.languageSelectorArrow}>{isOpen ? '▲' : '▼'}</Text>
+                <ThemedText style={[styles.languageSelectorArrow, { color: themeColors.text }]}>{isOpen ? '▲' : '▼'}</ThemedText>
             </TouchableOpacity>
 
             <Modal
@@ -46,7 +47,7 @@ const LanguageSelector: React.FC = () => {
                     style={styles.languageSelectorModalOverlay}
                     onPress={() => setIsOpen(false)}
                 >
-                    <View style={styles.languageSelectorModalContent}>
+                    <View style={[styles.languageSelectorModalContent, { backgroundColor: themeColors.surface }]}>
                         {LANGUAGES.map((lang) => (
                             <TouchableOpacity
                                 key={lang.id}
@@ -56,31 +57,32 @@ const LanguageSelector: React.FC = () => {
                                 ]}
                                 onPress={() => handleSelect(lang.id)}
                             >
-                                <Text
+                                <ThemedText
                                     style={[
                                         styles.languageSelectorFlagSmall,
                                         locale === lang.id && styles.languageSelectorOptionTextActive,
                                     ]}
                                 >
                                     {lang.flag}
-                                </Text>
-                                <Text
+                                </ThemedText>
+                                <ThemedText
                                     style={[
                                         styles.languageSelectorOptionText,
+                                        { color: themeColors.text },
                                         locale === lang.id && styles.languageSelectorOptionTextActive,
                                     ]}
                                 >
                                     {lang.name}
-                                </Text>
+                                </ThemedText>
                                 {locale === lang.id && (
-                                    <Text
+                                    <ThemedText
                                         style={[
                                             styles.languageSelectorCheck,
                                             styles.languageSelectorOptionTextActive,
                                         ]}
                                     >
                                         ✓
-                                    </Text>
+                                    </ThemedText>
                                 )}
                             </TouchableOpacity>
                         ))}
