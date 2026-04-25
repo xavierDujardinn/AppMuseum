@@ -8,8 +8,10 @@ interface ThemedTextProps extends TextProps {
 }
 
 const ThemedText: React.FC<ThemedTextProps> = ({ style, weight = 'regular', ...props }) => {
-    const { fontScale, getFontFamily, themeColors } = useTranslation();
+    const { fontScale, getFontFamily, themeColors, userSettings } = useTranslation();
     const flatStyle = StyleSheet.flatten(style) || {};
+    const darkTextColors = ['#000', '#000000', '#111', '#111111', 'black'];
+    const currentColor = typeof flatStyle.color === 'string' ? flatStyle.color.toLowerCase() : '';
 
     const adjustedStyle: TextStyle = {};
 
@@ -19,12 +21,11 @@ const ThemedText: React.FC<ThemedTextProps> = ({ style, weight = 'regular', ...p
     if (typeof flatStyle.lineHeight === 'number') {
         adjustedStyle.lineHeight = flatStyle.lineHeight * fontScale;
     }
-    if (!flatStyle.color) {
+    if (!flatStyle.color || (userSettings.highContrast && darkTextColors.includes(currentColor))) {
         adjustedStyle.color = themeColors.text;
     }
-    if (!flatStyle.fontFamily) {
-        adjustedStyle.fontFamily = getFontFamily(weight);
-    }
+    // Always apply selected app font family so preference is global.
+    adjustedStyle.fontFamily = getFontFamily(weight);
 
     return <Text {...props} style={[style, adjustedStyle]} />;
 };
