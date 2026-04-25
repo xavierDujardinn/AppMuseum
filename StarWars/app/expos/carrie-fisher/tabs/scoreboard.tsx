@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { BG_LIST, formatTime } from "@/app/expos/carrie-fisher/utils";
 import { getScores, saveNewScore, ScoreEntry } from '@/app/common/scripts/storage';
+import { useTranslation } from '@/app/common/hooks/languageContext';
 
 interface TableauLucasProps {
     challengeId: number;
@@ -14,6 +15,12 @@ interface TableauLucasProps {
 const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedTime }) => {
     const [leaderboard, setLeaderboard] = useState<ScoreEntry[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const { userSettings } = useTranslation();
+    const currentUserName = userSettings.userName.trim() || "Unknown";
+    const useAccessibleColors = userSettings.colorBlindMode && userSettings.highContrast;
+    const mainTextColor = useAccessibleColors ? '#FFFFFF' : undefined;
+    const highlightTextColor = useAccessibleColors ? '#FFD166' : '#00D2FF';
+    const buttonTextColor = useAccessibleColors ? '#111111' : undefined;
 
     useEffect(() => {
         const handleScoreLogic = async () => {
@@ -42,11 +49,11 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
 
             <View style={styles_starwars.scoreboardLucasOverlay}>
                 <View style={styles_starwars.scoreboardLucasScoreBlock}>
-                    <Text style={styles_starwars.scoreboardLucasTitle}>Tableau des scores :</Text>
-                    <Text style={styles_starwars.scoreboardLucasSeparator}>--------------------</Text>
+                    <Text style={[styles_starwars.scoreboardLucasTitle, { color: mainTextColor }]}>Tableau des scores :</Text>
+                    <Text style={[styles_starwars.scoreboardLucasSeparator, { color: mainTextColor }]}>--------------------</Text>
 
-                    <Text style={[styles_starwars.scoreboardLucasScoreLine, styles_starwars.scoreboardLucasPlayerTime]}>
-                        Ton temps : {formatTime(elaspedTime)}
+                    <Text style={[styles_starwars.scoreboardLucasScoreLine, styles_starwars.scoreboardLucasPlayerTime, { color: highlightTextColor }]}>
+                        {currentUserName} : {formatTime(elaspedTime)}
                     </Text>
 
                     {isLoading ? (
@@ -57,8 +64,9 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                                 key={`${index}-${entry.name}`}
                                 style={[
                                     styles_starwars.scoreboardLucasScoreLine,
+                                    useAccessibleColors && { color: mainTextColor },
                                     // Faudra changer pour le bon name
-                                    entry.name === "Unknow" && { color: '#00D2FF' }
+                                    entry.name === "Unknow" && { color: highlightTextColor }
                                 ]}
                             >
                                 {index + 1}. {entry.name} : {formatTime(entry.time)}
@@ -67,7 +75,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                     )}
 
                     {!isLoading && leaderboard.length === 0 && (
-                        <Text style={styles_starwars.scoreboardLucasScoreLine}>Aucun score enregistré</Text>
+                        <Text style={[styles_starwars.scoreboardLucasScoreLine, { color: mainTextColor }]}>Aucun score enregistré</Text>
                     )}
                 </View>
 
@@ -75,7 +83,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                     style={styles_starwars.scoreboardLucasNextButton}
                     onPress={onNext}
                 >
-                    <Text style={styles_starwars.scoreboardLucasNextButtonText}>Suivant</Text>
+                    <Text style={[styles_starwars.scoreboardLucasNextButtonText, { color: buttonTextColor }]}>Suivant</Text>
                 </TouchableOpacity>
             </View>
         </View>

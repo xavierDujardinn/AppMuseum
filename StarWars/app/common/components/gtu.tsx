@@ -1,14 +1,15 @@
 import { useTranslation } from "@/app/common/hooks/languageContext";
+import ThemedText from "@/app/common/components/themedText";
 import { getGtuText } from "@/app/common/scripts/gtuHandler";
 import styles from '@/styles/hub/common';
 import React, { useEffect, useState } from "react";
-import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Modal, ScrollView, TouchableOpacity, View } from "react-native";
 
 const Gtu: React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [gtuText, setgtuText] = useState('');
 
-    const {locale, trad} = useTranslation();
+    const {locale, trad, themeColors} = useTranslation();
 
     useEffect(() => {
         // load gtu file when component is loading
@@ -30,10 +31,10 @@ const Gtu: React.FC = () => {
         {/* general terms of use */}
         <View style={styles.footer}>
             <TouchableOpacity
-                style={styles.termsButton}
+                style={[styles.termsButton, { backgroundColor: themeColors.secondaryAccent }]}
                 onPress={() => setModalVisible(true)}
             >
-                <Text style={styles.termsText}>{trad('gtu.title')}</Text>
+                <ThemedText style={[styles.termsText, { color: themeColors.textOnAccent }]} weight="semibold">{trad('gtu.title')}</ThemedText>
             </TouchableOpacity>
         </View>
         <Modal
@@ -43,17 +44,17 @@ const Gtu: React.FC = () => {
             onRequestClose={() => setModalVisible(false)}
         >
             <View style={styles.modalOverlay}>
-                <View style={styles.modalContent}>
+                <View style={[styles.modalContent, { backgroundColor: themeColors.surface }]}>
 
                     <View style={styles.modalHeader}>
-                        <Text style={styles.modalTitle}>{trad('gtu.title')}</Text>
+                        <ThemedText style={[styles.modalTitle, { color: themeColors.text }]} weight="bold">{trad('gtu.title')}</ThemedText>
                         <TouchableOpacity onPress={() => setModalVisible(false)}>
-                            <Text style={styles.closeIcon}>✕</Text>
+                            <ThemedText style={[styles.closeIcon, { color: themeColors.text }]} weight="bold">✕</ThemedText>
                         </TouchableOpacity>
                     </View>
 
                     <ScrollView style={styles.scrollText}>
-                        <Text style={styles.genericText}>{gtuText}</Text>
+                        <ThemedText style={[styles.genericText, { color: themeColors.text }]} weight="bold">{gtuText}</ThemedText>
                     </ScrollView>
 
                 </View>

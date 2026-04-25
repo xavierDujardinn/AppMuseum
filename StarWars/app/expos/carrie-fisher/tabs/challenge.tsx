@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import Playing_lucas from "@/app/expos/carrie-fisher/tabs/Lucas/playing";
 import Tutorial from '@/app/expos/carrie-fisher/tabs/tutorial';
@@ -7,6 +7,7 @@ import Xavier from "@/app/expos/carrie-fisher/tabs/Xavier/game";
 import Win from "@/app/expos/carrie-fisher/tabs/win";
 import Funfact from "@/app/expos/carrie-fisher/tabs/funFact";
 import Scoreboard from "@/app/expos/carrie-fisher/tabs/scoreboard";
+import ThemedText from '@/app/common/components/themedText';
 
 type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact' | 'scoreboard';
 
@@ -50,13 +51,13 @@ const Challenge: React.FC<ChallengeProps> = ({challengeId, onNavigate}) => {
       default:
         return (
           <View style={styles_starwars.challengeContainer}>
-            <Text>Challenge très très dur {challengeId}</Text>
+            <ThemedText>Challenge très très dur {challengeId}</ThemedText>
 
             <TouchableOpacity
               style={styles_starwars.challengeButton}
               onPress={() => { setCurrentState('win'); }}
             >
-              <Text style={styles_starwars.challengeButtonText}>Cliquez moi dessus !</Text>
+              <ThemedText style={styles_starwars.challengeButtonText}>Cliquez moi dessus !</ThemedText>
             </TouchableOpacity>
           </View>
         );
