@@ -1,8 +1,9 @@
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import {ImageBackground} from 'expo-image';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import {BG_LIST} from "@/app/expos/carrie-fisher/utils";
+import ThemedText from '@/app/common/components/themedText';
 
 interface FunfactLucasProps {
     challengeId: number;
@@ -27,9 +28,9 @@ const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => 
                     style={styles_starwars.funfactLucasImage}
                     contentFit="contain"
                 >
-                    <Text style={styles_starwars.funFactText}>
+                    <ThemedText style={styles_starwars.funFactText}>
                         {text1}
-                    </Text>
+                    </ThemedText>
                 </ImageBackground>
 
                 <ImageBackground
@@ -37,13 +38,13 @@ const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => 
                     style={styles_starwars.funfactLucasImage}
                     contentFit="contain"
                 >
-                    <Text style={styles_starwars.funFactText}>
+                    <ThemedText style={styles_starwars.funFactText}>
                         {text2}
-                    </Text>
+                    </ThemedText>
                 </ImageBackground>
 
                 <TouchableOpacity style={styles_starwars.funfactLucasScoreButton} onPress={onScoreboard}>
-                    <Text style={styles_starwars.funfactLucasScoreButtonText}>Tableau des scores</Text>
+                    <ThemedText style={styles_starwars.funfactLucasScoreButtonText} weight="bold">Tableau des scores</ThemedText>
                 </TouchableOpacity>
             </View>
         </View>

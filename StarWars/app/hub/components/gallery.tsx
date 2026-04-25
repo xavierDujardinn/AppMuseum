@@ -1,6 +1,7 @@
 import styles from '@/styles/hub/common';
+import ThemedText from '@/app/common/components/themedText';
 import React from 'react';
-import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
+import {Image, ScrollView, TouchableOpacity, View} from "react-native";
 import expos from '../../../config/expos.json';
 import Preview from "./preview";
 import {useTranslation} from "@/app/common/hooks/languageContext";
@@ -10,7 +11,7 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
-    const { trad } = useTranslation();
+    const { trad, themeColors } = useTranslation();
 
     return (
             <ScrollView
@@ -18,9 +19,9 @@ const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
                 contentContainerStyle={styles.galleryScrollContent}
             >
                 <View
-                    style={styles.galleryBackground}
+                    style={[styles.galleryBackground, { backgroundColor: themeColors.accent }]}
                 >
-                    <Text style={styles.mainButtonText}>{trad('gallery.title')}</Text>
+                    <ThemedText style={[styles.mainButtonText, { color: themeColors.textOnAccent }]} weight="semibold">{trad('gallery.title')}</ThemedText>
 
                     {expos.map((expo, index) => (
                         <TouchableOpacity

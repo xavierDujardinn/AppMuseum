@@ -1,8 +1,9 @@
 import { useTranslation } from "@/app/common/hooks/languageContext";
+import ThemedText from "@/app/common/components/themedText";
 import { verifyCode } from "@/app/common/scripts/expoCodeVerifyer";
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
-import { PermissionsAndroid, Platform, Text, TouchableOpacity, View } from "react-native";
+import { PermissionsAndroid, Platform, TouchableOpacity, View } from "react-native";
 import { BleManager } from 'react-native-ble-plx';
 
 
@@ -10,10 +11,15 @@ interface ConnectProps {
     onNavigate: (screen: 'home' | 'connect' | 'code' | 'expo', params?: any) => void;
 }
 
-const manager = new BleManager();
+let manager: BleManager | null = null;
+const getManager = () => {
+    if (manager) return manager;
+    manager = new BleManager();
+    return manager;
+};
 
 const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
-    const {trad} = useTranslation();
+    const {trad, themeColors} = useTranslation();
 
     const [status, setStatus] = useState('bluetooth')
     const [canScan, setCanScan] = useState(true);
@@ -53,7 +59,17 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
         const permissionsGranted = await askFromPermissions();
 
         if (permissionsGranted && (status !== 'error' || 'found')) {
-            await manager.startDeviceScan(null, null, (error, device) => {
+            let bleManager: BleManager;
+            try {
+                bleManager = getManager();
+            } catch (error) {
+                console.log("BLE indisponible dans cet environnement:", error);
+                setStatus('error');
+                setCanScan(true);
+                return;
+            }
+
+            await bleManager.startDeviceScan(null, null, (error, device) => {
                 setStatus('scanning');
                 if (error) {
                     console.log(error);
@@ -65,7 +81,7 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
 
                     if (name[0] === 'EXPO') {
                         console.log(device);
-                        manager.stopDeviceScan();
+                        bleManager.stopDeviceScan();
                         setStatus('found');
 
                         const expoData = verifyCode(name[1]);
@@ -79,7 +95,9 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
         }
 
         setTimeout(() => {
-            manager.stopDeviceScan();
+            if (manager) {
+                manager.stopDeviceScan();
+            }
             setStatus('bluetooth');
             setCanScan(true);
         }, 5000)
@@ -87,30 +105,30 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
 
     return(
         <View style={styles.content}>
-            <Text style={styles.title}>{trad('connect.title')}</Text>
-            <Text>{status}</Text>
-            <Text style={styles.subtitle}>{trad('connect.choose')}</Text>
+            <ThemedText style={styles.title} weight="bold">{trad('connect.title')}</ThemedText>
+            <ThemedText>{status}</ThemedText>
+            <ThemedText style={styles.subtitle} weight="bold">{trad('connect.choose')}</ThemedText>
 
             <TouchableOpacity
-                style={styles.connectMainButton}
+                style={[styles.connectMainButton, { backgroundColor: themeColors.accent }]}
                 onPress={handleBluetoothScan}
                 disabled={!canScan}
             >
-                <Text style={styles.connectMainButtonText}>{status === 'scanning' ? "Recherche..." : trad('connect.bluetooth')}</Text>
+                <ThemedText style={[styles.connectMainButtonText, { color: themeColors.textOnAccent }]} weight="semibold">{status === 'scanning' ? "Recherche..." : trad('connect.bluetooth')}</ThemedText>
             </TouchableOpacity>
 
             <TouchableOpacity
-                style={styles.connectThirdButton}
+                style={[styles.connectThirdButton, { backgroundColor: themeColors.secondaryAccent }]}
                 onPress={() => onNavigate('code')}
             >
-                <Text style={styles.connectMainButtonText}>{trad('connect.code')}</Text>
+                <ThemedText style={[styles.connectMainButtonText, { color: themeColors.textOnAccent }]} weight="semibold">{trad('connect.code')}</ThemedText>
             </TouchableOpacity>
 
             <TouchableOpacity
-                style={styles.secondaryButton}
+                style={[styles.secondaryButton, { borderColor: themeColors.border }]}
                 onPress={() => onNavigate('home')}
             >
-                <Text style={styles.secondaryButtonText}>{trad('common.back')}</Text>
+                <ThemedText style={[styles.secondaryButtonText, { color: themeColors.text }]} weight="semibold">{trad('common.back')}</ThemedText>
             </TouchableOpacity>
         </View>
     );

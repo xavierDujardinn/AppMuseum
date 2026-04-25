@@ -1,6 +1,7 @@
 import styles from '@/styles/hub/common';
+import ThemedText from '@/app/common/components/themedText';
 import React from 'react';
-import { Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from '../../common/hooks/languageContext';
 import Gallery from "@/app/hub/components/gallery";
 
@@ -13,14 +14,14 @@ const Home: React.FC<HomeProps> = ({onNavigate}) => {
 
     return (
         <View style={styles.content}>
-            <Text style={styles.title}>Escape Museum</Text>
-            <Text style={styles.subtitle}>{trad('home.subtitle')}</Text>
+            <ThemedText style={styles.title} weight="bold">Escape Museum</ThemedText>
+            <ThemedText style={styles.subtitle} weight="bold">{trad('home.subtitle')}</ThemedText>
 
             <TouchableOpacity
                 style={styles.mainButton}
                 onPress={() => onNavigate('connect')}
             >
-                <Text style={styles.mainButtonText}>{trad('home.join')}</Text>
+                <ThemedText style={styles.mainButtonText} weight="semibold">{trad('home.join')}</ThemedText>
             </TouchableOpacity>
 
             <Gallery onNavigate={onNavigate}/>

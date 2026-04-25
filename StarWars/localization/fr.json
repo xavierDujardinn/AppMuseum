@@ -16,7 +16,20 @@
   },
   "settings": {
     "title": "Paramètres",
-    "language": "Langue"
+    "language": "Langue",
+    "currentUserName": "Nom de l'utilisateur courant",
+    "userNamePlaceholder": "Ex: Leia Organa",
+    "fontSize": "Taille de police",
+    "fontSizeSmall": "Petite",
+    "fontSizeNormal": "Normale",
+    "fontSizeMedium": "Moyenne",
+    "fontSizeLarge": "Grande",
+    "fontFamily": "Police",
+    "fontExo": "Exo",
+    "fontSystem": "Systeme",
+    "fontSerif": "Serif",
+    "colorBlindMode": "Mode daltonien",
+    "highContrast": "Contraste eleve"
   },
   "gtu": {
     "error": "Erreur lors de la récupérations des conditions générales d'utilisation",

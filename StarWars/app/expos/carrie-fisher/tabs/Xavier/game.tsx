@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import { ImageBackground } from "expo-image";
 import { formatTime } from "@/app/expos/carrie-fisher/utils";
@@ -9,6 +9,7 @@ import { Gyroscope } from 'expo-sensors';
 import { GameEngine } from 'react-native-game-engine';
 import Matter from 'matter-js';
 import { scale, verticalScale } from '@/styles/responsive';
+import ThemedText from '@/app/common/components/themedText';
 
 interface GameProps {
     onWin: (time: number) => void;
@@ -54,7 +55,7 @@ const Goal = (props: any) => {
             width: w, height: h, backgroundColor: color, borderColor: '#00FF00',
             borderWidth: 2, justifyContent: 'center', alignItems: 'center'
         }}>
-            <Text style={{ fontSize: scale(8), color: '#00FF00', fontWeight: 'bold' }}>GOAL</Text>
+            <ThemedText style={{ fontSize: scale(8), color: '#00FF00', fontWeight: 'bold' }}>GOAL</ThemedText>
         </View>
     );
 };
@@ -180,7 +181,7 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
             style={styles_starwars.menuBackgroundImage}
         >
             <View style={styles_starwars.playingLucasTopBar}>
-                <Text style={styles_starwars.playingLucasTimerText}>{formatTime(elapsedTime)}</Text>
+                <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">{formatTime(elapsedTime)}</ThemedText>
                 <Hint challengeId={1} theme={'light'} />
             </View>
 
