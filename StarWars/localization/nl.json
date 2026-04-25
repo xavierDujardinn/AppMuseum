@@ -15,7 +15,20 @@
   },
   "settings": {
     "title": "Instellingen",
-    "language": "Taal"
+    "language": "Taal",
+    "currentUserName": "Naam van huidige gebruiker",
+    "userNamePlaceholder": "bv. Leia Organa",
+    "fontSize": "Lettergrootte",
+    "fontSizeSmall": "Klein",
+    "fontSizeNormal": "Normaal",
+    "fontSizeMedium": "Middel",
+    "fontSizeLarge": "Groot",
+    "fontFamily": "Lettertype",
+    "fontExo": "Exo",
+    "fontSystem": "Systeem",
+    "fontSerif": "Serif",
+    "colorBlindMode": "Kleurenblindmodus",
+    "highContrast": "Hoog contrast"
   },
   "gtu": {
     "error": "Fout bij het ophalen van de algemene gebruiksvoorwaarden",

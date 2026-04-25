@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import {useTranslation} from "@/app/common/hooks/languageContext";
 import {EXPO_IMAGES} from "@/config/config";
+import ThemedText from '@/app/common/components/themedText';
 
 interface PreviewProps {
     title: Record<string, string>;
@@ -9,12 +10,12 @@ interface PreviewProps {
 }
 
 const Preview: React.FC<PreviewProps> = ({ title, imageNameKey }) => {
-    const {locale} = useTranslation();
+    const {locale, themeColors} = useTranslation();
     imageNameKey = imageNameKey || 'default';
     const expoTitle: string = title[locale];
 
     return (
-        <View style={styles.cardContainer}>
+        <View style={[styles.cardContainer, { backgroundColor: themeColors.surface, borderColor: themeColors.border }]}>
             <View style={styles.leftSection}>
                 <Image
                     source={EXPO_IMAGES[imageNameKey]}
@@ -24,10 +25,10 @@ const Preview: React.FC<PreviewProps> = ({ title, imageNameKey }) => {
             </View>
 
             <View style={styles.rightSection}>
-                <Text style={styles.label}>Exposition</Text>
-                <Text style={styles.cardTitle} numberOfLines={3}>
+                <ThemedText style={[styles.label, { color: themeColors.secondaryAccent }]}>Exposition</ThemedText>
+                <ThemedText style={[styles.cardTitle, { color: themeColors.accent }]} weight="bold" numberOfLines={3}>
                     {expoTitle}
-                </Text>
+                </ThemedText>
             </View>
 
         </View>

@@ -1,4 +1,5 @@
 import styles from '@/styles/hub/common';
+import { useTranslation } from '@/app/common/hooks/languageContext';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
@@ -11,15 +12,16 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate, currentScreen, onBack, canGoBack }) => {
+    const { themeColors } = useTranslation();
     return (
-     <View style={styles.headerContainer}>
+     <View style={[styles.headerContainer, { backgroundColor: themeColors.secondaryAccent }]}>
          {canGoBack ? (
              <TouchableOpacity
                  activeOpacity={0.7}
                  style={styles.logoContainer}
                  onPress={onBack}
              >
-                 <Ionicons name="arrow-back" size={28} color="#1a1a1a" />
+                 <Ionicons name="arrow-back" size={28} color={themeColors.text} />
              </TouchableOpacity>
          ) : (
              <View style={styles.logoContainer} />
@@ -33,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentScreen, onBack, canG
         <Ionicons
           name={currentScreen === 'settings' ? 'settings' : 'settings-outline'}
           size={28}
-          color="#1a1a1a"
+          color={themeColors.text}
         />
       </TouchableOpacity>
     </View>

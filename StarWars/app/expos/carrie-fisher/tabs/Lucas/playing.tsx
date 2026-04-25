@@ -1,10 +1,11 @@
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import { Image } from 'expo-image';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import {formatTime} from "@/app/expos/carrie-fisher/utils";
 import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
 import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
+import ThemedText from '@/app/common/components/themedText';
 
 interface PlayingLucasProps {
     onWin: (time: number) => void;
@@ -29,14 +30,14 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({onWin, onBack}) => {
 
           <View style={styles_starwars.playingLucasOverlay}>
             <View style={styles_starwars.playingLucasTopBar}>
-              <Text style={styles_starwars.playingLucasTimerText}>Temps : {formatTime(elapsedTime)}</Text>
+              <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">Temps : {formatTime(elapsedTime)}</ThemedText>
 
                 <Hint challengeId={0} theme={'dark'}/>
             </View>
 
-            <Text style={styles_starwars.playingLucasTitle}>
+            <ThemedText style={styles_starwars.playingLucasTitle} weight="bold">
               Retrouvez R2D2, il a les plans de l'étoile de la mort ! VITE !
-            </Text>
+            </ThemedText>
 
             <TouchableOpacity style={styles_starwars.playingLucasCompassButton} onPress={handleWin}>
               <Image
@@ -47,7 +48,7 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({onWin, onBack}) => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles_starwars.playingLucasBackButton} onPress={onBack}>
-              <Text style={styles_starwars.playingLucasBackButtonText}>Retour au menu des challenges</Text>
+              <ThemedText style={styles_starwars.playingLucasBackButtonText} weight="bold">Retour au menu des challenges</ThemedText>
             </TouchableOpacity>
           </View>
         </View>

@@ -1,8 +1,9 @@
 import { useTranslation } from "@/app/common/hooks/languageContext";
+import ThemedText from "@/app/common/components/themedText";
 import { verifyCode } from '@/app/common/scripts/expoCodeVerifyer';
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
 interface ErrorProps {
     onNavigate: (screen: 'connect' | 'expo' | 'error', params?: any) => void;
@@ -11,7 +12,7 @@ interface ErrorProps {
 const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
     const [code, setCode] = useState<string>('');
 
-    const {trad} = useTranslation();
+    const {trad, themeColors, getFontFamily} = useTranslation();
 
     const findExpositionByCode = () => {
         const expoData = verifyCode(code);
@@ -32,15 +33,15 @@ const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
             <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.content}>
-                        <Text style={styles.title}>{trad('code.title')}</Text>
-                        <Text style={styles.subtitle}>{trad('code.subtitle1')}</Text>
-                        <Text style={styles.subtitle}>{trad('code.subtitle2')}</Text>
+                        <ThemedText style={styles.title} weight="bold">{trad('code.title')}</ThemedText>
+                        <ThemedText style={styles.subtitle} weight="bold">{trad('code.subtitle1')}</ThemedText>
+                        <ThemedText style={styles.subtitle} weight="bold">{trad('code.subtitle2')}</ThemedText>
 
                         {/*Text input field*/}
                         <View style={styles.inputContainer}>
-                            <Text style={styles.label}>{trad('code.enterCode')}</Text>
+                            <ThemedText style={styles.label} weight="semibold">{trad('code.enterCode')}</ThemedText>
                             <TextInput
-                                style={styles.input}
+                                style={[styles.input, { backgroundColor: themeColors.surface, borderColor: themeColors.border, color: themeColors.text, fontFamily: getFontFamily('regular') }]}
                                 placeholder="Code"
                                 placeholderTextColor="#999"
                                 autoCapitalize="characters"
@@ -51,17 +52,17 @@ const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
                         </View>
 
                         <TouchableOpacity
-                            style={styles.codeMainButton}
+                            style={[styles.codeMainButton, { backgroundColor: themeColors.accent }]}
                             onPress={findExpositionByCode}
                         >
-                            <Text style={styles.codeMainButtonText}>{trad('code.verify')}</Text>
+                            <ThemedText style={[styles.codeMainButtonText, { color: themeColors.textOnAccent }]} weight="semibold">{trad('code.verify')}</ThemedText>
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            style={styles.codeSecondaryButton}
+                            style={[styles.codeSecondaryButton, { borderColor: themeColors.border }]}
                             onPress={() => {onNavigate('connect')}}
                         >
-                            <Text style={styles.secondaryButtonText}>{trad('common.back')}</Text>
+                            <ThemedText style={[styles.secondaryButtonText, { color: themeColors.text }]} weight="semibold">{trad('common.back')}</ThemedText>
                         </TouchableOpacity>
                     </View>
                 </TouchableWithoutFeedback>
