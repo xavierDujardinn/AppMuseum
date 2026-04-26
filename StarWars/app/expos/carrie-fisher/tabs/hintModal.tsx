@@ -18,6 +18,12 @@ const HintModal: React.FC<HintModalProps> = ({challengeId, theme}) => {
     const [isOpened, setIsOpened] = useState(false);
 
     // On ira chercher ça dans les fichiers de trads aussi
+    const hintTextByChallenge: Record<number, string> = {
+        0: "R2D2 se trouve dans une zone où le magnétomètre semble indiquer une direction particulière.",
+        1: "Observez bien le labyrinthe et gardez des mouvements précis pour atteindre la zone GOAL.",
+        2: "Cachez-vous dans une zone de plus faible luminosité pour faire baisser la lumière détectée par le capteur.",
+    };
+    const hintText = hintTextByChallenge[challengeId] ?? hintTextByChallenge[0];
 
     return (
         <>
@@ -51,7 +57,7 @@ const HintModal: React.FC<HintModalProps> = ({challengeId, theme}) => {
 
                                 <ScrollView style={styles_starwars.hintModalScrollText}>
                                     <ThemedText style={styles_starwars.hintModalText}>
-                                        R2D2 se trouve dans une zone où le magnétomètre semble indiquer une direction particulière.
+                                        {hintText}
                                     </ThemedText>
                                 </ScrollView>
                             </View>

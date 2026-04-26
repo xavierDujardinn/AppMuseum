@@ -4,6 +4,7 @@ import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import Playing_lucas from "@/app/expos/carrie-fisher/tabs/Lucas/playing";
 import Tutorial from '@/app/expos/carrie-fisher/tabs/tutorial';
 import Xavier from "@/app/expos/carrie-fisher/tabs/Xavier/game";
+import LouisChallenge from "@/app/expos/carrie-fisher/tabs/Louis/challenge";
 import Win from "@/app/expos/carrie-fisher/tabs/win";
 import Funfact from "@/app/expos/carrie-fisher/tabs/funFact";
 import Scoreboard from "@/app/expos/carrie-fisher/tabs/scoreboard";
@@ -48,6 +49,7 @@ const Challenge: React.FC<ChallengeProps> = ({challengeId, onNavigate}) => {
       case 1:
           return <Xavier onWin={handleWin}/>
       case 2:
+          return <LouisChallenge onNavigate={() => onNavigate('home', {skipIntro: true})} />;
       default:
         return (
           <View style={styles_starwars.challengeContainer}>
