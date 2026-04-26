@@ -5,9 +5,10 @@ import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native'
 interface ThemedTextProps extends TextProps {
     style?: StyleProp<TextStyle>;
     weight?: 'regular' | 'semibold' | 'bold' | 'black';
+    preserveColor?: boolean;
 }
 
-const ThemedText: React.FC<ThemedTextProps> = ({ style, weight = 'regular', ...props }) => {
+const ThemedText: React.FC<ThemedTextProps> = ({ style, weight = 'regular', preserveColor = false, ...props }) => {
     const { fontScale, getFontFamily, themeColors, userSettings } = useTranslation();
     const flatStyle = StyleSheet.flatten(style) || {};
     const darkTextColors = ['#000', '#000000', '#111', '#111111', 'black'];
@@ -21,7 +22,7 @@ const ThemedText: React.FC<ThemedTextProps> = ({ style, weight = 'regular', ...p
     if (typeof flatStyle.lineHeight === 'number') {
         adjustedStyle.lineHeight = flatStyle.lineHeight * fontScale;
     }
-    if (!flatStyle.color || (userSettings.highContrast && darkTextColors.includes(currentColor))) {
+    if (!preserveColor && (!flatStyle.color || (userSettings.highContrast && darkTextColors.includes(currentColor)))) {
         adjustedStyle.color = themeColors.text;
     }
     // Always apply selected app font family so preference is global.

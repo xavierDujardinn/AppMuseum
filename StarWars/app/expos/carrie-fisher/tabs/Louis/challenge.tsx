@@ -2,7 +2,6 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
     Platform,
     ScrollView,
-    Text,
     TouchableOpacity,
     useWindowDimensions,
     View,
@@ -16,6 +15,7 @@ import useTimer from '@/app/expos/carrie-fisher/hooks/useTimer';
 import {formatTime} from '@/app/expos/carrie-fisher/utils';
 import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
 import ThemedText from '@/app/common/components/themedText';
+import {useTranslation} from '@/app/common/hooks/languageContext';
 
 interface ChallengeProps {
     onNavigate: (screen: 'home') => void;
@@ -71,6 +71,7 @@ const ChallengeShell: React.FC<{
 );
 
 const LouisChallenge: React.FC<ChallengeProps> = ({onNavigate}) => {
+    const {themeColors} = useTranslation();
     const [phase, setPhase] = useState<'game' | 'success' | 'story' | 'scores'>('game');
     const [lux, setLux] = useState<number | null>(null);
     const [sensorReady, setSensorReady] = useState(false);
@@ -190,12 +191,12 @@ const LouisChallenge: React.FC<ChallengeProps> = ({onNavigate}) => {
                     <Hint challengeId={2} theme={'light'} />
                 </View>
 
-                <Text style={[styles.challengeAlert, {fontSize: titleSize, marginTop: 8, marginBottom: 20}]}>
+                <ThemedText preserveColor style={[styles.challengeAlert, {fontSize: titleSize, marginTop: 8, marginBottom: 20, color: '#000000'}]}>
                     Cachez vous des prédateurs!
-                </Text>
+                </ThemedText>
 
                 {!sensorReady && Platform.OS === 'android' ? (
-                    <Text style={[styles.challengeMainText, {fontSize: textSize * 0.65}]}>Initialisation du capteur…</Text>
+                    <ThemedText preserveColor style={[styles.challengeMainText, {fontSize: textSize * 0.65, color: '#000000'}]}>Initialisation du capteur…</ThemedText>
                 ) : null}
 
                 <View style={[styles.challengeIndicatorFrame, {width: contentWidth}]}>
@@ -209,32 +210,32 @@ const LouisChallenge: React.FC<ChallengeProps> = ({onNavigate}) => {
 
                 {showSimControls && sensorReady && phase === 'game' ? (
                     <View style={{width: contentWidth, marginTop: 14, marginBottom: 10}}>
-                        <Text style={[styles.challengeSimLabel, {fontSize: textSize * 0.42}]}>
+                        <ThemedText preserveColor style={[styles.challengeSimLabel, {fontSize: textSize * 0.42, color: '#000000'}]}>
                             {Platform.OS === 'android' && !useNativeSensor
                                 ? 'Capteur indisponible — luminosité simulée :'
                                 : 'Luminosité simulée (pas de capteur sur cet appareil) :'}
-                        </Text>
+                        </ThemedText>
                         <Slider
                             minimumValue={SLIDER_MIN_LUX}
                             maximumValue={SLIDER_MAX_LUX}
                             value={simulatedLux}
                             onValueChange={setSimulatedLux}
-                            minimumTrackTintColor="#7B6B95"
-                            maximumTrackTintColor="#D9CFEA"
-                            thumbTintColor="#4A4E69"
+                            minimumTrackTintColor={themeColors.accent}
+                            maximumTrackTintColor={themeColors.border}
+                            thumbTintColor={themeColors.secondaryAccent}
                         />
                     </View>
                 ) : null}
 
                 <View style={{flex: 1, justifyContent: 'flex-end', width: '100%', paddingBottom: 8}}>
-                    <Text style={[styles.challengeMainText, {fontSize: textSize, lineHeight: textSize + 4}]}>
+                    <ThemedText preserveColor style={[styles.challengeMainText, {fontSize: textSize, lineHeight: textSize + 4, color: '#000000'}]}>
                         {gameMessage}
-                    </Text>
+                    </ThemedText>
                 </View>
 
                 {phase === 'success' ? (
                     <TouchableOpacity onPress={goToStory} style={styles.challengePaperButton}>
-                        <Text style={styles.challengePaperButtonText}>Indice</Text>
+                        <ThemedText style={styles.challengePaperButtonText}>Indice</ThemedText>
                     </TouchableOpacity>
                 ) : null}
             </>,
@@ -245,12 +246,14 @@ const LouisChallenge: React.FC<ChallengeProps> = ({onNavigate}) => {
         return scrollBody(
             <>
                 <View style={[styles.challengeFactCard, {width: contentWidth, marginTop: 24}]}>
-                    <Text
+                    <ThemedText
+                        preserveColor
                         style={[
                             styles.challengeFactText,
                             {
                                 fontSize: clamp(Math.round(22 * factor), 16, 26),
                                 lineHeight: clamp(Math.round(26 * factor), 20, 30),
+                                color: '#000000',
                             },
                         ]}
                     >
@@ -258,12 +261,12 @@ const LouisChallenge: React.FC<ChallengeProps> = ({onNavigate}) => {
                         Carrie Fisher est arrivée sur le plateau de Finse en Norvège, dans un décor quasi polaire,
                         juste pour être avec l&apos;équipe, alors que ses scènes à elle étaient surtout filmées en
                         studio.
-                    </Text>
+                    </ThemedText>
                 </View>
                 <TouchableOpacity style={styles.challengeOutlineButton} onPress={goToScores}>
-                    <Text style={[styles.challengeOutlineButtonText, {fontSize: clamp(Math.round(20 * factor), 16, 24)}]}>
+                    <ThemedText preserveColor style={[styles.challengeOutlineButtonText, {fontSize: clamp(Math.round(20 * factor), 16, 24), color: '#000000'}]}>
                         Tableau des scores
-                    </Text>
+                    </ThemedText>
                 </TouchableOpacity>
             </>,
         );
@@ -272,19 +275,19 @@ const LouisChallenge: React.FC<ChallengeProps> = ({onNavigate}) => {
     return scrollBody(
         <>
             <View style={[styles.challengeScoresCard, {width: contentWidth, marginTop: 24}]}>
-                <Text style={[styles.challengeScoresTitle, {fontSize: clamp(Math.round(28 * factor), 20, 34)}]}>
+                <ThemedText preserveColor style={[styles.challengeScoresTitle, {fontSize: clamp(Math.round(28 * factor), 20, 34), color: '#000000'}]}>
                     Tableau des scores :
-                </Text>
+                </ThemedText>
                 {SCORE_LINES.map((line) => (
-                    <Text key={line} style={[styles.challengeScoreLine, {fontSize: scoreSize, lineHeight: scoreSize + 3}]}>
+                    <ThemedText preserveColor key={line} style={[styles.challengeScoreLine, {fontSize: scoreSize, lineHeight: scoreSize + 3, color: '#000000'}]}>
                         {line}
-                    </Text>
+                    </ThemedText>
                 ))}
             </View>
             <TouchableOpacity style={styles.challengeOutlineButton} onPress={() => onNavigate('home')}>
-                <Text style={[styles.challengeOutlineButtonText, {fontSize: clamp(Math.round(20 * factor), 16, 24)}]}>
+                <ThemedText preserveColor style={[styles.challengeOutlineButtonText, {fontSize: clamp(Math.round(20 * factor), 16, 24), color: '#000000'}]}>
                     Fin des épreuves
-                </Text>
+                </ThemedText>
             </TouchableOpacity>
         </>,
     );
