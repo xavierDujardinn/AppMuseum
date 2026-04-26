@@ -10,7 +10,12 @@ import {
 import Slider from '@react-native-community/slider';
 import {LightSensor} from 'expo-sensors';
 import HothBackdrop from '@/app/hub/components/HothBackdrop';
-import styles from '../../../styles/hub/common';
+import styles from '@/styles/hub/common';
+import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
+import useTimer from '@/app/expos/carrie-fisher/hooks/useTimer';
+import {formatTime} from '@/app/expos/carrie-fisher/utils';
+import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
+import ThemedText from '@/app/common/components/themedText';
 
 interface ChallengeProps {
     onNavigate: (screen: 'home') => void;
@@ -29,14 +34,9 @@ const SCORE_LINES = [
     'Marine : 100',
 ];
 
-/** Plage du slider (simulation) — le capteur réel peut dépasser ; le rendu plafonne au blanc. */
 const SLIDER_MIN_LUX = 1;
 const SLIDER_MAX_LUX = 450;
 
-/**
- * Courbe lux → gris : blanc dès une pièce correctement éclairée (~120 lx+),
- * gris/noir utilisables sans soleil direct (seuils bas pour le noir).
- */
 const LUX_FLOOR = 3;
 const LUX_FULL_WHITE = 115;
 const LUX_CURVE_GAMMA = 0.82;
@@ -70,7 +70,7 @@ const ChallengeShell: React.FC<{
     </View>
 );
 
-const Challenge: React.FC<ChallengeProps> = ({onNavigate}) => {
+const LouisChallenge: React.FC<ChallengeProps> = ({onNavigate}) => {
     const [phase, setPhase] = useState<'game' | 'success' | 'story' | 'scores'>('game');
     const [lux, setLux] = useState<number | null>(null);
     const [sensorReady, setSensorReady] = useState(false);
@@ -78,6 +78,7 @@ const Challenge: React.FC<ChallengeProps> = ({onNavigate}) => {
     const [simulatedLux, setSimulatedLux] = useState(95);
 
     const successTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const {elapsedTime, stopTimer, startTimer} = useTimer(true);
 
     const {width, height} = useWindowDimensions();
     const contentWidth = Math.min(width - 28, 520);
@@ -145,6 +146,14 @@ const Challenge: React.FC<ChallengeProps> = ({onNavigate}) => {
     }, [effectiveLux, phase]);
 
     useEffect(() => {
+        if (phase === 'game') {
+            startTimer();
+        } else {
+            stopTimer();
+        }
+    }, [phase, startTimer, stopTimer]);
+
+    useEffect(() => {
         return () => {
             if (successTimerRef.current) {
                 clearTimeout(successTimerRef.current);
@@ -174,6 +183,13 @@ const Challenge: React.FC<ChallengeProps> = ({onNavigate}) => {
 
         return scrollBody(
             <>
+                <View style={styles_starwars.playingLucasTopBar}>
+                    <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">
+                        {formatTime(elapsedTime)}
+                    </ThemedText>
+                    <Hint challengeId={2} theme={'light'} />
+                </View>
+
                 <Text style={[styles.challengeAlert, {fontSize: titleSize, marginTop: 8, marginBottom: 20}]}>
                     Cachez vous des prédateurs!
                 </Text>
@@ -274,4 +290,4 @@ const Challenge: React.FC<ChallengeProps> = ({onNavigate}) => {
     );
 };
 
-export default Challenge;
+export default LouisChallenge;
