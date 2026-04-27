@@ -3,7 +3,7 @@ import ThemedText from "@/app/common/components/themedText";
 import { useTranslation } from "@/app/common/hooks/languageContext";
 import styles from '@/styles/hub/common';
 import React from 'react';
-import { Switch, TextInput, TouchableOpacity, View } from 'react-native';
+import {ScrollView, Switch, TextInput, TouchableOpacity, View} from 'react-native';
 import Gtu from '../components/gtu';
 
 const Settings: React.FC = () => {
@@ -22,7 +22,7 @@ const Settings: React.FC = () => {
   return (
     <View style={[styles.settingsScreen, { backgroundColor: themeColors.background }]}>
       <ThemedText style={[styles.title, { color: themeColors.text }]}>{trad('settings.title')}</ThemedText>
-
+      <ScrollView>
       <View style={styles.settingsTopBlock}>
         <LanguageSelector />
       </View>
@@ -157,31 +157,32 @@ const Settings: React.FC = () => {
             {trad('settings.colorBlindMode')}
           </ThemedText>
           <Switch
-            value={userSettings.colorBlindMode}
-            onValueChange={setColorBlindMode}
-            accessibilityRole="switch"
-            accessibilityLabel={trad('settings.colorBlindMode')}
-            trackColor={{ false: '#8E8E93', true: themeColors.accent }}
-            thumbColor="#FFFFFF"
-          />
-        </View>
-        <View style={styles.settingRow}>
-          <ThemedText style={[styles.settingLabel, { color: themeColors.text }]}>
-            {trad('settings.highContrast')}
-          </ThemedText>
-          <Switch
-            value={userSettings.highContrast}
-            onValueChange={setHighContrast}
-            accessibilityRole="switch"
-            accessibilityLabel={trad('settings.highContrast')}
-            trackColor={{ false: '#8E8E93', true: themeColors.secondaryAccent }}
-            thumbColor="#FFFFFF"
-          />
-        </View>
-      </View>
+                value={userSettings.colorBlindMode}
+                onValueChange={setColorBlindMode}
+                accessibilityRole="switch"
+                accessibilityLabel={trad('settings.colorBlindMode')}
+                trackColor={{ false: '#8E8E93', true: themeColors.accent }}
+                thumbColor="#FFFFFF"
+              />
+            </View>
+            <View style={styles.settingRow}>
+              <ThemedText style={[styles.settingLabel, { color: themeColors.text }]}>
+                {trad('settings.highContrast')}
+              </ThemedText>
+              <Switch
+                value={userSettings.highContrast}
+                onValueChange={setHighContrast}
+                accessibilityRole="switch"
+                accessibilityLabel={trad('settings.highContrast')}
+                trackColor={{ false: '#8E8E93', true: themeColors.secondaryAccent }}
+                thumbColor="#FFFFFF"
+              />
+            </View>
+          </View>
 
       <Gtu />
       <ThemedText style={styles.versionText}>v1.0.0 - Escape Museum</ThemedText>
+    </ScrollView>
     </View>
   );
 };
