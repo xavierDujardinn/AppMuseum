@@ -6,19 +6,11 @@ import React from 'react';
 import {Alert, ScrollView, Switch, TextInput, TouchableOpacity, View} from 'react-native';
 import Gtu from '../components/gtu';
 import {resetAllData} from "@/app/common/scripts/storage";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 const Settings: React.FC = () => {
-  const {
-    trad,
-    userSettings,
-    setUserName,
-    setFontSize,
-    setFontFamily,
-    setColorBlindMode,
-    setHighContrast,
-    getFontFamily,
-    themeColors,
-  } = useTranslation();
+  const {userSettings, setUserName, setFontSize, setFontFamily, setColorBlindMode, setHighContrast, getFontFamily, themeColors,} = useUserSettings();
+  const {trad} = useTranslation();
 
   return (
     <View style={[styles.settingsScreen, { backgroundColor: themeColors.background }]}>

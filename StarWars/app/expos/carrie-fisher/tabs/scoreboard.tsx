@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { BG_LIST, formatTime, EXPO_STORAGE_NAME } from "@/app/expos/carrie-fisher/utils";
 import { getScores, saveNewScore, ScoreEntry } from '@/app/common/scripts/storage';
-import { useTranslation } from '@/app/common/hooks/languageContext';
+import { useUserSettings } from '@/app/common/hooks/userSettings';
 
 interface TableauLucasProps {
     challengeId: number;
@@ -15,7 +15,7 @@ interface TableauLucasProps {
 const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedTime }) => {
     const [leaderboard, setLeaderboard] = useState<ScoreEntry[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const { userSettings } = useTranslation();
+    const { userSettings } = useUserSettings();
     const currentUserName = userSettings.userName.trim() || "Unknown";
     const useAccessibleColors = userSettings.colorBlindMode && userSettings.highContrast;
     const mainTextColor = useAccessibleColors ? '#FFFFFF' : undefined;
