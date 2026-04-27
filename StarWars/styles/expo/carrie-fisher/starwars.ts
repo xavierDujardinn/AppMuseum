@@ -463,6 +463,7 @@ const styles_starwars = StyleSheet.create({
     scoreboardLucasScoreBlock: {
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'rgba(154,140,152, 0.95)',
     },
 
     scoreboardLucasTitle: {

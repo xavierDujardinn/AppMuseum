@@ -19,7 +19,7 @@ export const saveNewScore = async (expoName:string, challengeId: number, time: n
 
         const topScores = scores.slice(0, 10);
 
-        await AsyncStorage.setItem(`${STORAGE_KEY}_${challengeId}`, JSON.stringify(topScores));
+        await AsyncStorage.setItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`, JSON.stringify(topScores));
         return topScores;
     } catch (e) {
         console.error("Erreur lors de la sauvegarde", e);
@@ -27,9 +27,9 @@ export const saveNewScore = async (expoName:string, challengeId: number, time: n
     }
 };
 
-export const getScores = async (challengeId: number): Promise<ScoreEntry[]> => {
+export const getScores = async (expoName:string, challengeId: number): Promise<ScoreEntry[]> => {
     try {
-        const scores = await AsyncStorage.getItem(`${STORAGE_KEY}_${challengeId}`);
+        const scores = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`);
         return scores ? JSON.parse(scores) : [];
     } catch (e) {
         console.error("Erreur lors de la récupération", e);

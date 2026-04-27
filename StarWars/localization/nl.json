@@ -56,5 +56,29 @@
   },
   "gallery": {
     "title": "Galerie van de tentoonstellingen"
+  },
+  "expo" : {
+    "carrie-fisher": {
+      "challenges": {
+        "0" : {
+          "tutorial": "Für diese Prüfung verwenden Sie das Magnetometer. Sie müssen Ihr Telefon bewegen und einen freien Platz um sich herum haben.",
+          "fun-fact-1" : "Leias Szenen auf Tatooine in Die Rückkehr der Jedi-Ritter wurden in der Wüste bei extremen Temperaturen gedreht.",
+          "fun-fact-2": "Doch Carrie Fisher bestand darauf, die Szene, in der Leia Jabba mit ihrer Kette erwürgt, selbst zu spielen.",
+          "hint": "Wenn Sie das Telefon richtig ausgerichtet haben, erscheint 'kochend heiß'; Sie müssen dann in diese Richtung gehen."
+        },
+        "1": {
+          "tutorial": "Für diese Prüfung verwenden Sie das Gyroskop. Sie müssen Ihr Telefon neigen, um im Spiel voranzukommen.",
+          "fun-fact-1" : "Während der Dreharbeiten zum allerersten Star Wars blieb Carrie Fisher ständig in den Gängen",
+          "fun-fact-2": "des Todessterns stecken, was alle am Set zum Lachen brachte.",
+          "hint": "Neigen Sie Ihr Telefon in die Richtung, in die Sie gehen möchten; Ihre Position ist diejenige im Labyrinth."
+        },
+        "2" : {
+          "tutorial": "Für diese Prüfung verwenden Sie den Umgebungslichtsensor. Sie müssen die perfekte Helligkeit finden.",
+          "fun-fact-1" : "Während der Dreharbeiten zu den Szenen der Rebellenbasis auf Hoth in Das Imperium schlägt zurück kam Carrie Fisher zum Set in Finse, Norwegen,",
+          "fun-fact-2": "in einer fast polaren Umgebung, nur um beim Team zu sein, obwohl ihre eigenen Szenen hauptsächlich im Studio gefilmt wurden.",
+          "hint": "Um erfolgreich zu sein, müssen Sie sich an einen dunkleren Ort begeben."
+        }
+      }
+    }
   }
 }
