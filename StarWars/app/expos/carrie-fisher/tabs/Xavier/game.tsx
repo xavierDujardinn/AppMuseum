@@ -12,7 +12,7 @@ import { scale, verticalScale } from '@/styles/responsive';
 import ThemedText from '@/app/common/components/themedText';
 
 interface GameProps {
-    onWin: (time: number) => void;
+    onWin: (id:number ,time: number) => void;
 }
 
 const BALL_SIZE = scale(20);
@@ -172,7 +172,7 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
 
     const handleWin = () => {
         stopTimer();
-        onWin(elapsedTime);
+        onWin(1, elapsedTime);
     };
 
     return (

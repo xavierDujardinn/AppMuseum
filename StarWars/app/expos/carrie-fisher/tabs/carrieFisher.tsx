@@ -9,6 +9,8 @@ import { View } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useNavigationLogic from "@/app/common/hooks/navigationLogic";
 
+export const EXPO_STORAGE_NAME = "carrieFisher";
+
 export type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact' | 'scoreboard';
 
 interface NavigationState {
