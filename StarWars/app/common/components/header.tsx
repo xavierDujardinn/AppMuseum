@@ -1,5 +1,5 @@
 import styles from '@/styles/hub/common';
-import { useTranslation } from '@/app/common/hooks/languageContext';
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
@@ -12,7 +12,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onNavigate, currentScreen, onBack, canGoBack }) => {
-    const { themeColors } = useTranslation();
+    const { themeColors } = useUserSettings();
     return (
      <View style={[styles.headerContainer, { backgroundColor: themeColors.secondaryAccent }]}>
          {canGoBack ? (

@@ -8,7 +8,7 @@ import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 import ThemedText from '@/app/common/components/themedText';
 
 interface PlayingLucasProps {
-    onWin: (time: number) => void;
+    onWin: (id:number, time: number) => void;
     onBack: () => void;
 }
 
@@ -17,7 +17,7 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({onWin, onBack}) => {
 
     const handleWin = () => {
         stopTimer();
-        onWin(elapsedTime)
+        onWin(0, elapsedTime)
     };
 
     return (

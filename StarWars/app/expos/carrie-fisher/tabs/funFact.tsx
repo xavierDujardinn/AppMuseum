@@ -4,6 +4,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import {BG_LIST} from "@/app/expos/carrie-fisher/utils";
 import ThemedText from '@/app/common/components/themedText';
+import {useTranslation} from "@/app/common/hooks/languageContext";
 
 interface FunfactLucasProps {
     challengeId: number;
@@ -11,8 +12,10 @@ interface FunfactLucasProps {
 }
 
 const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => {
-    const text1 = "Les scènes de Leia sur Tatooine dans Le Retour du Jedi ont été tournées dans le désert, avec des températures extrêmes,"  ;
-    const text2 = "mais Carrie Fisher tenait absolument à faire elle-même la scène où Leia étrangle Jaba avec sa chaîne." ;
+    const {trad} = useTranslation();
+    console.log(challengeId);
+    const text1 = trad(`expo.carrie-fisher.challenges.${challengeId}.fun-fact-1`);
+    const text2 = trad(`expo.carrie-fisher.challenges.${challengeId}.fun-fact-2`);
 
     return (
         <View style={styles_starwars.funfactLucasContainer}>

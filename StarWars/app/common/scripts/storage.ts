@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = '@escape_museum_scores';
+const STORAGE_KEY = '@escape_museum';
 
 export interface ScoreEntry {
     name: string;
@@ -9,9 +9,8 @@ export interface ScoreEntry {
 
 export const saveNewScore = async (expoName:string, challengeId: number, time: number, name?: string): Promise<ScoreEntry[]> => {
     try {
-        const existingScoresRaw = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_${challengeId}`);
-        let scores: ScoreEntry[] = existingScoresRaw ? JSON.parse(existingScoresRaw) : [
-        ];
+        const existingScoresRaw = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`);
+        let scores: ScoreEntry[] = existingScoresRaw ? JSON.parse(existingScoresRaw) : [];
 
         const newEntry: ScoreEntry = { name: name || "Unknown", time };
         scores.push(newEntry);
@@ -20,7 +19,7 @@ export const saveNewScore = async (expoName:string, challengeId: number, time: n
 
         const topScores = scores.slice(0, 10);
 
-        await AsyncStorage.setItem(`${STORAGE_KEY}_${challengeId}`, JSON.stringify(topScores));
+        await AsyncStorage.setItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`, JSON.stringify(topScores));
         return topScores;
     } catch (e) {
         console.error("Erreur lors de la sauvegarde", e);
@@ -28,12 +27,44 @@ export const saveNewScore = async (expoName:string, challengeId: number, time: n
     }
 };
 
-export const getScores = async (challengeId: number): Promise<ScoreEntry[]> => {
+export const getScores = async (expoName:string, challengeId: number): Promise<ScoreEntry[]> => {
     try {
-        const scores = await AsyncStorage.getItem(`${STORAGE_KEY}_${challengeId}`);
+        const scores = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`);
         return scores ? JSON.parse(scores) : [];
     } catch (e) {
         console.error("Erreur lors de la récupération", e);
         return [];
     }
 };
+
+export const updateCompletedChallenge = async (expoName:string, challengeId: number, unlocked:boolean =  true): Promise<void> => {
+    try {
+        const unlockedChallenges = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_challenges`);
+        let challenges = unlockedChallenges ? JSON.parse(unlockedChallenges) : [];
+
+        challenges[challengeId] = unlocked;
+
+        await AsyncStorage.setItem(`${STORAGE_KEY}_${expoName}_challenges`, JSON.stringify(challenges));
+    } catch (e) {
+        console.error("Erreur lors de la sauvegarde", e);
+    }
+}
+
+export const getCompletedChallengeList = async (expoName:string) => {
+    try {
+        const challenges = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_challenges`);
+        return challenges ? JSON.parse(challenges) : [];
+    } catch (e) {
+        console.error("Erreur lors de la récupération", e);
+        return [];
+    }
+}
+
+export const resetAllData = async () => {
+    try{
+        // Delete everything in app storage
+        await AsyncStorage.clear();
+    } catch (e) {
+        console.error("Erreur lors du reset des données", e);
+    }
+}

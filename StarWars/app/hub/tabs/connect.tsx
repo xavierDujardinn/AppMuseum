@@ -5,6 +5,7 @@ import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
 import { PermissionsAndroid, Platform, TouchableOpacity, View } from "react-native";
 import { BleManager } from 'react-native-ble-plx';
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 
 interface ConnectProps {
@@ -19,7 +20,8 @@ const getManager = () => {
 };
 
 const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
-    const {trad, themeColors} = useTranslation();
+    const {trad} = useTranslation();
+    const {themeColors} = useUserSettings();
 
     const [status, setStatus] = useState('bluetooth')
     const [canScan, setCanScan] = useState(true);
@@ -38,7 +40,6 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
                 );
 
                 if (!allGranted) {
-                    console.log("Détail des permissions :", granted);
                     setStatus('error');
                     return false;
                 }
@@ -63,7 +64,7 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
             try {
                 bleManager = getManager();
             } catch (error) {
-                console.log("BLE indisponible dans cet environnement:", error);
+                console.error("BLE indisponible dans cet environnement:", error);
                 setStatus('error');
                 setCanScan(true);
                 return;
@@ -72,7 +73,7 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
             await bleManager.startDeviceScan(null, null, (error, device) => {
                 setStatus('scanning');
                 if (error) {
-                    console.log(error);
+                    console.error(error);
                     setStatus('error');
                     return;
                 }
@@ -80,7 +81,6 @@ const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
                     let name = device.name?.split('_');
 
                     if (name[0] === 'EXPO') {
-                        console.log(device);
                         bleManager.stopDeviceScan();
                         setStatus('found');
 

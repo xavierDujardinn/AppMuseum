@@ -3,9 +3,11 @@ import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ImageBackground } from "expo-image";
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
 import ThemedText from '@/app/common/components/themedText';
+import {getCompletedChallengeList} from "@/app/common/scripts/storage";
+import {EXPO_STORAGE_NAME} from "@/app/expos/carrie-fisher/utils";
 
 interface MenuProps {
     onNavigate: (screen: 'home' | 'challenge', params?: any) => void;
@@ -17,9 +19,16 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
 
     const [isIntroPassed, setIsIntroPassed] = React.useState(skipIntro || false);
 
-    // On gèrera ça plus tard avec le système de sauvegarde
-    const [unLockedChallengesList, setUnLockedChallengesList] = React.useState([true, true, true]);
-    const [completedChallengesList, setCompletedChallengesList] = React.useState([true, false, false]);
+    const [completedChallengesList, setCompletedChallengesList] = React.useState([false, false, false]);
+
+    useEffect(() => {
+        // update for completed icons
+        const updateChallenges = async () => {
+            const completedChallenges = await getCompletedChallengeList(EXPO_STORAGE_NAME);
+            if (completedChallenges) setCompletedChallengesList(completedChallenges);
+        }
+        updateChallenges();
+    }, []);
 
     return (
         <ImageBackground
@@ -42,13 +51,12 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                 ) : (
                     <>
                         <TouchableOpacity
-                            style={unLockedChallengesList[0] ? styles_starwars.menuUnlockedChallengeButton : styles_starwars.menuLockedChallengeButton}
-                            disabled={!unLockedChallengesList[0]}
+                            style={styles_starwars.menuUnlockedChallengeButton}
                             onPress={() => { onNavigate('challenge', { challengeId: 0 }) }}
                         >
                             <View style={styles_starwars.menuButtonContent}>
                               <ThemedText
-                                  style={unLockedChallengesList[0] ? styles_starwars.menuUnlockedChallengeButtonText : styles_starwars.menuLockedChallengeButtonText}
+                                  style={styles_starwars.menuUnlockedChallengeButtonText}
                               >
                                   épreuve 1
                               </ThemedText>
@@ -59,12 +67,11 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            style={unLockedChallengesList[1] ? styles_starwars.menuUnlockedChallengeButton : styles_starwars.menuLockedChallengeButton}
-                            disabled={!unLockedChallengesList[1]}
+                            style={styles_starwars.menuUnlockedChallengeButton}
                             onPress={() => { onNavigate('challenge', { challengeId: 1 }) }}
                         >
                             <ThemedText
-                                style={unLockedChallengesList[1] ? styles_starwars.menuUnlockedChallengeButtonText : styles_starwars.menuLockedChallengeButtonText}
+                                style={styles_starwars.menuUnlockedChallengeButtonText}
                             >
                                 épreuve 2
                             </ThemedText>
@@ -74,12 +81,11 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            style={unLockedChallengesList[2] ? styles_starwars.menuUnlockedChallengeButton : styles_starwars.menuLockedChallengeButton}
-                            disabled={!unLockedChallengesList[2]}
+                            style={styles_starwars.menuUnlockedChallengeButton}
                             onPress={() => { onNavigate('challenge', { challengeId: 2 }) }}
                         >
                             <ThemedText
-                                style={unLockedChallengesList[2] ? styles_starwars.menuUnlockedChallengeButtonText : styles_starwars.menuLockedChallengeButtonText}
+                                style={styles_starwars.menuUnlockedChallengeButtonText}
                             >
                                 épreuve 3
                             </ThemedText>

@@ -9,3 +9,5 @@ export const formatTime = (totalSeconds: number) => {
     const seconds = totalSeconds % 60;
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 };
+
+export const EXPO_STORAGE_NAME = "carrieFisher";

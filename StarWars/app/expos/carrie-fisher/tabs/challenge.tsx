@@ -9,6 +9,7 @@ import Win from "@/app/expos/carrie-fisher/tabs/win";
 import Funfact from "@/app/expos/carrie-fisher/tabs/funFact";
 import Scoreboard from "@/app/expos/carrie-fisher/tabs/scoreboard";
 import ThemedText from '@/app/common/components/themedText';
+import {updateCompletedChallenge} from "@/app/common/scripts/storage";
 
 type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact' | 'scoreboard';
 
@@ -25,8 +26,9 @@ const Challenge: React.FC<ChallengeProps> = ({challengeId, onNavigate}) => {
       setCurrentState('playing');
   };
 
-  const handleWin = (elapsedTime: number) => {
+  const handleWin = async (challengeId: number, elapsedTime: number) => {
       setSavedElaspedTime(elapsedTime);
+      await updateCompletedChallenge("carrieFisher", challengeId);
       setCurrentState('win');
   };
 
