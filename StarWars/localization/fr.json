@@ -1,7 +1,9 @@
 {
   "common": {
     "back": "Retour",
-    "error": "Erreur"
+    "error": "Erreur",
+    "confirm": "Confirmer",
+    "warning": "Attention"
   },
   "connect": {
     "title": "Connexion",
@@ -29,7 +31,8 @@
     "fontSystem": "Systeme",
     "fontSerif": "Serif",
     "colorBlindMode": "Mode daltonien",
-    "highContrast": "Contraste eleve"
+    "highContrast": "Contraste eleve",
+    "clearData": "Reinitialiser toutes les données"
   },
   "gtu": {
     "error": "Erreur lors de la récupérations des conditions générales d'utilisation",

@@ -1,7 +1,9 @@
 {
   "common": {
     "back": "Back",
-    "error": "Error"
+    "error": "Error",
+    "confirm": "Confirm",
+    "warning": "Warning"
   },
   "connect": {
     "title": "Connection",
@@ -28,7 +30,8 @@
     "fontSystem": "System",
     "fontSerif": "Serif",
     "colorBlindMode": "Color-blind mode",
-    "highContrast": "High contrast"
+    "highContrast": "High contrast",
+    "clearData": "Reset all data"
   },
   "gtu": {
     "error": "Error while retrieving the general terms of use",

@@ -1,7 +1,9 @@
 {
   "common": {
     "back": "Zurück",
-    "error": "Fehler"
+    "error": "Fehler",
+    "confirm": "Bestätigen",
+    "warning": "Warnung"
   },
   "connect": {
     "title": "Anmeldung",
@@ -28,7 +30,8 @@
     "fontSystem": "System",
     "fontSerif": "Serif",
     "colorBlindMode": "Farbenblindmodus",
-    "highContrast": "Hoher Kontrast"
+    "highContrast": "Hoher Kontrast",
+    "clearData": "Alle Daten zurücksetzen"
   },
   "gtu": {
     "error": "Fehler beim Abrufen der allgemeinen Geschäftsbedingungen",

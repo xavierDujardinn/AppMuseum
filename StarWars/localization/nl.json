@@ -1,7 +1,9 @@
 {
   "common": {
     "back": "Terug",
-    "error": "Fout"
+    "error": "Fout",
+    "confirm": "Bevestigen",
+    "warning": "Waarschuwing"
   },
   "connect": {
     "title": "Verbinding",
@@ -28,7 +30,8 @@
     "fontSystem": "Systeem",
     "fontSerif": "Serif",
     "colorBlindMode": "Kleurenblindmodus",
-    "highContrast": "Hoog contrast"
+    "highContrast": "Hoog contrast",
+    "clearData": "Alle gegevens wissen"
   },
   "gtu": {
     "error": "Fout bij het ophalen van de algemene gebruiksvoorwaarden",

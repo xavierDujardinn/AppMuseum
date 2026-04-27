@@ -3,8 +3,9 @@ import ThemedText from "@/app/common/components/themedText";
 import { useTranslation } from "@/app/common/hooks/languageContext";
 import styles from '@/styles/hub/common';
 import React from 'react';
-import {ScrollView, Switch, TextInput, TouchableOpacity, View} from 'react-native';
+import {Alert, ScrollView, Switch, TextInput, TouchableOpacity, View} from 'react-native';
 import Gtu from '../components/gtu';
+import {resetAllData} from "@/app/common/scripts/storage";
 
 const Settings: React.FC = () => {
   const {
@@ -178,6 +179,31 @@ const Settings: React.FC = () => {
                 thumbColor="#FFFFFF"
               />
             </View>
+          </View>
+
+          <View style={[styles.settingsOptionsContainer, { marginTop: 20 }]}>
+              <TouchableOpacity
+                  style={[
+                      styles.secondaryButton,
+                      { borderColor: '#C62828', borderWidth: 1.5, backgroundColor: 'rgba(198, 40, 40, 0.1)' }
+                  ]}
+                  onPress={() => {
+                      Alert.alert(
+                          trad('common.warning'),
+                          trad('common.confirm'),
+                          [
+                              { text: trad('common.back'), style: "cancel" },
+                              {
+                                  text: trad('common.confirm'),
+                                  style: "destructive",
+                                  onPress: async () => await resetAllData()
+                              }
+                          ]
+                      );
+                  }}
+              >
+                  <ThemedText style={{ color: '#C62828', fontFamily: getFontFamily('bold'), textAlign: 'center' }}>{trad('settings.clearData')}</ThemedText>
+              </TouchableOpacity>
           </View>
 
       <Gtu />
