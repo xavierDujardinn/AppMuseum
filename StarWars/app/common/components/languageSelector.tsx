@@ -3,6 +3,7 @@ import ThemedText from '@/app/common/components/themedText';
 import React, { useState } from 'react';
 import { Modal, Pressable, TouchableOpacity, View } from 'react-native';
 import styles from '../../../styles/hub/common';
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 const LANGUAGES = [
     { id: 'en', name: 'English', flag: '🇬🇧' },
@@ -12,7 +13,8 @@ const LANGUAGES = [
 ];
 
 const LanguageSelector: React.FC = () => {
-    const { locale, setLocale, trad, themeColors } = useTranslation();
+    const { themeColors } = useUserSettings();
+    const { locale, setLocale, trad } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
 
     const currentLang = LANGUAGES.find(l => l.id === locale) || LANGUAGES[0];

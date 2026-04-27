@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, TouchableOpacity, View } from "react-native";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 interface ExpoData {
     title: Record<string, string>;
@@ -20,7 +21,8 @@ interface PreviewProps {
 }
 
 const Expo: React.FC<PreviewProps> = ({onNavigate, expoData}) =>{
-    const {trad, locale, themeColors} = useTranslation();
+    const {trad, locale} = useTranslation();
+    const {themeColors} = useUserSettings();
     const title = expoData?.title[locale];
     const imageKey = expoData?.image || 'default';
     const main_screen_name = expoData?.main_screen_name || 'Hub';

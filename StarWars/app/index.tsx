@@ -8,6 +8,7 @@ import Hub from '@/app/hub/tabs/hub';
 import CarrieFisher from '@/app/expos/carrie-fisher/tabs/carrieFisher';
 import {LanguageProvider} from "@/app/common/hooks/languageContext";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {SettingsProvider} from "@/app/common/hooks/userSettings";
 
 // Navigation types
 export type RootStackParamList = {
@@ -50,12 +51,14 @@ const App: React.FC = () => {
             {/* For top phone things*/}
             <StatusBar barStyle="light-content" backgroundColor="black" translucent />
 
+            <SettingsProvider>
             <LanguageProvider>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="Hub" component={Hub} />
                     <Stack.Screen name="CarrieFisher" component={CarrieFisher} />
                 </Stack.Navigator>
             </LanguageProvider>
+            </SettingsProvider>
 
             {/*For bottom phone things*/}
             <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }} />

@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { Modal, ScrollView, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import {Image} from "expo-image";
 import ThemedText from '@/app/common/components/themedText';
+import {useTranslation} from "@/app/common/hooks/languageContext";
 
 interface HintModalProps {
     challengeId: number,
@@ -15,15 +16,11 @@ const images = {
 }
 
 const HintModal: React.FC<HintModalProps> = ({challengeId, theme}) => {
+    const {trad} = useTranslation();
     const [isOpened, setIsOpened] = useState(false);
 
-    // On ira chercher ça dans les fichiers de trads aussi
-    const hintTextByChallenge: Record<number, string> = {
-        0: "R2D2 se trouve dans une zone où le magnétomètre semble indiquer une direction particulière.",
-        1: "Observez bien le labyrinthe et gardez des mouvements précis pour atteindre la zone GOAL.",
-        2: "Cachez-vous dans une zone de plus faible luminosité pour faire baisser la lumière détectée par le capteur.",
-    };
-    const hintText = hintTextByChallenge[challengeId] ?? hintTextByChallenge[0];
+
+    const hintText = trad(`expo.carrie-fisher.challenges.${challengeId}.hint`);
 
     return (
         <>

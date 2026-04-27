@@ -1,7 +1,9 @@
 {
   "common": {
     "back": "Retour",
-    "error": "Erreur"
+    "error": "Erreur",
+    "confirm": "Confirmer",
+    "warning": "Attention"
   },
   "connect": {
     "title": "Connexion",
@@ -29,7 +31,8 @@
     "fontSystem": "Systeme",
     "fontSerif": "Serif",
     "colorBlindMode": "Mode daltonien",
-    "highContrast": "Contraste eleve"
+    "highContrast": "Contraste eleve",
+    "clearData": "Reinitialiser toutes les données"
   },
   "gtu": {
     "error": "Erreur lors de la récupérations des conditions générales d'utilisation",
@@ -54,5 +57,29 @@
   },
   "gallery": {
     "title": "Gallerie des expositions"
+  },
+  "expo" : {
+    "carrie-fisher": {
+      "challenges": {
+        "0" : {
+          "tutorial": "Pour cette épreuve, vous allez utiliser le magnetométre. Vous aurez besoin de bouger votre téléphone et d’avoir un espace dégagé autour de vous",
+          "fun-fact-1" : "Les scénes de Leia sur Tatooine dans Le Retour du Jedi ont été tournées dans le désert, avec des températures extrêmes.",
+          "fun-fact-2": "Mais Carrie Fisher tenait absolument à faire elle-même la scène où Leia étrangle Jaba ave sa chaîne.",
+          "hint": "Lorsque vous avez bien dirigé le téléphone : bouillant s’affichera, il faudra avancer dans cette direction."
+        },
+        "1": {
+          "tutorial": "Pour cette épreuve, vous allez utiliser le gyroscope. Vous aurez besoin de pencher votre téléphone pour avancer dans le jeu.",
+          "fun-fact-1" : "Lors du tournage du tout premier Star Wars, Carrie Fisher se coinçait sans arrêt dans les passages",
+          "fun-fact-2": "de l’étoile de la mort, faisant rire tout le monde sur le plateau.",
+          "hint": "Pencher votre téléphone dans la direction où vous voulez aller, votre position est celle dans le labyrinthe"
+        },
+        "2" : {
+          "tutorial": "Pour cette épreuve, vous allez utiliser le capteur de luminosité ambiante. Vous aurez besoin de trouver la luminosité parfaite",
+          "fun-fact-1" : "Pendant le tournage des scènes de la base rebelle sur Hoth dans L’Empire contre‑attaque, Carrie Fisher est arrivée sur le plateau de Finse en Norvège, ",
+          "fun-fact-2": "dans un décor quasi polaire, juste pour être avec l’équipe, alors que ses scènes à elle étaient surtout filmées en studio.",
+          "hint": "Pour réussir, il faut se placer dans un endroit plus sombre"
+        }
+      }
+    }
   }
 }
