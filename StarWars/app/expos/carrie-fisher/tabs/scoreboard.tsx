@@ -2,9 +2,9 @@ import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import { ImageBackground } from 'expo-image';
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
-import { BG_LIST, formatTime } from "@/app/expos/carrie-fisher/utils";
+import { BG_LIST, formatTime, EXPO_STORAGE_NAME } from "@/app/expos/carrie-fisher/utils";
 import { getScores, saveNewScore, ScoreEntry } from '@/app/common/scripts/storage';
-import { useTranslation } from '@/app/common/hooks/languageContext';
+import { useUserSettings } from '@/app/common/hooks/userSettings';
 
 interface TableauLucasProps {
     challengeId: number;
@@ -15,7 +15,7 @@ interface TableauLucasProps {
 const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedTime }) => {
     const [leaderboard, setLeaderboard] = useState<ScoreEntry[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const { userSettings } = useTranslation();
+    const { userSettings } = useUserSettings();
     const currentUserName = userSettings.userName.trim() || "Unknown";
     const useAccessibleColors = userSettings.colorBlindMode && userSettings.highContrast;
     const mainTextColor = useAccessibleColors ? '#FFFFFF' : undefined;
@@ -25,11 +25,11 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
     useEffect(() => {
         const handleScoreLogic = async () => {
             try {
-                const updatedScores = await saveNewScore("carrieFisher",challengeId, elaspedTime);
+                const updatedScores = await saveNewScore(EXPO_STORAGE_NAME,challengeId, elaspedTime, currentUserName);
                 setLeaderboard(updatedScores);
             } catch (error) {
                 console.error("Erreur Scoreboard:", error);
-                const existing = await getScores(challengeId);
+                const existing = await getScores(EXPO_STORAGE_NAME, challengeId);
                 setLeaderboard(existing);
             } finally {
                 setIsLoading(false);
@@ -37,7 +37,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
         };
 
         handleScoreLogic();
-    }, [challengeId, elaspedTime]);
+    }, [challengeId, currentUserName, elaspedTime]);
 
     return (
         <View style={styles_starwars.scoreboardLucasContainer}>
@@ -52,10 +52,6 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                     <Text style={[styles_starwars.scoreboardLucasTitle, { color: mainTextColor }]}>Tableau des scores :</Text>
                     <Text style={[styles_starwars.scoreboardLucasSeparator, { color: mainTextColor }]}>--------------------</Text>
 
-                    <Text style={[styles_starwars.scoreboardLucasScoreLine, styles_starwars.scoreboardLucasPlayerTime, { color: highlightTextColor }]}>
-                        {currentUserName} : {formatTime(elaspedTime)}
-                    </Text>
-
                     {isLoading ? (
                         <ActivityIndicator size="large" color="#F0A820" style={{ marginTop: 20 }} />
                     ) : (
@@ -65,8 +61,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                                 style={[
                                     styles_starwars.scoreboardLucasScoreLine,
                                     useAccessibleColors && { color: mainTextColor },
-                                    // Faudra changer pour le bon name
-                                    entry.name === "Unknow" && { color: highlightTextColor }
+                                    entry.name === currentUserName && { color: highlightTextColor }
                                 ]}
                             >
                                 {index + 1}. {entry.name} : {formatTime(entry.time)}

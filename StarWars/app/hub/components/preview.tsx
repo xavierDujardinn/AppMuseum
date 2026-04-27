@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import {useTranslation} from "@/app/common/hooks/languageContext";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 import {EXPO_IMAGES} from "@/config/config";
 import ThemedText from '@/app/common/components/themedText';
 
@@ -10,7 +11,8 @@ interface PreviewProps {
 }
 
 const Preview: React.FC<PreviewProps> = ({ title, imageNameKey }) => {
-    const {locale, themeColors} = useTranslation();
+    const {locale} = useTranslation();
+    const {themeColors} = useUserSettings();
     imageNameKey = imageNameKey || 'default';
     const expoTitle: string = title[locale];
 

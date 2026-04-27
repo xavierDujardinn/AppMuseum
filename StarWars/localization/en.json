@@ -1,7 +1,9 @@
 {
   "common": {
     "back": "Back",
-    "error": "Error"
+    "error": "Error",
+    "confirm": "Confirm",
+    "warning": "Warning"
   },
   "connect": {
     "title": "Connection",
@@ -28,7 +30,8 @@
     "fontSystem": "System",
     "fontSerif": "Serif",
     "colorBlindMode": "Color-blind mode",
-    "highContrast": "High contrast"
+    "highContrast": "High contrast",
+    "clearData": "Reset all data"
   },
   "gtu": {
     "error": "Error while retrieving the general terms of use",
@@ -53,5 +56,29 @@
   },
   "gallery": {
     "title": "Exhibition Gallery"
+  },
+  "expo" : {
+    "carrie-fisher": {
+      "challenges": {
+        "0" : {
+          "tutorial": "For this challenge, you will use the magnetometer. You will need to move your phone and have a clear space around you.",
+          "fun-fact-1" : "Leia's scenes on Tatooine in Return of the Jedi were filmed in the desert, under extreme temperatures.",
+          "fun-fact-2": "But Carrie Fisher insisted on doing the scene where Leia strangles Jabba with her chain herself.",
+          "hint": "When you have directed the phone correctly: 'boiling' will appear, you must move forward in that direction."
+        },
+        "1": {
+          "tutorial": "For this challenge, you will use the gyroscope. You will need to tilt your phone to move through the game.",
+          "fun-fact-1" : "During the filming of the very first Star Wars, Carrie Fisher constantly got stuck in the passages",
+          "fun-fact-2": "of the Death Star, making everyone on set laugh.",
+          "hint": "Tilt your phone in the direction you want to go; your position is the one in the labyrinth."
+        },
+        "2" : {
+          "tutorial": "For this challenge, you will use the ambient light sensor. You will need to find the perfect brightness.",
+          "fun-fact-1" : "While filming the Rebel base scenes on Hoth in The Empire Strikes Back, Carrie Fisher arrived on set in Finse, Norway,",
+          "fun-fact-2": "in a nearly polar setting, just to be with the crew, even though her own scenes were mostly filmed in a studio.",
+          "hint": "To succeed, you need to go to a darker place."
+        }
+      }
+    }
   }
 }

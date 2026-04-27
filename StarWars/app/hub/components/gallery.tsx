@@ -5,13 +5,15 @@ import {Image, ScrollView, TouchableOpacity, View} from "react-native";
 import expos from '../../../config/expos.json';
 import Preview from "./preview";
 import {useTranslation} from "@/app/common/hooks/languageContext";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 interface GalleryProps {
     onNavigate: (screen: 'connect' | 'expo', params?: any) => void;
 }
 
 const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
-    const { trad, themeColors } = useTranslation();
+    const { trad} = useTranslation();
+    const { themeColors } = useUserSettings();
 
     return (
             <ScrollView

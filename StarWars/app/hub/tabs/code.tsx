@@ -4,6 +4,7 @@ import { verifyCode } from '@/app/common/scripts/expoCodeVerifyer';
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 interface ErrorProps {
     onNavigate: (screen: 'connect' | 'expo' | 'error', params?: any) => void;
@@ -12,7 +13,8 @@ interface ErrorProps {
 const Code: React.FC<ErrorProps> = ({onNavigate}) =>{
     const [code, setCode] = useState<string>('');
 
-    const {trad, themeColors, getFontFamily} = useTranslation();
+    const {themeColors, getFontFamily} = useUserSettings();
+    const {trad} = useTranslation();
 
     const findExpositionByCode = () => {
         const expoData = verifyCode(code);

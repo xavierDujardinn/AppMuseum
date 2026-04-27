@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     versionText: {
         alignSelf: 'center',
         position: 'absolute',
-        bottom: normalize(20),
         fontSize: normalize(12),
         color: '#999',
         fontFamily: 'Exo2-SemiBold',
