@@ -1,15 +1,17 @@
 import { useTranslation } from "@/app/common/hooks/languageContext";
 import ThemedText from "@/app/common/components/themedText";
-import { getGtuText } from "@/app/common/scripts/gtuHandler";
+import { getGtuText } from "@/utils/common/gtuHandler";
 import styles from '@/styles/hub/common';
 import React, { useEffect, useState } from "react";
 import { Modal, ScrollView, TouchableOpacity, View } from "react-native";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 const Gtu: React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [gtuText, setgtuText] = useState('');
 
-    const {locale, trad, themeColors} = useTranslation();
+    const {themeColors} = useUserSettings();
+    const {locale, trad} = useTranslation();
 
     useEffect(() => {
         // load gtu file when component is loading

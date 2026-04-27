@@ -2,7 +2,7 @@ import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import { Image } from 'expo-image';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import {formatTime} from "@/app/expos/carrie-fisher/utils";
+import {formatTime} from "@/utils/expo/carrie-fisher/utils";
 import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
 import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 import ThemedText from '@/app/common/components/themedText';
@@ -36,7 +36,7 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({onWin, onBack}) => {
             </View>
 
             <ThemedText style={styles_starwars.playingLucasTitle} weight="bold">
-              Retrouvez R2D2, il a les plans de l'étoile de la mort ! VITE !
+              Retrouvez R2D2, il a les plans de l étoile de la mort ! VITE !
             </ThemedText>
 
             <TouchableOpacity style={styles_starwars.playingLucasCompassButton} onPress={handleWin}>
