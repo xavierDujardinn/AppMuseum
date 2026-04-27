@@ -12,7 +12,7 @@ import HothBackdrop from '@/app/hub/components/HothBackdrop';
 import styles from '@/styles/hub/common';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import useTimer from '@/app/expos/carrie-fisher/hooks/useTimer';
-import {formatTime} from '@/app/expos/carrie-fisher/utils';
+import {formatTime} from '@/utils/expo/carrie-fisher/utils';
 import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
 import ThemedText from '@/app/common/components/themedText';
 import {useTranslation} from '@/app/common/hooks/languageContext';

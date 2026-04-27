@@ -2,8 +2,8 @@ import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import { ImageBackground } from 'expo-image';
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
-import { BG_LIST, formatTime, EXPO_STORAGE_NAME } from "@/app/expos/carrie-fisher/utils";
-import { getScores, saveNewScore, ScoreEntry } from '@/app/common/scripts/storage';
+import { BG_LIST, formatTime, EXPO_STORAGE_NAME } from "@/utils/expo/carrie-fisher/utils";
+import { getScores, saveNewScore, ScoreEntry } from '@/utils/common/storage';
 import { useUserSettings } from '@/app/common/hooks/userSettings';
 
 interface TableauLucasProps {

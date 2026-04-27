@@ -23,7 +23,7 @@ const defaultSettings: UserSettings = {
 
 const SettingsContext = createContext<any>(undefined);
 
-export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [settings, setSettings] = useState<UserSettings>(defaultSettings);
 
     useEffect(() => {
@@ -72,3 +72,5 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 };
 
 export const useUserSettings = () => useContext(SettingsContext);
+
+export default SettingsProvider;

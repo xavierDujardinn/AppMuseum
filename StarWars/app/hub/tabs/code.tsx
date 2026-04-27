@@ -1,6 +1,6 @@
 import { useTranslation } from "@/app/common/hooks/languageContext";
 import ThemedText from "@/app/common/components/themedText";
-import { verifyCode } from '@/app/common/scripts/expoCodeVerifyer';
+import { verifyCode } from '@/utils/common/expoCodeVerifyer';
 import styles from '@/styles/hub/common';
 import React, { useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";

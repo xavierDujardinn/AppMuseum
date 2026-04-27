@@ -6,8 +6,8 @@ import { ImageBackground } from "expo-image";
 import React, {useEffect} from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
 import ThemedText from '@/app/common/components/themedText';
-import {getCompletedChallengeList} from "@/app/common/scripts/storage";
-import {EXPO_STORAGE_NAME} from "@/app/expos/carrie-fisher/utils";
+import {getCompletedChallengeList} from "@/utils/common/storage";
+import {EXPO_STORAGE_NAME} from "@/utils/expo/carrie-fisher/utils";
 
 interface MenuProps {
     onNavigate: (screen: 'home' | 'challenge', params?: any) => void;
