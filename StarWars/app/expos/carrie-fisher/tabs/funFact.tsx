@@ -2,7 +2,7 @@ import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import {ImageBackground} from 'expo-image';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import {BG_LIST} from "@/app/expos/carrie-fisher/utils";
+import {BG_LIST} from "@/utils/expo/carrie-fisher/utils";
 import ThemedText from '@/app/common/components/themedText';
 import {useTranslation} from "@/app/common/hooks/languageContext";
 

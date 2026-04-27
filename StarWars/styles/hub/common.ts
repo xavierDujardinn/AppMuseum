@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingHorizontal: normalize(24),
+        paddingHorizontal: normalize(12),
         paddingTop: normalize(30),
     },
     settingsTopBlock: {

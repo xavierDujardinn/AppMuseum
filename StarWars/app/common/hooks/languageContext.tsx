@@ -11,7 +11,7 @@ const LANG_STORAGE_KEY = '@escape_museum_locale';
 
 const LanguageContext = createContext<any>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [locale, setLocaleState] = useState<Language>('fr');
 
     useEffect(() => {
@@ -43,3 +43,5 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 };
 
 export const useTranslation = () => useContext(LanguageContext);
+
+export default LanguageProvider;
