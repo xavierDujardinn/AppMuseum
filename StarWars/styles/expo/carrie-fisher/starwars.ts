@@ -591,6 +591,38 @@ const styles_starwars = StyleSheet.create({
         flex: 1,
         backgroundColor: 'transparent',
     },
+
+    playingLouisTopBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 16,
+    },
+
+    playingLouisTimerText: {
+    fontSize: 22,
+    color: '#000000',
+    },
+
+    challengeLouisScoresCard: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+    backgroundColor: 'rgba(255,255,255,0.72)',
+    borderRadius: 16,
+    },
+
+    challengeLouisScoresTitle: {
+    marginBottom: 16,
+    textAlign: 'center',
+    },
+
+    challengeLouisScoreLine: {
+    textAlign: 'center',
+    marginBottom: 6,
+    },
 });
 
 export default styles_starwars;

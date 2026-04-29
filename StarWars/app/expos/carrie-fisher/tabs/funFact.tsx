@@ -1,10 +1,10 @@
+import ThemedText from '@/app/common/components/themedText';
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
-import {ImageBackground} from 'expo-image';
+import { BG_LIST } from "@/utils/expo/carrie-fisher/utils";
+import { ImageBackground } from 'expo-image';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import {BG_LIST} from "@/utils/expo/carrie-fisher/utils";
-import ThemedText from '@/app/common/components/themedText';
-import {useTranslation} from "@/app/common/hooks/languageContext";
 
 interface FunfactLucasProps {
     challengeId: number;
@@ -47,7 +47,9 @@ const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => 
                 </ImageBackground>
 
                 <TouchableOpacity style={styles_starwars.funfactLucasScoreButton} onPress={onScoreboard}>
-                    <ThemedText style={styles_starwars.funfactLucasScoreButtonText} weight="bold">Tableau des scores</ThemedText>
+                    <ThemedText style={styles_starwars.funfactLucasScoreButtonText} weight="bold">
+                        {trad('expo.funFact.scoreboard')}
+                    </ThemedText>
                 </TouchableOpacity>
             </View>
         </View>

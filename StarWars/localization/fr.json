@@ -60,12 +60,77 @@
   },
   "expo" : {
     "carrie-fisher": {
+      "common": {
+        "next": "Suivant",
+        "time": "Temps",
+        "backToChallenges": "Retour au menu des challenges"
+      },
+      "menu": {
+        "intro": "Vous allez entrer dans un espace plein de challenges, préparez-vous !",
+        "challenge1": "Epreuve 1",
+        "challenge2": "Epreuve 2",
+        "challenge3": "Epreuve 3",
+        "backToMainMenu": "Retour au menu principal"
+      },
+      "tutorial": {
+        "start": "En avant !",
+        "backToChallengeChoice": "Retourner au choix de challenge"
+      },
+      "lucas": {
+        "title": "Retrouvez la bonne direction avec votre boussole",
+        "hintPrefix": "Indice : vers le",
+        "holdStill": "Ne bougez plus...",
+        "magnetometerUnavailable": "Magnétomètre indisponible",
+        "feedback": {
+          "freeze": "Bouge plus !",
+          "boiling": "Bouillant",
+          "hot": "Chaud",
+          "warm": "Tiède",
+          "cold": "Froid"
+        },
+        "direction": {
+          "north": "nord",
+          "south": "sud",
+          "east": "est",
+          "west": "ouest"
+        }
+      },
+      "louis": {
+        "title": "Cachez vous des prédateurs !",
+        "initializing": "Initialisation du capteur...",
+        "sim": {
+          "sensorUnavailable": "Capteur indisponible - luminosité simulée :",
+          "noSensor": "Luminosité simulée : (pas de capteur sur cet appareil) :"
+        },
+        "game": {
+          "tooBright": "Vous êtes baigné de lumière, cachez-vous vite !",
+          "almost": "Encore un petit effort, le prédateur arrive !",
+          "good": "Presque... un peu plus sombre!"
+        },
+        "success": {
+          "title": "Vous avez réussi !",
+          "body": "Le prédateur est parti... Tenez c'est quoi ça ?",
+          "continue": "Continuer"
+        }
+      },
+      "win": {
+        "title": "Bravo vous avez retrouvé\n R2D2 !",
+        "backToChallenges": "Retour au menu des challenges"
+      },
+      "funFact": {
+        "scoreboard": "Tableau des scores"
+      },
+      "scoreboard": {
+        "title": "Tableau des scores :",
+        "empty": "Aucun score enregistré",
+        "unknownUser": "Inconnu"
+      },
       "challenges": {
         "0" : {
           "tutorial": "Pour cette épreuve, vous allez utiliser le magnetométre. Vous aurez besoin de bouger votre téléphone et d’avoir un espace dégagé autour de vous",
           "fun-fact-1" : "Les scénes de Leia sur Tatooine dans Le Retour du Jedi ont été tournées dans le désert, avec des températures extrêmes.",
           "fun-fact-2": "Mais Carrie Fisher tenait absolument à faire elle-même la scène où Leia étrangle Jaba ave sa chaîne.",
-          "hint": "Lorsque vous avez bien dirigé le téléphone : bouillant s’affichera, il faudra avancer dans cette direction."
+          "hint": "Servez vous de votre téléphone comme d'une boussole, plus vous vous approchez du bon angle, plus le message affichera une température chaude."
         },
         "1": {
           "tutorial": "Pour cette épreuve, vous allez utiliser le gyroscope. Vous aurez besoin de pencher votre téléphone pour avancer dans le jeu.",

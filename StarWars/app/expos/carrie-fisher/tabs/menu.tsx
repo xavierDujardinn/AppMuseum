@@ -1,13 +1,14 @@
 import { RootStackParamList } from "@/app";
+import ThemedText from '@/app/common/components/themedText';
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
+import { getCompletedChallengeList } from "@/utils/common/storage";
+import { EXPO_STORAGE_NAME } from "@/utils/expo/carrie-fisher/utils";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ImageBackground } from "expo-image";
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
-import ThemedText from '@/app/common/components/themedText';
-import {getCompletedChallengeList} from "@/utils/common/storage";
-import {EXPO_STORAGE_NAME} from "@/utils/expo/carrie-fisher/utils";
 
 interface MenuProps {
     onNavigate: (screen: 'home' | 'challenge', params?: any) => void;
@@ -16,6 +17,8 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+    const { trad } = useTranslation();
 
     const [isIntroPassed, setIsIntroPassed] = React.useState(skipIntro || false);
 
@@ -39,13 +42,15 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                 {!isIntroPassed ? (
                     <>
                         <ThemedText style={styles_starwars.menuIntroText}>
-                            vous allez entrer dans un espace plein de challenge, préparez vous !
+                            {trad ('expo.menu.intro')}
                         </ThemedText>
                         <TouchableOpacity
                             style={styles_starwars.menuMainButton}
                             onPress={() => setIsIntroPassed(true)}
                         >
-                            <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">Suivant</ThemedText>
+                            <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">
+                                {trad('expo.common.next')}
+                            </ThemedText>
                         </TouchableOpacity>
                     </>
                 ) : (
@@ -58,7 +63,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                               <ThemedText
                                   style={styles_starwars.menuUnlockedChallengeButtonText}
                               >
-                                  épreuve 1
+                                  {trad('expo.menu.challenge1')}
                               </ThemedText>
                               { completedChallengesList[0] && (
                                 <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
@@ -73,7 +78,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                             <ThemedText
                                 style={styles_starwars.menuUnlockedChallengeButtonText}
                             >
-                                épreuve 2
+                                {trad('expo.menu.challenge2')}
                             </ThemedText>
                             { completedChallengesList[1] && (
                                 <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
@@ -87,7 +92,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                             <ThemedText
                                 style={styles_starwars.menuUnlockedChallengeButtonText}
                             >
-                                épreuve 3
+                                {trad('expo.menu.challenge3')}
                             </ThemedText>
                             { completedChallengesList[2] && (
                                 <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
@@ -98,7 +103,9 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                             style={styles_starwars.menuMainButton}
                             onPress={() => { navigation.navigate('Hub'); }}
                         >
-                            <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">Retour au menu principal</ThemedText>
+                            <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">
+                                {trad('expo.menu.backToMainMenu')}
+                            </ThemedText>
                         </TouchableOpacity>
                     </>
                 )}

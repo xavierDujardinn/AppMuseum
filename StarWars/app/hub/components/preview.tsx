@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
-import {useTranslation} from "@/app/common/hooks/languageContext";
-import {useUserSettings} from "@/app/common/hooks/userSettings";
-import {EXPO_IMAGES} from "@/config/config";
 import ThemedText from '@/app/common/components/themedText';
+import { useTranslation } from "@/app/common/hooks/languageContext";
+import { useUserSettings } from "@/app/common/hooks/userSettings";
+import { EXPO_IMAGES } from "@/config/config";
+import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 
 interface PreviewProps {
     title: Record<string, string>;
@@ -11,7 +11,7 @@ interface PreviewProps {
 }
 
 const Preview: React.FC<PreviewProps> = ({ title, imageNameKey }) => {
-    const {locale} = useTranslation();
+    const {locale, trad} = useTranslation();
     const {themeColors} = useUserSettings();
     imageNameKey = imageNameKey || 'default';
     const expoTitle: string = title[locale];
@@ -27,7 +27,9 @@ const Preview: React.FC<PreviewProps> = ({ title, imageNameKey }) => {
             </View>
 
             <View style={styles.rightSection}>
-                <ThemedText style={[styles.label, { color: themeColors.secondaryAccent }]}>Exposition</ThemedText>
+                <ThemedText style={[styles.label, { color: themeColors.secondaryAccent }]}>
+                    {trad('preview.title')}
+                </ThemedText>
                 <ThemedText style={[styles.cardTitle, { color: themeColors.accent }]} weight="bold" numberOfLines={3}>
                     {expoTitle}
                 </ThemedText>

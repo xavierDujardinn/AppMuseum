@@ -1,5 +1,9 @@
-import expos from "../../config/expos.json"
+import expos from "../../config/expos.json";
 
-export const verifyCode = (code: string) => {
-    return expos.find(expo => expo.code === code.toUpperCase());
-}
+export const verifyCode = (code?: string) => {
+  if (!code?.trim()) return null;
+
+  const normalizedCode = code.trim().toUpperCase();
+
+  return expos.find((expo) => expo?.code?.trim().toUpperCase() === normalizedCode) ?? null;
+};
