@@ -1,5 +1,5 @@
 import ThemedText from '@/app/common/components/themedText';
-import { useTranslation } from "@/app/common/hooks/languageContext"; // <- modifié
+import { useTranslation } from "@/app/common/hooks/languageContext";
 import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
@@ -41,24 +41,24 @@ const smoothAngle = (current: number, target: number, factor: number) => {
 };
 
 const getHeatMessageKey = (diff: number) => {
-  if (diff <= SUCCESS_TOLERANCE) return 'expo.lucas.feedback.freeze'; // <- modifié
-  if (diff <= 18) return 'expo.lucas.feedback.boiling'; // <- modifié
-  if (diff <= 40) return 'expo.lucas.feedback.hot'; // <- modifié
-  if (diff <= 75) return 'expo.lucas.feedback.warm'; // <- modifié
-  return 'expo.lucas.feedback.cold'; // <- modifié
+  if (diff <= SUCCESS_TOLERANCE) return 'expo.lucas.feedback.freeze'; 
+  if (diff <= 18) return 'expo.lucas.feedback.boiling'; 
+  if (diff <= 40) return 'expo.lucas.feedback.hot'; 
+  if (diff <= 75) return 'expo.lucas.feedback.warm'; 
+  return 'expo.lucas.feedback.cold'; 
 };
 
 const getCardinalDirectionKey = (angle: number) => {
   const normalized = normalizeHeading(angle);
 
-  if (normalized >= 315 || normalized < 45) return 'expo.lucas.direction.north'; // <- modifié
-  if (normalized >= 45 && normalized < 135) return 'expo.lucas.direction.east'; // <- modifié
-  if (normalized >= 135 && normalized < 225) return 'expo.lucas.direction.south'; // <- modifié
-  return 'expo.lucas.direction.west'; // <- modifié
+  if (normalized >= 315 || normalized < 45) return 'expo.lucas.direction.north'; 
+  if (normalized >= 45 && normalized < 135) return 'expo.lucas.direction.east'; 
+  if (normalized >= 135 && normalized < 225) return 'expo.lucas.direction.south'; 
+  return 'expo.lucas.direction.west'; 
 };
 
 const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
-  const { trad } = useTranslation(); // <- modifié
+  const { trad } = useTranslation(); 
   const { elapsedTime, stopTimer } = useTimer(true);
 
   const [heading, setHeading] = useState(0);
@@ -127,14 +127,14 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
 
   const message = useMemo(() => {
     if (!isSensorReady) {
-      return trad('expo.lucas.magnetometerUnavailable'); // <- modifié
+      return trad('expo.lucas.magnetometerUnavailable'); 
     }
 
-    return trad(getHeatMessageKey(diff)); // <- modifié
+    return trad(getHeatMessageKey(diff)); 
   }, [diff, isSensorReady, trad]);
 
   const targetDirectionLabel = useMemo(
-    () => trad(getCardinalDirectionKey(targetAngle)), // <- modifié
+    () => trad(getCardinalDirectionKey(targetAngle)), 
     [targetAngle, trad]
   );
 
@@ -178,18 +178,18 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
       <View style={styles_starwars.playingLucasOverlay}>
         <View style={styles_starwars.playingLucasTopBar}>
           <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">
-            {trad('expo.lucas.time')} : {formatTime(elapsedTime)} {/* <- modifié */}
+            {trad('expo.lucas.time')} : {formatTime(elapsedTime)}
           </ThemedText>
 
           <Hint challengeId={0} theme={'dark'} />
         </View>
 
         <ThemedText style={styles_starwars.playingLucasTitle} weight="bold">
-          {trad('expo.lucas.title')} {/* <- modifié */}
+          {trad('expo.lucas.title')}
         </ThemedText>
 
         <ThemedText style={styles_starwars.playingLucasTitle}>
-          {trad('expo.lucas.hintPrefix')} {targetDirectionLabel} {/* <- modifié */}
+          {trad('expo.lucas.hintPrefix')} {targetDirectionLabel}
         </ThemedText>
 
         <View style={styles_starwars.playingLucasCompassButton}>
@@ -209,13 +209,13 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
 
         {diff <= SUCCESS_TOLERANCE ? (
           <ThemedText style={styles_starwars.playingLucasTitle}>
-            {trad('expo.lucas.holdStill')} {holdSeconds}s {/* <- modifié */}
+            {trad('expo.lucas.holdStill')} {holdSeconds}s
           </ThemedText>
         ) : null}
 
         <TouchableOpacity style={styles_starwars.playingLucasBackButton} onPress={onBack}>
           <ThemedText style={styles_starwars.playingLucasBackButtonText} weight="bold">
-            {trad('expo.common.backToChallenges')} {/* <- modifié */}
+            {trad('expo.common.backToChallenges')} 
           </ThemedText>
         </TouchableOpacity>
       </View>
