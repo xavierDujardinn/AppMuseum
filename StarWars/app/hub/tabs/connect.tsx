@@ -1,137 +1,184 @@
-import { useTranslation } from "@/app/common/hooks/languageContext";
 import ThemedText from "@/app/common/components/themedText";
+import { useTranslation } from "@/app/common/hooks/languageContext";
+import { useUserSettings } from "@/app/common/hooks/userSettings";
+import styles from "@/styles/hub/common";
 import { verifyCode } from "@/utils/common/expoCodeVerifyer";
-import styles from '@/styles/hub/common';
-import React, { useState } from 'react';
+import React, { useRef, useState } from "react";
 import { PermissionsAndroid, Platform, TouchableOpacity, View } from "react-native";
-import { BleManager } from 'react-native-ble-plx';
-import {useUserSettings} from "@/app/common/hooks/userSettings";
-
+import { BleManager } from "react-native-ble-plx";
 
 interface ConnectProps {
-    onNavigate: (screen: 'home' | 'connect' | 'code' | 'expo', params?: any) => void;
+  onNavigate: (screen: "home" | "connect" | "code" | "expo", params?: any) => void;
 }
 
 let manager: BleManager | null = null;
+
 const getManager = () => {
-    if (manager) return manager;
-    manager = new BleManager();
-    return manager;
+  if (manager) return manager;
+  manager = new BleManager();
+  return manager;
 };
 
-const Connect: React.FC<ConnectProps> = ({onNavigate}) =>{
-    const {trad} = useTranslation();
-    const {themeColors} = useUserSettings();
+const Connect: React.FC<ConnectProps> = ({ onNavigate }) => {
+  const { trad } = useTranslation();
+  const { themeColors } = useUserSettings();
 
-    const [status, setStatus] = useState('bluetooth')
-    const [canScan, setCanScan] = useState(true);
+  const [status, setStatus] = useState("bluetooth");
+  const [canScan, setCanScan] = useState(true);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const askFromPermissions = async () => {
-        if (Platform.OS === 'android') {
-            try {
-                const granted = await PermissionsAndroid.requestMultiple([
-                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
-                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
-                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                ]);
-
-                const allGranted = Object.values(granted).every(
-                    (result) => result === PermissionsAndroid.RESULTS.GRANTED
-                );
-
-                if (!allGranted) {
-                    setStatus('error');
-                    return false;
-                }
-                else{
-                    return true;
-                }
-            } catch (err) {
-                console.warn(err);
-                return false;
-            }
-        }
+  const stopScan = () => {
+    if (manager) {
+      manager.stopDeviceScan();
     }
 
-    const handleBluetoothScan = async () => {
-        if (!canScan || status === 'scanning') return;
-        setCanScan(false);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
 
-        const permissionsGranted = await askFromPermissions();
+  const askForPermissions = async () => {
+    if (Platform.OS !== "android") return true;
 
-        if (permissionsGranted && (status !== 'error' || 'found')) {
-            let bleManager: BleManager;
-            try {
-                bleManager = getManager();
-            } catch (error) {
-                console.error("BLE indisponible dans cet environnement:", error);
-                setStatus('error');
-                setCanScan(true);
-                return;
-            }
+    try {
+      const granted = await PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+        PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      ]);
 
-            await bleManager.startDeviceScan(null, null, (error, device) => {
-                setStatus('scanning');
-                if (error) {
-                    console.error(error);
-                    setStatus('error');
-                    return;
-                }
-                if (device && device.name) {
-                    let name = device.name?.split('_');
+      const allGranted = Object.values(granted).every(
+        (result) => result === PermissionsAndroid.RESULTS.GRANTED
+      );
 
-                    if (name[0] === 'EXPO') {
-                        bleManager.stopDeviceScan();
-                        setStatus('found');
+      if (!allGranted) {
+        setStatus("error");
+        return false;
+      }
 
-                        const expoData = verifyCode(name[1]);
+      return true;
+    } catch (err) {
+      console.warn(err);
+      setStatus("error");
+      return false;
+    }
+  };
 
-                        if (expoData) {
-                            onNavigate('expo', expoData);
-                        }
-                    }
-                }
-            });
-        }
+  const handleBluetoothScan = async () => {
+    if (!canScan || status === "scanning") return;
 
-        setTimeout(() => {
-            if (manager) {
-                manager.stopDeviceScan();
-            }
-            setStatus('bluetooth');
-            setCanScan(true);
-        }, 5000)
+    setCanScan(false);
+    setStatus("scanning");
+
+    const permissionsGranted = await askForPermissions();
+
+    if (!permissionsGranted) {
+      setCanScan(true);
+      return;
     }
 
-    return(
-        <View style={styles.content}>
-            <ThemedText style={styles.title} weight="bold">{trad('connect.title')}</ThemedText>
-            <ThemedText>{status}</ThemedText>
-            <ThemedText style={styles.subtitle} weight="bold">{trad('connect.choose')}</ThemedText>
+    let bleManager: BleManager;
 
-            <TouchableOpacity
-                style={[styles.connectMainButton, { backgroundColor: themeColors.accent }]}
-                onPress={handleBluetoothScan}
-                disabled={!canScan}
-            >
-                <ThemedText style={[styles.connectMainButtonText, { color: themeColors.textOnAccent }]} weight="semibold">{status === 'scanning' ? "Recherche..." : trad('connect.bluetooth')}</ThemedText>
-            </TouchableOpacity>
+    try {
+      bleManager = getManager();
+    } catch (error) {
+      console.error("BLE indisponible dans cet environnement:", error);
+      setStatus("error");
+      setCanScan(true);
+      return;
+    }
 
-            <TouchableOpacity
-                style={[styles.connectThirdButton, { backgroundColor: themeColors.secondaryAccent }]}
-                onPress={() => onNavigate('code')}
-            >
-                <ThemedText style={[styles.connectMainButtonText, { color: themeColors.textOnAccent }]} weight="semibold">{trad('connect.code')}</ThemedText>
-            </TouchableOpacity>
+    timeoutRef.current = setTimeout(() => {
+      stopScan();
+      setStatus("bluetooth");
+      setCanScan(true);
+    }, 5000);
 
-            <TouchableOpacity
-                style={[styles.secondaryButton, { borderColor: themeColors.border }]}
-                onPress={() => onNavigate('home')}
-            >
-                <ThemedText style={[styles.secondaryButtonText, { color: themeColors.text }]} weight="semibold">{trad('common.back')}</ThemedText>
-            </TouchableOpacity>
-        </View>
-    );
-}
+    bleManager.startDeviceScan(null, null, (error, device) => {
+      if (error) {
+        console.error("Erreur scan BLE:", error);
+        stopScan();
+        setStatus("error");
+        setCanScan(true);
+        return;
+      }
+
+      const rawName = device?.name?.trim();
+      if (!rawName) return;
+
+      const parts = rawName.split("_");
+      const prefix = parts[0]?.trim().toUpperCase();
+      const code = parts[1]?.trim().toUpperCase();
+
+      console.log("BLE name:", rawName);
+      console.log("BLE prefix:", prefix);
+      console.log("BLE code:", code);
+
+      if (prefix !== "EXPO" || !code) return;
+
+      const expoData = verifyCode(code);
+      console.log("Expo trouvée dans JSON:", expoData);
+
+      if (!expoData) return;
+
+      stopScan();
+      setStatus("found");
+      setCanScan(true);
+      onNavigate("expo", expoData);
+    });
+  };
+
+  return (
+    <View style={styles.content}>
+      <ThemedText style={styles.title} weight="bold">
+        {trad("connect.title")}
+      </ThemedText>
+
+      <ThemedText>{status}</ThemedText>
+
+      <ThemedText style={styles.subtitle} weight="bold">
+        {trad("connect.choose")}
+      </ThemedText>
+
+      <TouchableOpacity
+        style={[styles.connectMainButton, { backgroundColor: themeColors.accent }]}
+        onPress={handleBluetoothScan}
+        disabled={!canScan}
+      >
+        <ThemedText
+          style={[styles.connectMainButtonText, { color: themeColors.textOnAccent }]}
+          weight="semibold"
+        >
+          {status === "scanning" ? "Recherche..." : trad("connect.bluetooth")}
+        </ThemedText>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.connectThirdButton, { backgroundColor: themeColors.secondaryAccent }]}
+        onPress={() => onNavigate("code")}
+      >
+        <ThemedText
+          style={[styles.connectMainButtonText, { color: themeColors.textOnAccent }]}
+          weight="semibold"
+        >
+          {trad("connect.code")}
+        </ThemedText>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.secondaryButton, { borderColor: themeColors.border }]}
+        onPress={() => onNavigate("home")}
+      >
+        <ThemedText
+          style={[styles.secondaryButtonText, { color: themeColors.text }]}
+          weight="semibold"
+        >
+          {trad("common.back")}
+        </ThemedText>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export default Connect;

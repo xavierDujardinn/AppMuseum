@@ -59,12 +59,77 @@
   },
   "expo" : {
     "carrie-fisher": {
+      "common": {
+        "next": "Volgende",
+        "time": "Tijd",
+        "backToChallenges": "Terug naar het uitdagingenmenu"
+      },
+      "lucas": {
+        "title": "Vind de juiste richting met je kompas",
+        "hintPrefix": "Hint: naar het",
+        "holdStill": "Blijf staan...",
+        "magnetometerUnavailable": "Magnetometer niet beschikbaar",
+        "feedback": {
+          "freeze": "Niet meer bewegen!",
+          "boiling": "Gloeiend heet",
+          "hot": "Heet",
+          "warm": "Lauw",
+          "cold": "Koud"
+        },
+        "direction": {
+          "north": "noorden",
+          "south": "zuiden",
+          "east": "oosten",
+          "west": "westen"
+        }
+      },
+      "louis": {
+        "title": "Verstop je voor de roofdieren !",
+        "initializing": "Sensor wordt geïnitialiseerd...",
+        "sim": {
+          "sensorUnavailable": "Sensor niet beschikbaar - gesimuleerde helderheid :",
+          "noSensor": "Gesimuleerde helderheid (geen sensor op dit toestel) :"
+        },
+        "game": {
+          "tooBright": "Je staat in fel licht, verstop je snel !",
+          "almost": "Bijna goed, het roofdier komt dichterbij !",
+          "good": "Bijna... nog een beetje donkerder!"
+        },
+        "success": {
+          "title": "Je bent geslaagd!",
+          "body": "Het roofdier is weg... Hé, wat is diat?",
+          "continue": "Verdergaan"
+        }
+      },
+      "win": {
+        "title": "Proficiat, je hebt\n R2D2 teruggevonden!",
+        "backToChallenges": "Terug naar het uitdagingenmenu"  
+      },
+      "funFact": {
+        "scoreboard": "Scorebord"
+      },
+      "scoreboard": {
+        "title": "Scorebord :",
+        "empty": "Geen scores geregistreerd",
+        "unknownUser": "Onbekende gebruiker"
+      },
+      "menu": {
+        "intro": "Je staat op het punt een ruimte vol uitdagingen binnen te gaan, bereid je voor!",
+        "challenge1": "Proef 1",
+        "challenge2": "Proef 2",
+        "challenge3": "Proef 3",
+        "backToMainMenu": "Terug naar het hoofdmenu"
+      },
+      "tutorial": {
+        "start": "Vooruit!",
+        "backToChallengeChoice": "Terug naar de keuze van de uitdaging"
+      },
       "challenges": {
         "0" : {
           "tutorial": "Für diese Prüfung verwenden Sie das Magnetometer. Sie müssen Ihr Telefon bewegen und einen freien Platz um sich herum haben.",
           "fun-fact-1" : "Leias Szenen auf Tatooine in Die Rückkehr der Jedi-Ritter wurden in der Wüste bei extremen Temperaturen gedreht.",
           "fun-fact-2": "Doch Carrie Fisher bestand darauf, die Szene, in der Leia Jabba mit ihrer Kette erwürgt, selbst zu spielen.",
-          "hint": "Wenn Sie das Telefon richtig ausgerichtet haben, erscheint 'kochend heiß'; Sie müssen dann in diese Richtung gehen."
+          "hint": "Gebruik je telefoon als een kompas: hoe dichter je bij de juiste hoek komt, hoe hoger de temperatuur op het scherm wordt weergegeven."
         },
         "1": {
           "tutorial": "Für diese Prüfung verwenden Sie das Gyroskop. Sie müssen Ihr Telefon neigen, um im Spiel voranzukommen.",

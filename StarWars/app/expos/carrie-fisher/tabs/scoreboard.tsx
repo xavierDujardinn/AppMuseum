@@ -1,10 +1,11 @@
+import { useTranslation } from "@/app/common/hooks/languageContext";
+import { useUserSettings } from '@/app/common/hooks/userSettings';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
+import { getScores, saveNewScore, ScoreEntry } from '@/utils/common/storage';
+import { BG_LIST, EXPO_STORAGE_NAME, formatTime } from "@/utils/expo/carrie-fisher/utils";
 import { ImageBackground } from 'expo-image';
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
-import { BG_LIST, formatTime, EXPO_STORAGE_NAME } from "@/utils/expo/carrie-fisher/utils";
-import { getScores, saveNewScore, ScoreEntry } from '@/utils/common/storage';
-import { useUserSettings } from '@/app/common/hooks/userSettings';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 
 interface TableauLucasProps {
     challengeId: number;
@@ -15,9 +16,10 @@ interface TableauLucasProps {
 const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedTime }) => {
     const [leaderboard, setLeaderboard] = useState<ScoreEntry[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const { userSettings } = useUserSettings();
-    const currentUserName = userSettings.userName.trim() || "Unknown";
-    const useAccessibleColors = userSettings.colorBlindMode && userSettings.highContrast;
+    const { settings } = useUserSettings();
+    const { trad } = useTranslation();
+    const currentUserName = settings?.userName?.trim() || trad('expo.scoreboard.unknownUser');
+    const useAccessibleColors = (settings?.colorBlindMode && settings?.highContrast);
     const mainTextColor = useAccessibleColors ? '#FFFFFF' : undefined;
     const highlightTextColor = useAccessibleColors ? '#FFD166' : '#00D2FF';
     const buttonTextColor = useAccessibleColors ? '#111111' : undefined;
@@ -49,7 +51,9 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
 
             <View style={styles_starwars.scoreboardLucasOverlay}>
                 <View style={styles_starwars.scoreboardLucasScoreBlock}>
-                    <Text style={[styles_starwars.scoreboardLucasTitle, { color: mainTextColor }]}>Tableau des scores :</Text>
+                    <Text style={[styles_starwars.scoreboardLucasTitle, { color: mainTextColor }]}>
+                        {trad('expo.scoreboard.title')}
+                    </Text>
                     <Text style={[styles_starwars.scoreboardLucasSeparator, { color: mainTextColor }]}>--------------------</Text>
 
                     {isLoading ? (
@@ -70,7 +74,9 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                     )}
 
                     {!isLoading && leaderboard.length === 0 && (
-                        <Text style={[styles_starwars.scoreboardLucasScoreLine, { color: mainTextColor }]}>Aucun score enregistré</Text>
+                        <Text style={[styles_starwars.scoreboardLucasScoreLine, { color: mainTextColor }]}>
+                            {trad('expo.scoreboard.empty')}
+                        </Text>
                     )}
                 </View>
 
@@ -78,7 +84,9 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                     style={styles_starwars.scoreboardLucasNextButton}
                     onPress={onNext}
                 >
-                    <Text style={[styles_starwars.scoreboardLucasNextButtonText, { color: buttonTextColor }]}>Suivant</Text>
+                    <Text style={[styles_starwars.scoreboardLucasNextButtonText, { color: buttonTextColor }]}>
+                        {trad('expo.common.next')}
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>

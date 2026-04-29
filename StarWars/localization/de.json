@@ -59,6 +59,71 @@
   },
   "expo" : {
     "carrie-fisher": {
+      "common": {
+        "next": "Weiter",
+        "time": "Zeit",
+        "backToChallenges": "Zurück zum Challenge-Menü"
+      },
+      "lucas": {
+        "title": "Finde mit deinem Kompass die richtige Richtung",
+        "hintPrefix": "Hinweis: nach",
+        "holdStill": "Nicht mehr bewegen...",
+        "magnetometerUnavailable": "Magnetometer nicht verfügbar",
+        "feedback": {
+          "freeze": "Nicht mehr bewegen!",
+          "boiling": "Sehr heiß!",
+          "hot": "Heiß",
+          "warm": "Warm",
+          "cold": "Kalt"
+        },
+        "direction": {
+          "north": "Norden",
+          "east": "Osten",
+          "south": "Süden",
+          "west": "Westen"
+        }
+      },
+      "louis": {
+        "title": "Versteck dich vor den Jägern!",
+        "initializing": "Sensor wird initialisiert...",
+        "sim": {
+          "sensorUnavailable": "Sensor nicht verfügbar - simulierte Helligkeit :",
+          "noSensor": "Simulierte Helligkeit (kein Sensor auf diesem Gerät) :"
+        },
+        "game": {
+          "tooBright": "Du stehst im grellen Licht, versteck dich schnell !",
+          "almost": "Fast geschafft, der Jäger kommt näher !",
+          "good": "Fast... noch ein bisschen dunkler !"
+        },
+        "success": {
+          "title": "Du hast es geschafft !",
+          "body": "Der Jäger ist weg... Moment, was ist das ?",
+          "continue": "Weiter"
+        }
+      },
+      "win": {
+        "title": "Glückwunsch, du hast\n R2D2 gefunden!",
+        "backToChallenges": "Zurück zum Challenge-Menü"
+      },
+      "funFact": {
+        "scoreboard": "Bestenliste"
+      },
+      "scoreboard": {
+        "title": "Bestenliste :",
+        "empty": "Kein Ergebnis gespeichert",
+        "unknownUser": "Unbekannt"
+      },
+      "menu": {
+        "intro": "Du betrittst gleich einen Raum voller Herausforderungen, mach dich bereit!",
+        "challenge1": "Prüfung 1",
+        "challenge2": "Prüfung 2",
+        "challenge3": "Prüfung 3",
+        "backToMainMenu": "Zurück zum Hauptmenü"
+      },
+      "tutorial": {
+        "start": "Los geht's!",
+        "backToChallengeChoice": "Zurück zur Auswahl der Prüfung"
+      },
       "challenges": {
         "0" : {
           "tutorial": "Für diese Prüfung verwenden Sie das Magnetometer. Sie müssen Ihr Telefon bewegen und einen freien Platz um sich herum haben.",

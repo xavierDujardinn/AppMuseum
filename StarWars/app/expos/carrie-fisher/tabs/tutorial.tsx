@@ -1,9 +1,9 @@
-import React from 'react';
-import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
-import {TouchableOpacity, View} from "react-native";
-import {ImageBackground} from "expo-image";
 import ThemedText from '@/app/common/components/themedText';
-import {useTranslation} from "@/app/common/hooks/languageContext";
+import { useTranslation } from "@/app/common/hooks/languageContext";
+import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
+import { ImageBackground } from "expo-image";
+import React from 'react';
+import { TouchableOpacity, View } from "react-native";
 
 interface TutorialProps {
     challengeId: number;
@@ -28,11 +28,15 @@ const Tutorial: React.FC<TutorialProps> = ({challengeId, onStart, onBack}) => {
                         </View>
 
                         <TouchableOpacity style={styles_starwars.tutorialLucasButton} onPress={onStart}>
-                            <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">En avant!</ThemedText>
+                            <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">
+                                {trad('expo.tutorial.start')}
+                            </ThemedText>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles_starwars.tutorialLucasButton} onPress={onBack}>
-                            <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">Retourner au choix de challenge</ThemedText>
+                            <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">
+                                {trad('expo.tutorial.backToChallengeChoice')}
+                            </ThemedText>
                         </TouchableOpacity>
                     </View>
                 </View>
