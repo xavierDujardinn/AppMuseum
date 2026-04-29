@@ -42,14 +42,14 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                 {!isIntroPassed ? (
                     <>
                         <ThemedText style={styles_starwars.menuIntroText}>
-                            {trad ('expo.menu.intro')}
+                            {trad('expo.carrie-fisher.menu.intro')}
                         </ThemedText>
                         <TouchableOpacity
                             style={styles_starwars.menuMainButton}
                             onPress={() => setIsIntroPassed(true)}
                         >
                             <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">
-                                {trad('expo.common.next')}
+                                {trad('expo.carrie-fisher.common.next')}
                             </ThemedText>
                         </TouchableOpacity>
                     </>
@@ -63,7 +63,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                               <ThemedText
                                   style={styles_starwars.menuUnlockedChallengeButtonText}
                               >
-                                  {trad('expo.menu.challenge1')}
+                                  {trad('expo.carrie-fisher.menu.challenge1')}
                               </ThemedText>
                               { completedChallengesList[0] && (
                                 <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
@@ -78,7 +78,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                             <ThemedText
                                 style={styles_starwars.menuUnlockedChallengeButtonText}
                             >
-                                {trad('expo.menu.challenge2')}
+                                {trad('expo.carrie-fisher.menu.challenge2')}
                             </ThemedText>
                             { completedChallengesList[1] && (
                                 <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
@@ -92,7 +92,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                             <ThemedText
                                 style={styles_starwars.menuUnlockedChallengeButtonText}
                             >
-                                {trad('expo.menu.challenge3')}
+                                {trad('expo.carrie-fisher.menu.challenge3')}
                             </ThemedText>
                             { completedChallengesList[2] && (
                                 <Image source={require('@/assets/images/expos/carrieFisher/winlogo.png')} style={styles_starwars.menuWinLogo} resizeMode="contain" />
@@ -104,7 +104,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                             onPress={() => { navigation.navigate('Hub'); }}
                         >
                             <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">
-                                {trad('expo.menu.backToMainMenu')}
+                                {trad('expo.carrie-fisher.menu.backToMainMenu')}
                             </ThemedText>
                         </TouchableOpacity>
                     </>

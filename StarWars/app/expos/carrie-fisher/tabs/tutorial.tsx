@@ -29,13 +29,13 @@ const Tutorial: React.FC<TutorialProps> = ({challengeId, onStart, onBack}) => {
 
                         <TouchableOpacity style={styles_starwars.tutorialLucasButton} onPress={onStart}>
                             <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">
-                                {trad('expo.tutorial.start')}
+                                {trad('expo.carrie-fisher.tutorial.start')}
                             </ThemedText>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles_starwars.tutorialLucasButton} onPress={onBack}>
                             <ThemedText style={styles_starwars.tutorialLucasButtonText} weight="bold">
-                                {trad('expo.tutorial.backToChallengeChoice')}
+                                {trad('expo.carrie-fisher.tutorial.backToChallengeChoice')}
                             </ThemedText>
                         </TouchableOpacity>
                     </View>

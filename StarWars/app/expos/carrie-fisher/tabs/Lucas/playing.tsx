@@ -41,20 +41,20 @@ const smoothAngle = (current: number, target: number, factor: number) => {
 };
 
 const getHeatMessageKey = (diff: number) => {
-  if (diff <= SUCCESS_TOLERANCE) return 'expo.lucas.feedback.freeze'; 
-  if (diff <= 18) return 'expo.lucas.feedback.boiling'; 
-  if (diff <= 40) return 'expo.lucas.feedback.hot'; 
-  if (diff <= 75) return 'expo.lucas.feedback.warm'; 
+  if (diff <= SUCCESS_TOLERANCE) return 'expo.carrie-fisher.lucas.feedback.freeze';
+  if (diff <= 18) return 'expo.carrie-fisher.lucas.feedback.boiling';
+  if (diff <= 40) return 'expo.carrie-fisher.lucas.feedback.hot';
+  if (diff <= 75) return 'expo.carrie-fisher.lucas.feedback.warm';
   return 'expo.lucas.feedback.cold'; 
 };
 
 const getCardinalDirectionKey = (angle: number) => {
   const normalized = normalizeHeading(angle);
 
-  if (normalized >= 315 || normalized < 45) return 'expo.lucas.direction.north'; 
-  if (normalized >= 45 && normalized < 135) return 'expo.lucas.direction.east'; 
-  if (normalized >= 135 && normalized < 225) return 'expo.lucas.direction.south'; 
-  return 'expo.lucas.direction.west'; 
+  if (normalized >= 315 || normalized < 45) return 'expo.carrie-fisher.lucas.direction.north';
+  if (normalized >= 45 && normalized < 135) return 'expo.carrie-fisher.lucas.direction.east';
+  if (normalized >= 135 && normalized < 225) return 'expo.carrie-fisher.lucas.direction.south';
+  return 'expo.carrie-fisher.lucas.direction.west';
 };
 
 const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
@@ -178,18 +178,18 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
       <View style={styles_starwars.playingLucasOverlay}>
         <View style={styles_starwars.playingLucasTopBar}>
           <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">
-            {trad('expo.lucas.time')} : {formatTime(elapsedTime)}
+            {trad('expo.carrie-fisher.lucas.time')} : {formatTime(elapsedTime)}
           </ThemedText>
 
           <Hint challengeId={0} theme={'dark'} />
         </View>
 
         <ThemedText style={styles_starwars.playingLucasTitle} weight="bold">
-          {trad('expo.lucas.title')}
+          {trad('expo.carrie-fisher.lucas.title')}
         </ThemedText>
 
         <ThemedText style={styles_starwars.playingLucasTitle}>
-          {trad('expo.lucas.hintPrefix')} {targetDirectionLabel}
+          {trad('expo.carrie-fisher.lucas.hintPrefix')} {targetDirectionLabel}
         </ThemedText>
 
         <View style={styles_starwars.playingLucasCompassButton}>
@@ -209,13 +209,13 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
 
         {diff <= SUCCESS_TOLERANCE ? (
           <ThemedText style={styles_starwars.playingLucasTitle}>
-            {trad('expo.lucas.holdStill')} {holdSeconds}s
+            {trad('expo.carrie-fisher.lucas.holdStill')} {holdSeconds}s
           </ThemedText>
         ) : null}
 
         <TouchableOpacity style={styles_starwars.playingLucasBackButton} onPress={onBack}>
           <ThemedText style={styles_starwars.playingLucasBackButtonText} weight="bold">
-            {trad('expo.common.backToChallenges')} 
+            {trad('expo.carrie-fisher.common.backToChallenges')}
           </ThemedText>
         </TouchableOpacity>
       </View>

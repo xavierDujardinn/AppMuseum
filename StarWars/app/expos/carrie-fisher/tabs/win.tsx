@@ -25,7 +25,7 @@ const Win: React.FC<WinProps> = ({challengeId, onCardPress, onBackToMenu}) => {
 
             <View style={styles_starwars.winLucasOverlay}>
                 <ThemedText style={styles_starwars.winLucasTitle} weight="bold">
-                    {trad('expo.win.title')}
+                    {trad('expo.carrie-fisher.win.title')}
                 </ThemedText>
 
                 <Image
@@ -44,7 +44,7 @@ const Win: React.FC<WinProps> = ({challengeId, onCardPress, onBackToMenu}) => {
 
                 <TouchableOpacity style={styles_starwars.winLucasBackButton} onPress={onBackToMenu}>
                     <ThemedText style={styles_starwars.winLucasBackButtonText} weight="bold">
-                        {trad('expo.common.backToChallenges')}
+                        {trad('expo.carrie-fisher.common.backToChallenges')}
                     </ThemedText>
                 </TouchableOpacity>
             </View>

@@ -48,7 +48,7 @@ const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => 
 
                 <TouchableOpacity style={styles_starwars.funfactLucasScoreButton} onPress={onScoreboard}>
                     <ThemedText style={styles_starwars.funfactLucasScoreButtonText} weight="bold">
-                        {trad('expo.funFact.scoreboard')}
+                        {trad('expo.carrie-fisher.funFact.scoreboard')}
                     </ThemedText>
                 </TouchableOpacity>
             </View>

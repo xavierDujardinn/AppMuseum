@@ -41,12 +41,12 @@ function luxToGray(lux: number): number {
 
 function messageKeyForGray(gray: number): string {
   if (gray > 205) {
-    return 'expo.louis.game.tooBright';
+    return 'expo.carrie-fisher.louis.game.tooBright';
   }
   if (gray > 118) {
-    return 'expo.louis.game.almost';
+    return 'expo.carrie-fisher.louis.game.almost';
   }
-  return 'expo.louis.game.good';
+  return 'expo.carrie-fisher.louis.game.good';
 }
 
 const ChallengeShell: React.FC<{
@@ -202,7 +202,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
             },
           ]}
         >
-          {trad('expo.louis.success.title')}
+          {trad('expo.carrie-fisher.louis.success.title')}
         </ThemedText>
 
         <View style={{ flex: 1, justifyContent: 'center', width: '100%' }}>
@@ -217,7 +217,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
               },
             ]}
           >
-            {trad('expo.louis.success.body')}
+            {trad('expo.carrie-fisher.louis.success.body')}
           </ThemedText>
         </View>
 
@@ -226,7 +226,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
           onPress={handleContinueAfterSuccess}
         >
           <ThemedText style={styles.challengePaperButtonText}>
-            {trad('expo.louis.success.continue')}
+            {trad('expo.carrie-fisher.louis.success.continue')}
           </ThemedText>
         </TouchableOpacity>
       </>
@@ -254,7 +254,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
           },
         ]}
       >
-        {trad('expo.louis.title')}
+        {trad('expo.carrie-fisher.louis.title')}
       </ThemedText>
 
       {!sensorReady && Platform.OS === 'android' ? (
@@ -265,7 +265,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
             { fontSize: textSize * 0.65, color: '#000000' },
           ]}
         >
-          {trad('expo.louis.initializing')}
+          {trad('expo.carrie-fisher.louis.initializing')}
         </ThemedText>
       ) : null}
 
@@ -288,8 +288,8 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
             ]}
           >
             {Platform.OS === 'android' && !useNativeSensor
-              ? trad('expo.louis.sim.sensorUnavailable')
-              : trad('expo.louis.sim.noSensor')}
+              ? trad('expo.carrie-fisher.louis.sim.sensorUnavailable')
+              : trad('expo.carrie-fisher.louis.sim.noSensor')}
           </ThemedText>
 
           <Slider
@@ -331,7 +331,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
             },
           ]}
         >
-          {trad('expo.common.backToChallenges')}
+          {trad('expo.carrie-fisher.common.backToChallenges')}
         </ThemedText>
       </TouchableOpacity>
     </>

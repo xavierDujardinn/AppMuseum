@@ -18,7 +18,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
     const [isLoading, setIsLoading] = useState(true);
     const { settings } = useUserSettings();
     const { trad } = useTranslation();
-    const currentUserName = settings?.userName?.trim() || trad('expo.scoreboard.unknownUser');
+    const currentUserName = settings?.userName?.trim() || trad('expo.carrie-fisher.scoreboard.unknownUser');
     const useAccessibleColors = (settings?.colorBlindMode && settings?.highContrast);
     const mainTextColor = useAccessibleColors ? '#FFFFFF' : undefined;
     const highlightTextColor = useAccessibleColors ? '#FFD166' : '#00D2FF';
@@ -52,7 +52,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
             <View style={styles_starwars.scoreboardLucasOverlay}>
                 <View style={styles_starwars.scoreboardLucasScoreBlock}>
                     <Text style={[styles_starwars.scoreboardLucasTitle, { color: mainTextColor }]}>
-                        {trad('expo.scoreboard.title')}
+                        {trad('expo.carrie-fisher.scoreboard.title')}
                     </Text>
                     <Text style={[styles_starwars.scoreboardLucasSeparator, { color: mainTextColor }]}>--------------------</Text>
 
@@ -75,7 +75,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
 
                     {!isLoading && leaderboard.length === 0 && (
                         <Text style={[styles_starwars.scoreboardLucasScoreLine, { color: mainTextColor }]}>
-                            {trad('expo.scoreboard.empty')}
+                            {trad('expo.carrie-fisher.scoreboard.empty')}
                         </Text>
                     )}
                 </View>
@@ -85,7 +85,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
                     onPress={onNext}
                 >
                     <Text style={[styles_starwars.scoreboardLucasNextButtonText, { color: buttonTextColor }]}>
-                        {trad('expo.common.next')}
+                        {trad('expo.carrie-fisher.common.next')}
                     </Text>
                 </TouchableOpacity>
             </View>
