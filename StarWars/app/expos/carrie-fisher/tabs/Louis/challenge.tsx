@@ -2,7 +2,7 @@ import ThemedText from '@/app/common/components/themedText';
 import { useTranslation } from '@/app/common/hooks/languageContext';
 import { useUserSettings } from '@/app/common/hooks/userSettings';
 import useTimer from '@/app/expos/carrie-fisher/hooks/useTimer';
-import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
+import Help from '@/app/expos/carrie-fisher/components/help';
 import HothBackdrop from '@/app/hub/components/HothBackdrop';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import styles from '@/styles/hub/common';
@@ -187,7 +187,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
           <ThemedText style={styles_starwars.playingLouisTimerText} weight="bold">
             {formatTime(elapsedTime)}
           </ThemedText>
-          <Hint challengeId={2} theme="light" />
+          <Help challengeId={2} theme="light" onSkip={onWin}/>
         </View>
 
         <ThemedText
@@ -239,7 +239,7 @@ const LouisChallenge: React.FC<ChallengeProps> = ({ onWin, onBack }) => {
         <ThemedText style={styles_starwars.playingLouisTimerText} weight="bold">
           {formatTime(elapsedTime)}
         </ThemedText>
-        <Hint challengeId={2} theme="light" />
+        <Help challengeId={2} theme="light" onSkip={onWin}/>
       </View>
 
       <ThemedText
