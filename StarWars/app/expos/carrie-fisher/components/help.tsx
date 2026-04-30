@@ -31,9 +31,9 @@ const Help: React.FC<HintModalProps> = ({challengeId, theme, onSkip}) => {
     const hintText = trad(`expo.carrie-fisher.challenges.${challengeId}.hint`);
 
     useEffect(() => {
-        if (elapsedTime > 5 && !isHintAvailable) {
+        if (elapsedTime > 30 && !isHintAvailable) {
             setIsHintAvailable(true);
-        } else if (elapsedTime - hintOpenTime > 15 && hintOpenTime > -1){
+        } else if (elapsedTime - hintOpenTime > 30 && hintOpenTime > -1){
             setIsSkipAvailable(true);
         }
     }, [elapsedTime, hintOpenTime, isHintAvailable]);
