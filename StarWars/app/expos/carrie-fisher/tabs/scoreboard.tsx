@@ -22,12 +22,12 @@ const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedT
     const useAccessibleColors = (settings?.colorBlindMode && settings?.highContrast);
     const mainTextColor = useAccessibleColors ? '#FFFFFF' : undefined;
     const highlightTextColor = useAccessibleColors ? '#FFD166' : '#00D2FF';
-    const buttonTextColor = useAccessibleColors ? '#111111' : undefined;
+    const buttonTextColor = useAccessibleColors ? '#FFFFFF' : '#FFFFFF';
 
     useEffect(() => {
         const handleScoreLogic = async () => {
             try {
-                const updatedScores = await saveNewScore(EXPO_STORAGE_NAME,challengeId, elaspedTime, currentUserName);
+                const updatedScores = await saveNewScore(EXPO_STORAGE_NAME, challengeId, elaspedTime, currentUserName);
                 setLeaderboard(updatedScores);
             } catch (error) {
                 console.error("Erreur Scoreboard:", error);

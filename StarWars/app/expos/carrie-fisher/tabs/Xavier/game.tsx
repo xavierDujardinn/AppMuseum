@@ -3,7 +3,7 @@ import { View } from "react-native";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import { ImageBackground } from "expo-image";
 import { formatTime } from "@/utils/expo/carrie-fisher/utils";
-import Hint from "@/app/expos/carrie-fisher/tabs/hintModal";
+import Help from "@/app/expos/carrie-fisher/components/help";
 import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 import { Gyroscope } from 'expo-sensors';
 import { GameEngine } from 'react-native-game-engine';
@@ -182,7 +182,7 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
         >
             <View style={styles_starwars.playingLucasTopBar}>
                 <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">{formatTime(elapsedTime)}</ThemedText>
-                <Hint challengeId={1} theme={'light'} />
+                <Help challengeId={1} theme={'light'} onSkip={onWin} />
             </View>
 
             <View

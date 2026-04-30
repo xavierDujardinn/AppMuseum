@@ -1,7 +1,7 @@
 import ThemedText from '@/app/common/components/themedText';
 import { useTranslation } from "@/app/common/hooks/languageContext";
 import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
-import Hint from '@/app/expos/carrie-fisher/tabs/hintModal';
+import Help from '@/app/expos/carrie-fisher/components/help';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import { formatTime } from "@/utils/expo/carrie-fisher/utils";
 import { Image } from 'expo-image';
@@ -181,7 +181,7 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
             {trad('expo.carrie-fisher.lucas.time')} : {formatTime(elapsedTime)}
           </ThemedText>
 
-          <Hint challengeId={0} theme={'dark'} />
+          <Help challengeId={0} theme={'dark'} onSkip={onWin} />
         </View>
 
         <ThemedText style={styles_starwars.playingLucasTitle} weight="bold">
