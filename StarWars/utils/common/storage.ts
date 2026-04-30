@@ -12,14 +12,17 @@ export const saveNewScore = async (expoName:string, challengeId: number, time: n
         const existingScoresRaw = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`);
         let scores: ScoreEntry[] = existingScoresRaw ? JSON.parse(existingScoresRaw) : [];
 
-        const newEntry: ScoreEntry = { name: name || "Unknown", time };
-        scores.push(newEntry);
-
-        scores.sort((a, b) => a.time - b.time);
-
         const topScores = scores.slice(0, 10);
 
-        await AsyncStorage.setItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`, JSON.stringify(topScores));
+        if (time >= 0) {
+            const newEntry: ScoreEntry = {name: name || "Unknown", time};
+            scores.push(newEntry);
+
+            scores.sort((a, b) => a.time - b.time);
+
+            await AsyncStorage.setItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`, JSON.stringify(topScores));
+        }
+
         return topScores;
     } catch (e) {
         console.error("Erreur lors de la sauvegarde", e);
