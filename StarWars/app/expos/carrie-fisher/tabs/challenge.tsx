@@ -27,10 +27,19 @@ const Challenge: React.FC<ChallengeProps> = ({challengeId, onNavigate}) => {
   };
 
   const handleWin = async (challengeId: number, elapsedTime: number) => {
-      setSavedElaspedTime(elapsedTime);
-      await updateCompletedChallenge("carrieFisher", challengeId);
+      if (elapsedTime === -1){
+          handleSkip();
+      }
+      else {
+          setSavedElaspedTime(elapsedTime);
+          await updateCompletedChallenge("carrieFisher", challengeId);
+          setCurrentState('win');
+      }};
+
+  const handleSkip = () =>{
+      setSavedElaspedTime(-1);
       setCurrentState('win');
-  };
+  }
 
   const handleGoToFunfact = () => {
       setCurrentState('funfact');
