@@ -6,3 +6,5 @@ export const EXPO_IMAGES: any = {
 
     default: require('../assets/images/logoem.png'),
 };
+
+export const STORAGE_KEY = '@escape_museum';
