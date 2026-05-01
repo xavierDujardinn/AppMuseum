@@ -118,7 +118,6 @@ const Connect: React.FC<ConnectProps> = ({ onNavigate }) => {
       if (prefix !== "EXPO" || !code) return;
 
       const expoData = verifyCode(code);
-      console.log("Expo trouvée dans JSON:", expoData);
 
       if (!expoData) return;
 

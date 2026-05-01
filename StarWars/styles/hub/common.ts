@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Exo2-Black',
         fontSize: normalize(20),
         textAlign: 'center',
-        marginBottom: normalize(40),
+        marginBottom: normalize(15),
     },
     secondaryButton: {
         backgroundColor: 'transparent',
@@ -670,6 +670,26 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 14,
         backgroundColor: '#7C7A83',
         opacity: 0.85,
+    },
+    progressContainer: {
+        width: '100%',
+        paddingVertical: normalize(5),
+    },
+    progressLabelContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: normalize(8),
+    },
+    progressBarBackground: {
+        height: normalize(12),
+        width: '100%',
+        borderRadius: normalize(6),
+        borderWidth: 1,
+        overflow: 'hidden',
+    },
+    progressBarFill: {
+        height: '100%',
+        borderRadius: normalize(6),
     },
 });
 

@@ -8,11 +8,14 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, TouchableOpacity, View } from "react-native";
 import {useUserSettings} from "@/app/common/hooks/userSettings";
+import ProgressBar from "@/app/hub/components/progressBar";
 
 interface ExpoData {
     title: Record<string, string>;
     image: string;
     main_screen_name: string;
+    storage_name: string;
+    nb_challenges: number;
 }
 
 interface PreviewProps {
@@ -42,6 +45,7 @@ const Expo: React.FC<PreviewProps> = ({onNavigate, expoData}) =>{
             <ThemedText style={styles.expoDesc} weight="semibold">{trad('preview.desc')}</ThemedText>
             <ThemedText style={styles.expoTitle} weight="black">{title}</ThemedText>
 
+            <ProgressBar expoStorageName={expoData?.storage_name} nbChallenges={expoData?.nb_challenges}/>
 
             <TouchableOpacity
                 style={[styles.mainButton, { backgroundColor: themeColors.accent }]}
