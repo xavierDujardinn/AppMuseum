@@ -6,22 +6,25 @@ export interface ScoreEntry {
     time: number;
 }
 
-export const saveNewScore = async (expoName:string, challengeId: number, time: number, name?: string): Promise<ScoreEntry[]> => {
+export const saveNewScore = async (expoName: string, challengeId: number, time: number, name?: string): Promise<ScoreEntry[]> => {
     try {
-        const existingScoresRaw = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`);
+        const key = `${STORAGE_KEY}_${expoName}_scores_${challengeId}`;
+        const existingScoresRaw = await AsyncStorage.getItem(key);
+
         let scores: ScoreEntry[] = existingScoresRaw ? JSON.parse(existingScoresRaw) : [];
-        const topScores = scores.slice(0, 10);
 
         if (time >= 0) {
-            const newEntry: ScoreEntry = {name: name || "Unknown", time};
+            const newEntry: ScoreEntry = { name: name || "Unknown", time };
             scores.push(newEntry);
-
             scores.sort((a, b) => a.time - b.time);
 
-            await AsyncStorage.setItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`, JSON.stringify(topScores));
+            const updatedTopScores = scores.slice(0, 10);
+            await AsyncStorage.setItem(key, JSON.stringify(updatedTopScores));
+
+            return updatedTopScores;
         }
 
-        return topScores;
+        return scores.slice(0, 10);
     } catch (e) {
         console.error("Erreur lors de la sauvegarde", e);
         return [];
