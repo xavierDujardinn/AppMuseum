@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {STORAGE_KEY} from "@/config/config";
 
 type FontSize = 'small' | 'medium' | 'large';
 type FontFamilyOption = 'exo' | 'system' | 'serif';
-const STORAGE_KEY = '@escape_museum_user_settings';
 
 interface UserSettings {
     userName: string;
@@ -28,7 +28,7 @@ const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 
     useEffect(() => {
         const load = async () => {
-            const raw = await AsyncStorage.getItem(STORAGE_KEY);
+            const raw = await AsyncStorage.getItem(`${STORAGE_KEY}_settings`);
             if (raw) setSettings({ ...defaultSettings, ...JSON.parse(raw) });
         };
         load();
@@ -37,7 +37,7 @@ const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     const updateSettings = useCallback((updates: Partial<UserSettings>) => {
         setSettings(prev => {
             const next = { ...prev, ...updates };
-            void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+            void AsyncStorage.setItem(`${STORAGE_KEY}_settings`, JSON.stringify(next));
             return next;
         });
     }, []);
