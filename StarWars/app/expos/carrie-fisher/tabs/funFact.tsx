@@ -13,7 +13,6 @@ interface FunfactLucasProps {
 
 const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => {
     const {trad} = useTranslation();
-    console.log(challengeId);
     const text1 = trad(`expo.carrie-fisher.challenges.${challengeId}.fun-fact-1`);
     const text2 = trad(`expo.carrie-fisher.challenges.${challengeId}.fun-fact-2`);
 

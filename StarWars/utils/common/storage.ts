@@ -10,7 +10,6 @@ export const saveNewScore = async (expoName:string, challengeId: number, time: n
     try {
         const existingScoresRaw = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`);
         let scores: ScoreEntry[] = existingScoresRaw ? JSON.parse(existingScoresRaw) : [];
-
         const topScores = scores.slice(0, 10);
 
         if (time >= 0) {
