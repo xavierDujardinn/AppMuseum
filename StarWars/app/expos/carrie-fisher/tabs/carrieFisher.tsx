@@ -24,7 +24,7 @@ interface NavigationState {
 const CarrieFisherScreen = () => {
     const insets = useSafeAreaInsets();
 
-    const { route, handleNavigate, handleBack, canGoBack } = useNavigationLogic<NavigationState['name']>('home');
+    const { route, handleNavigate, handleBack, canGoBack } = useNavigationLogic<NavigationState['name']>('challenge');
 
     const renderScreen = () => {
         const { name, params } = route;
