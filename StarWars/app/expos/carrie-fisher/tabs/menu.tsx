@@ -9,6 +9,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ImageBackground } from "expo-image";
 import React, { useEffect } from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
+import Map from '@/app/expos/carrie-fisher/components/map';
 
 interface MenuProps {
     onNavigate: (screen: 'home' | 'challenge', params?: any) => void;
@@ -55,6 +56,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, skipIntro }) => {
                     </>
                 ) : (
                     <>
+                        <Map/>
                         <TouchableOpacity
                             style={styles_starwars.menuUnlockedChallengeButton}
                             onPress={() => { onNavigate('challenge', { challengeId: 0 }) }}

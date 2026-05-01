@@ -593,35 +593,50 @@ const styles_starwars = StyleSheet.create({
     },
 
     playingLouisTopBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    marginBottom: 16,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: 16,
     },
 
     playingLouisTimerText: {
-    fontSize: 22,
-    color: '#000000',
+        fontSize: 22,
+        color: '#000000',
     },
 
     challengeLouisScoresCard: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 24,
-    paddingHorizontal: 20,
-    backgroundColor: 'rgba(255,255,255,0.72)',
-    borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 24,
+        paddingHorizontal: 20,
+        backgroundColor: 'rgba(255,255,255,0.72)',
+        borderRadius: 16,
     },
 
     challengeLouisScoresTitle: {
-    marginBottom: 16,
-    textAlign: 'center',
+        marginBottom: 16,
+        textAlign: 'center',
     },
 
     challengeLouisScoreLine: {
-    textAlign: 'center',
-    marginBottom: 6,
+        textAlign: 'center',
+        marginBottom: 6,
+    },
+    mapButton: {
+        paddingVertical: normalize(16),
+        paddingHorizontal: normalize(26),
+        borderRadius: normalize(25),
+        minHeight: normalize(62),
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: normalize(15),
+    },
+    mapImage: {
+        width: '100%',
+        height: normalize(500),
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
