@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const STORAGE_KEY = '@escape_museum';
+import {STORAGE_KEY} from "@/config/config";
 
 export interface ScoreEntry {
     name: string;
