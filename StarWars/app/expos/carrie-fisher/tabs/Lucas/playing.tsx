@@ -1,7 +1,7 @@
 import ThemedText from '@/app/common/components/themedText';
 import { useTranslation } from "@/app/common/hooks/languageContext";
-import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 import Help from '@/app/expos/carrie-fisher/components/help';
+import useTimer from "@/app/expos/carrie-fisher/hooks/useTimer";
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import { formatTime } from "@/utils/expo/carrie-fisher/utils";
 import { Image } from 'expo-image';
@@ -45,7 +45,7 @@ const getHeatMessageKey = (diff: number) => {
   if (diff <= 18) return 'expo.carrie-fisher.lucas.feedback.boiling';
   if (diff <= 40) return 'expo.carrie-fisher.lucas.feedback.hot';
   if (diff <= 75) return 'expo.carrie-fisher.lucas.feedback.warm';
-  return 'expo.lucas.feedback.cold'; 
+  return 'expo.carrie-fisher.lucas.feedback.cold'; 
 };
 
 const getCardinalDirectionKey = (angle: number) => {
@@ -178,7 +178,7 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
       <View style={styles_starwars.playingLucasOverlay}>
         <View style={styles_starwars.playingLucasTopBar}>
           <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">
-            {trad('expo.carrie-fisher.lucas.time')} : {formatTime(elapsedTime)}
+            {trad('expo.carrie-fisher.common.time')} : {formatTime(elapsedTime)}
           </ThemedText>
 
           <Help challengeId={0} theme={'dark'} onSkip={onWin} />

@@ -1,96 +1,109 @@
 import { useTranslation } from "@/app/common/hooks/languageContext";
 import { useUserSettings } from '@/app/common/hooks/userSettings';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
-import { getScores, saveNewScore, ScoreEntry } from '@/utils/common/storage';
-import { BG_LIST, EXPO_STORAGE_NAME, formatTime } from "@/utils/expo/carrie-fisher/utils";
+import { ScoreEntry } from '@/utils/common/storage';
+import { BG_LIST, formatTime } from "@/utils/expo/carrie-fisher/utils";
 import { ImageBackground } from 'expo-image';
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 interface TableauLucasProps {
-    challengeId: number;
-    onNext: () => void;
-    elaspedTime: number;
+  challengeId?: number;
+  onNext: () => void;
+  elaspedTime: number;
+  isFinalExpoScoreboard?: boolean;
+  expoTitle?: string;
+  leaderboardOverride?: ScoreEntry[];
 }
 
-const Scoreboard: React.FC<TableauLucasProps> = ({ challengeId, onNext, elaspedTime }) => {
-    const [leaderboard, setLeaderboard] = useState<ScoreEntry[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const { settings } = useUserSettings();
-    const { trad } = useTranslation();
-    const currentUserName = settings?.userName?.trim() || trad('expo.carrie-fisher.scoreboard.unknownUser');
-    const useAccessibleColors = (settings?.colorBlindMode && settings?.highContrast);
-    const mainTextColor = useAccessibleColors ? '#FFFFFF' : undefined;
-    const highlightTextColor = useAccessibleColors ? '#FFD166' : '#00D2FF';
-    const buttonTextColor = useAccessibleColors ? '#FFFFFF' : '#FFFFFF';
+const Scoreboard: React.FC<TableauLucasProps> = ({
+  challengeId = 0,
+  onNext,
+  elaspedTime,
+  isFinalExpoScoreboard = false,
+  expoTitle,
+  leaderboardOverride = []
+}) => {
+  const { settings } = useUserSettings();
+  const { trad } = useTranslation();
 
-    useEffect(() => {
-        const handleScoreLogic = async () => {
-            try {
-                const updatedScores = await saveNewScore(EXPO_STORAGE_NAME, challengeId, elaspedTime, currentUserName);
-                setLeaderboard(updatedScores);
-            } catch (error) {
-                console.error("Erreur Scoreboard:", error);
-                const existing = await getScores(EXPO_STORAGE_NAME, challengeId);
-                setLeaderboard(existing);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+  const currentUserName =
+    settings?.userName?.trim() || trad('expo.carrie-fisher.scoreboard.unknownUser');
 
-        handleScoreLogic();
-    }, [challengeId, currentUserName, elaspedTime]);
+  const useAccessibleColors = !!(settings?.colorBlindMode && settings?.highContrast);
+  const mainTextColor = '#FFFFFF';
+  const highlightTextColor = useAccessibleColors ? '#FFD166' : '#00D2FF';
+  const buttonTextColor = '#FFFFFF';
 
-    return (
-        <View style={styles_starwars.scoreboardLucasContainer}>
-            <ImageBackground
-                source={BG_LIST[challengeId]}
-                style={styles_starwars.scoreboardLucasBackgroundImage}
-                contentFit="cover"
-            />
+  const title = isFinalExpoScoreboard
+    ? trad('expo.carrie-fisher.scoreboard.finalTitle', {
+        expoTitle: expoTitle ?? trad('expo.carrie-fisher.scoreboard.defaultExpoTitle')
+      })
+    : trad('expo.carrie-fisher.scoreboard.title');
 
-            <View style={styles_starwars.scoreboardLucasOverlay}>
-                <View style={styles_starwars.scoreboardLucasScoreBlock}>
-                    <Text style={[styles_starwars.scoreboardLucasTitle, { color: mainTextColor }]}>
-                        {trad('expo.carrie-fisher.scoreboard.title')}
-                    </Text>
-                    <Text style={[styles_starwars.scoreboardLucasSeparator, { color: mainTextColor }]}>--------------------</Text>
+  const content = (
+    <View style={styles_starwars.scoreboardLucasOverlay} pointerEvents="box-none">
+      <View style={styles_starwars.scoreboardLucasScoreBlock}>
+        <Text style={[styles_starwars.scoreboardLucasTitle, { color: mainTextColor }]}>
+          {title}
+        </Text>
 
-                    {isLoading ? (
-                        <ActivityIndicator size="large" color="#F0A820" style={{ marginTop: 20 }} />
-                    ) : (
-                        leaderboard.map((entry, index) => (
-                            <Text
-                                key={`${index}-${entry.name}`}
-                                style={[
-                                    styles_starwars.scoreboardLucasScoreLine,
-                                    useAccessibleColors && { color: mainTextColor },
-                                    entry.name === currentUserName && { color: highlightTextColor }
-                                ]}
-                            >
-                                {index + 1}. {entry.name} : {formatTime(entry.time)}
-                            </Text>
-                        ))
-                    )}
+        <Text style={[styles_starwars.scoreboardLucasSeparator, { color: mainTextColor }]}>
+          --------------------
+        </Text>
 
-                    {!isLoading && leaderboard.length === 0 && (
-                        <Text style={[styles_starwars.scoreboardLucasScoreLine, { color: mainTextColor }]}>
-                            {trad('expo.carrie-fisher.scoreboard.empty')}
-                        </Text>
-                    )}
-                </View>
+        <Text style={[styles_starwars.scoreboardLucasScoreLine, { color: highlightTextColor }]}>
+          {trad('expo.carrie-fisher.scoreboard.yourTime', {
+            time: formatTime(elaspedTime)
+          })}
+        </Text>
 
-                <TouchableOpacity
-                    style={styles_starwars.scoreboardLucasNextButton}
-                    onPress={onNext}
-                >
-                    <Text style={[styles_starwars.scoreboardLucasNextButtonText, { color: buttonTextColor }]}>
-                        {trad('expo.carrie-fisher.common.next')}
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
+        {leaderboardOverride.map((entry, index) => (
+          <Text
+            key={`${index}-${entry.name}-${entry.time}`}
+            style={[
+              styles_starwars.scoreboardLucasScoreLine,
+              useAccessibleColors && { color: mainTextColor },
+              entry.name === currentUserName && { color: highlightTextColor }
+            ]}
+          >
+            {index + 1}. {entry.name} : {formatTime(entry.time)}
+          </Text>
+        ))}
+
+        {leaderboardOverride.length === 0 && (
+          <Text style={[styles_starwars.scoreboardLucasScoreLine, { color: mainTextColor }]}>
+            {trad('expo.carrie-fisher.scoreboard.empty')}
+          </Text>
+        )}
+      </View>
+
+      <TouchableOpacity
+        style={styles_starwars.scoreboardLucasNextButton}
+        onPress={onNext}
+      >
+        <Text style={[styles_starwars.scoreboardLucasNextButtonText, { color: buttonTextColor }]}>
+          {trad('expo.carrie-fisher.common.finish')}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const backgroundSource = isFinalExpoScoreboard
+    ? require('@/assets/images/expos/carrieFisher/space_background.jpg')
+    : BG_LIST[challengeId];
+
+  return (
+    <View style={styles_starwars.scoreboardLucasContainer} pointerEvents="box-none">
+      <ImageBackground
+        source={backgroundSource}
+        style={styles_starwars.scoreboardLucasBackgroundImage}
+        contentFit="cover"
+        pointerEvents="none"
+      />
+      {content}
+    </View>
+  );
 };
 
 export default Scoreboard;

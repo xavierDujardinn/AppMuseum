@@ -638,6 +638,74 @@ const styles_starwars = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+
+    feedbackOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    zIndex: 999,
+    },
+
+    feedbackCard: {
+    width: '80%',
+    maxWidth: 400,
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    backgroundColor: '#111111',
+    borderWidth: 1,
+    borderColor: '#F0A820',
+    },
+
+    feedbackTitle: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginBottom: 20,
+    color: '#FFFFFF',
+    },
+
+    feedbackButtonsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+    },
+
+    feedbackButton: {
+    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 999,
+    backgroundColor: '#F0A820',
+    alignItems: 'center',
+    },
+
+    feedbackButtonText: {
+    fontSize: 16,
+    color: '#000000',
+    },
+
+    menuScrollContent: {
+    flexGrow: 1,
+    paddingBottom: 40,
+    },
+
+    menuMainButtonDisabled: {
+    opacity: 0.5,
+    },
+
+    menuLockedText: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginTop: 8,
+    marginBottom: 16,
+    fontSize: 14,
+    opacity: 0.85,
+    },
 });
 
 export default styles_starwars;
