@@ -62,7 +62,8 @@
       "common": {
         "next": "Weiter",
         "time": "Zeit",
-        "backToChallenges": "Zurück zum Challenge-Menü"
+        "backToChallenges": "Zurück zum Challenge-Menü",
+        "finish": "Beenden"
       },
       "lucas": {
         "title": "Finde mit deinem Kompass die richtige Richtung",
@@ -111,14 +112,18 @@
       "scoreboard": {
         "title": "Bestenliste :",
         "empty": "Kein Ergebnis gespeichert",
-        "unknownUser": "Unbekannt"
+        "unknownUser": "Unbekannt",
+        "finalTitle": "Endstand :",
+        "yourTime": "Ihre Zeit ist :"
       },
       "menu": {
         "intro": "Du betrittst gleich einen Raum voller Herausforderungen, mach dich bereit!",
         "challenge1": "Prüfung 1",
         "challenge2": "Prüfung 2",
         "challenge3": "Prüfung 3",
-        "backToMainMenu": "Zurück zum Hauptmenü"
+        "backToMainMenu": "Zurück zum Hauptmenü",
+        "finalScoreboardLocked": "Endstand (verriegelt)",
+        "finalScoreboard": "Endstand"
       },
       "tutorial": {
         "start": "Los geht's!",
