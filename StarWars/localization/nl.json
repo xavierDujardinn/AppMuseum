@@ -62,7 +62,8 @@
       "common": {
         "next": "Volgende",
         "time": "Tijd",
-        "backToChallenges": "Terug naar het uitdagingenmenu"
+        "backToChallenges": "Terug naar het uitdagingenmenu",
+        "finish": "Voltooien"
       },
       "lucas": {
         "title": "Vind de juiste richting met je kompas",
@@ -111,14 +112,18 @@
       "scoreboard": {
         "title": "Scorebord :",
         "empty": "Geen scores geregistreerd",
-        "unknownUser": "Onbekende gebruiker"
+        "unknownUser": "Onbekende gebruiker",
+        "finalTitle": "Eindscorebord :",
+        "yourTime": "Uw tijd is :"
       },
       "menu": {
         "intro": "Je staat op het punt een ruimte vol uitdagingen binnen te gaan, bereid je voor!",
         "challenge1": "Proef 1",
         "challenge2": "Proef 2",
         "challenge3": "Proef 3",
-        "backToMainMenu": "Terug naar het hoofdmenu"
+        "backToMainMenu": "Terug naar het hoofdmenu",
+        "finalScoreboardLocked": "Eindscorebord (vergrendeld)",
+        "finalScoreboard": "Eindscorebord"
       },
       "tutorial": {
         "start": "Vooruit!",

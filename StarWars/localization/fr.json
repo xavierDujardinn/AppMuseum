@@ -63,14 +63,17 @@
       "common": {
         "next": "Suivant",
         "time": "Temps",
-        "backToChallenges": "Retour au menu des challenges"
+        "backToChallenges": "Retour au menu des challenges",
+        "finish": "Terminer"
       },
       "menu": {
         "intro": "Vous allez entrer dans un espace plein de challenges, préparez-vous !",
         "challenge1": "Epreuve 1",
         "challenge2": "Epreuve 2",
         "challenge3": "Epreuve 3",
-        "backToMainMenu": "Retour au menu principal"
+        "backToMainMenu": "Retour au menu principal",
+        "finalScoreboardLocked": "Tableau des scores final (verrouillé)",
+        "finalScoreboard": "Tableau des scores final"
       },
       "tutorial": {
         "start": "En avant !",
@@ -123,7 +126,9 @@
       "scoreboard": {
         "title": "Tableau des scores :",
         "empty": "Aucun score enregistré",
-        "unknownUser": "Inconnu"
+        "unknownUser": "Inconnu",
+        "finalTitle": "Tableau des scores final :",
+        "yourTime": "Votre temps est de :"
       },
       "challenges": {
         "0" : {
