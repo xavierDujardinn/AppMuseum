@@ -5,6 +5,7 @@ import {Image, ScrollView, TouchableOpacity, View} from "react-native";
 import expos from '../../../config/expos.json';
 import Preview from "./preview";
 import {useTranslation} from "@/app/common/hooks/languageContext";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 interface GalleryProps {
     onNavigate: (screen: 'connect' | 'expo', params?: any) => void;
@@ -12,6 +13,7 @@ interface GalleryProps {
 
 const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
     const { trad} = useTranslation();
+    const { settings } = useUserSettings();
 
     return (
             <ScrollView
@@ -36,11 +38,18 @@ const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
                         </TouchableOpacity>
                     ))}
                 </View>
-                <Image
-                    source={require('../../../assets/images/escapemuseum.png')}
-                    style={styles.middleImage}
-                    resizeMode="contain"
-                />
+                <View style={settings.colorBlindMode && !settings.darkMode ? {
+                    backgroundColor: '#4A4E69',
+                    borderRadius: 16,
+                    marginTop: 15,
+                    padding: 8,
+                } : undefined}>
+                    <Image
+                        source={require('../../../assets/images/escapemuseum.png')}
+                        style={[styles.middleImage, settings.colorBlindMode && !settings.darkMode && { marginTop: 0 }]}
+                        resizeMode="contain"
+                    />
+                </View>
             </ScrollView>
     );
 }
