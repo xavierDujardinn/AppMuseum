@@ -30,7 +30,7 @@
     "fontSystem": "System",
     "fontSerif": "Serif",
     "colorBlindMode": "Color-blind mode",
-    "highContrast": "High contrast",
+    "darkMode": "Dark theme",
     "clearData": "Reset all data"
   },
   "gtu": {

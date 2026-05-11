@@ -31,7 +31,7 @@
     "fontSystem": "Systeme",
     "fontSerif": "Serif",
     "colorBlindMode": "Mode daltonien",
-    "highContrast": "Contraste eleve",
+    "darkMode": "Theme sombre",
     "clearData": "Reinitialiser toutes les données"
   },
   "gtu": {

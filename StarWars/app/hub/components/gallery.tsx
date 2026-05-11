@@ -13,7 +13,7 @@ interface GalleryProps {
 
 const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
     const { trad} = useTranslation();
-    const { themeColors } = useUserSettings();
+    const { settings } = useUserSettings();
 
     return (
             <ScrollView
@@ -21,9 +21,9 @@ const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
                 contentContainerStyle={styles.galleryScrollContent}
             >
                 <View
-                    style={[styles.galleryBackground, { backgroundColor: themeColors.accent }]}
+                    style={[styles.galleryBackground, { backgroundColor: '#4A4E69' }]}
                 >
-                    <ThemedText style={[styles.mainButtonText, { color: themeColors.textOnAccent }]} weight="semibold">{trad('gallery.title')}</ThemedText>
+                    <ThemedText style={[styles.mainButtonText, { color: '#FFFFFF' }]} weight="semibold">{trad('gallery.title')}</ThemedText>
 
                     {expos.map((expo, index) => (
                         <TouchableOpacity
@@ -38,11 +38,18 @@ const Gallery: React.FC<GalleryProps> = ({onNavigate}) => {
                         </TouchableOpacity>
                     ))}
                 </View>
-                <Image
-                    source={require('../../../assets/images/escapemuseum.png')}
-                    style={styles.middleImage}
-                    resizeMode="contain"
-                />
+                <View style={settings.colorBlindMode && !settings.darkMode ? {
+                    backgroundColor: '#4A4E69',
+                    borderRadius: 16,
+                    marginTop: 15,
+                    padding: 8,
+                } : undefined}>
+                    <Image
+                        source={require('../../../assets/images/escapemuseum.png')}
+                        style={[styles.middleImage, settings.colorBlindMode && !settings.darkMode && { marginTop: 0 }]}
+                        resizeMode="contain"
+                    />
+                </View>
             </ScrollView>
     );
 }
