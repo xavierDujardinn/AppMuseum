@@ -22,7 +22,7 @@ const ThemedText: React.FC<ThemedTextProps> = ({ style, weight = 'regular', pres
     if (typeof flatStyle.lineHeight === 'number') {
         adjustedStyle.lineHeight = flatStyle.lineHeight * fontScale;
     }
-    if (!preserveColor && (!flatStyle.color || (settings.highContrast && darkTextColors.includes(currentColor)))) {
+    if (!preserveColor && (!flatStyle.color || (settings.darkMode && darkTextColors.includes(currentColor)))) {
         adjustedStyle.color = themeColors.text;
     }
     // Always apply selected app font family so preference is global.
