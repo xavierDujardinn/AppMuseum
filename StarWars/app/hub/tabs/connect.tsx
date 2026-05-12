@@ -154,7 +154,7 @@ const Connect: React.FC<ConnectProps> = ({ onNavigate }) => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.connectThirdButton, { backgroundColor: themeColors.secondaryAccent }]}
+        style={[styles.connectThirdButton, { backgroundColor: themeColors.accent }]}
         onPress={() => onNavigate("code")}
       >
         <ThemedText

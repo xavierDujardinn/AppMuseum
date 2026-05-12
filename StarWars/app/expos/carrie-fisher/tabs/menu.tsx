@@ -123,7 +123,7 @@ const Menu: React.FC<MenuProps> = ({
 
               <TouchableOpacity
                 style={[
-                  styles_starwars.menuMainButton,
+                  styles_starwars.menuUnlockedChallengeButton,
                   !finalScoreboardAccessible && styles_starwars.menuMainButtonDisabled
                 ]}
                 onPress={() => {
@@ -133,7 +133,7 @@ const Menu: React.FC<MenuProps> = ({
                 }}
                 disabled={!finalScoreboardAccessible}
               >
-                <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">
+                <ThemedText style={styles_starwars.menuUnlockedChallengeButtonText}>
                   {trad('expo.carrie-fisher.menu.finalScoreboard')}
                 </ThemedText>
               </TouchableOpacity>
@@ -145,10 +145,10 @@ const Menu: React.FC<MenuProps> = ({
               )}
 
               <TouchableOpacity
-                style={styles_starwars.menuMainButton}
+                style={styles_starwars.menuUnlockedChallengeButton}
                 onPress={() => navigation.navigate('Hub')}
               >
-                <ThemedText style={styles_starwars.menuMainButtonText} weight="bold">
+                <ThemedText style={styles_starwars.menuUnlockedChallengeButtonText}>
                   {trad('expo.carrie-fisher.menu.backToMainMenu')}
                 </ThemedText>
               </TouchableOpacity>
