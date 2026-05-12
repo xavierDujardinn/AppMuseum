@@ -30,7 +30,7 @@ const Scoreboard: React.FC<TableauLucasProps> = ({
   const currentUserName =
     settings?.userName?.trim() || trad('expo.carrie-fisher.scoreboard.unknownUser');
 
-  const useAccessibleColors = !!(settings?.colorBlindMode && settings?.highContrast);
+  const useAccessibleColors = !!(settings?.colorBlindMode && settings?.darkMode);
   const mainTextColor = '#FFFFFF';
   const highlightTextColor = useAccessibleColors ? '#FFD166' : '#00D2FF';
   const buttonTextColor = '#FFFFFF';

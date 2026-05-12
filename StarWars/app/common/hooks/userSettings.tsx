@@ -10,7 +10,7 @@ interface UserSettings {
     fontSize: FontSize;
     fontFamily: FontFamilyOption;
     colorBlindMode: boolean;
-    highContrast: boolean;
+    darkMode: boolean;
 }
 
 const defaultSettings: UserSettings = {
@@ -18,7 +18,7 @@ const defaultSettings: UserSettings = {
     fontSize: 'medium',
     fontFamily: 'exo',
     colorBlindMode: false,
-    highContrast: false,
+    darkMode: false,
 };
 
 const SettingsContext = createContext<any>(undefined);
@@ -43,13 +43,17 @@ const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children })
     }, []);
 
     const themeColors = useMemo(() => {
+        if (settings.darkMode && settings.colorBlindMode) {
+            return { background: '#0F172A', surface: '#1E293B', accent: '#F59E0B', secondaryAccent: '#0EA5E9', text: '#F8FAFC', textOnAccent: '#111827', border: '#F59E0B' };
+        }
+        if (settings.darkMode) {
+            return { background: '#1A1A2E', surface: '#16213E', accent: '#9A8C98', secondaryAccent: '#4A4E69', text: '#E8E8E8', textOnAccent: '#FFFFFF', border: '#9A8C98' };
+        }
         if (settings.colorBlindMode) {
-            return settings.highContrast
-                ? { background: '#0F172A', surface: '#1E293B', accent: '#F59E0B', secondaryAccent: '#0EA5E9', text: '#F8FAFC', textOnAccent: '#111827', border: '#F59E0B' }
-                : { background: '#F4F7FB', surface: '#FFFFFF', accent: '#005A9C', secondaryAccent: '#2D7D46', text: '#111827', textOnAccent: '#FFFFFF', border: '#2F6B9A' };
+            return { background: '#F4F7FB', surface: '#FFFFFF', accent: '#000000', secondaryAccent: '#6B7280', text: '#111827', textOnAccent: '#FFFFFF', border: '#000000' };
         }
         return { background: '#F2E9E4', surface: '#FFFFFF', accent: '#4A4E69', secondaryAccent: '#9A8C98', text: '#111111', textOnAccent: '#FFFFFF', border: '#4A4E69' };
-    }, [settings.colorBlindMode, settings.highContrast]);
+    }, [settings.colorBlindMode, settings.darkMode]);
 
     const getFontFamily = (weight: string = 'regular') => {
         if (settings.fontFamily === 'system') return 'System';
