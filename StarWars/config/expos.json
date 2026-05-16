@@ -11,5 +11,31 @@
     "main_screen_name" : "CarrieFisher",
     "storage_name" : "carrieFisher",
     "nb_challenges" : 3
+  },
+  {
+    "title": {
+      "en" : "",
+      "fr" : "",
+      "nl" : "",
+      "de" : ""
+    },
+    "image" : "",
+    "code" : "",
+    "main_screen_name" : "",
+    "storage_name" : "",
+    "nb_challenges" : 3
+  },
+  {
+    "title": {
+      "en" : "",
+      "fr" : "",
+      "nl" : "",
+      "de" : ""
+    },
+    "image" : "",
+    "code" : "",
+    "main_screen_name" : "",
+    "storage_name" : "",
+    "nb_challenges" : 3
   }
 ]
