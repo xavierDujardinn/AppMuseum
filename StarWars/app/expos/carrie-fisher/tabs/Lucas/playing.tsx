@@ -181,6 +181,11 @@ const Playing_lucas: React.FC<PlayingLucasProps> = ({ onWin, onBack }) => {
             {trad('expo.carrie-fisher.common.time')} : {formatTime(elapsedTime)}
           </ThemedText>
 
+            <TouchableOpacity style={styles_starwars.playingLucasBackButton} onPress={handleWin}>
+                <ThemedText style={styles_starwars.playingLucasBackButtonText} weight="bold">
+                    {trad('expo.carrie-fisher.common.backToChallenges')}
+                </ThemedText>
+            </TouchableOpacity>
           <Help challengeId={0} theme={'dark'} onSkip={onWin} />
         </View>
 

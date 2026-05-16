@@ -4,38 +4,40 @@ import { useTranslation } from "@/app/common/hooks/languageContext";
 import Map from '@/app/expos/carrie-fisher/components/map';
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import { getCompletedChallengeList } from "@/utils/common/storage";
-import { EXPO_STORAGE_NAME } from "@/utils/expo/carrie-fisher/utils";
+import {EXPO_NB_CHALLENGES, EXPO_STORAGE_NAME} from "@/utils/expo/carrie-fisher/utils";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ImageBackground } from "expo-image";
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
 
 interface MenuProps {
   onNavigate: (screen: 'home' | 'challenge' | 'scoreboard', params?: any) => void;
   skipIntro?: boolean;
-  finalScoreboardAccessible: boolean;
 }
 
-const Menu: React.FC<MenuProps> = ({
-  onNavigate,
-  skipIntro,
-  finalScoreboardAccessible
-}) => {
+const Menu: React.FC<MenuProps> = ({onNavigate, skipIntro}) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { trad } = useTranslation();
 
   const [isIntroPassed, setIsIntroPassed] = React.useState(skipIntro || false);
   const [completedChallengesList, setCompletedChallengesList] = React.useState([false, false, false]);
+  const [finalScoreboardAccessible, setFinalScoreboardAccessible] = useState<boolean>(false);
 
   useEffect(() => {
     const updateChallenges = async () => {
       const completedChallenges = await getCompletedChallengeList(EXPO_STORAGE_NAME);
       if (completedChallenges) setCompletedChallengesList(completedChallenges);
+
+      const nbChallenges = EXPO_NB_CHALLENGES;
+        if (nbChallenges > 0) {
+            const nbCompleted = completedChallengesList.filter(challenge => challenge).length;
+            setFinalScoreboardAccessible(nbChallenges === nbCompleted);
+        }
     };
 
     updateChallenges();
-  }, []);
+  }, [completedChallengesList]);
 
   return (
     <ImageBackground

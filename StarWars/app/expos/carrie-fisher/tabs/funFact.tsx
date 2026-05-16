@@ -8,10 +8,10 @@ import { TouchableOpacity, View } from 'react-native';
 
 interface FunfactLucasProps {
     challengeId: number;
-    onScoreboard: () => void;
+    onMenu: () => void;
 }
 
-const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => {
+const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onMenu }) => {
     const {trad} = useTranslation();
     const text1 = trad(`expo.carrie-fisher.challenges.${challengeId}.fun-fact-1`);
     const text2 = trad(`expo.carrie-fisher.challenges.${challengeId}.fun-fact-2`);
@@ -45,9 +45,9 @@ const FunFact: React.FC<FunfactLucasProps> = ({ challengeId, onScoreboard }) => 
                     </ThemedText>
                 </ImageBackground>
 
-                <TouchableOpacity style={styles_starwars.funfactLucasScoreButton} onPress={onScoreboard}>
+                <TouchableOpacity style={styles_starwars.funfactLucasScoreButton} onPress={onMenu}>
                     <ThemedText style={styles_starwars.funfactLucasScoreButtonText} weight="bold">
-                        {trad('expo.carrie-fisher.funFact.scoreboard')}
+                        {trad('expo.carrie-fisher.common.finish')}
                     </ThemedText>
                 </TouchableOpacity>
             </View>

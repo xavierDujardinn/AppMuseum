@@ -2,41 +2,44 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {STORAGE_KEY} from "@/config/config";
 
 export interface ScoreEntry {
-    name: string;
-    time: number;
+    username: string;
+    times: number[];
 }
 
-export const saveNewScore = async (expoName: string, challengeId: number, time: number, name?: string): Promise<ScoreEntry[]> => {
+export const saveNewScore = async (expoName: string, challengeId: number, time: number, name: string): Promise<ScoreEntry[]> => {
+
     try {
-        const key = `${STORAGE_KEY}_${expoName}_scores_${challengeId}`;
-        const existingScoresRaw = await AsyncStorage.getItem(key);
+        const key = `${STORAGE_KEY}_${expoName}_scores`;
+        const existingScores = await AsyncStorage.getItem(key);
 
-        let scores: ScoreEntry[] = existingScoresRaw ? JSON.parse(existingScoresRaw) : [];
+        let scores: ScoreEntry[] = existingScores ? JSON.parse(existingScores) : [];
 
-        if (time >= 0) {
-            const newEntry: ScoreEntry = { name: name || "Unknown", time };
-            scores.push(newEntry);
-            scores.sort((a, b) => a.time - b.time);
+        let userEntry = scores.find(user => user.username === name);
 
-            const updatedTopScores = scores.slice(0, 10);
-            await AsyncStorage.setItem(key, JSON.stringify(updatedTopScores));
-
-            return updatedTopScores;
+        if (!userEntry) {
+            userEntry = {
+                username: name,
+                times: []
+            };
+            scores.push(userEntry);
         }
 
-        return scores.slice(0, 10);
+        userEntry.times[challengeId] = time;
+
+        await AsyncStorage.setItem(key, JSON.stringify(scores));
+        return scores;
     } catch (e) {
         console.error("Erreur lors de la sauvegarde", e);
         return [];
     }
 };
 
-export const getScores = async (expoName:string, challengeId: number): Promise<ScoreEntry[]> => {
+export const getScores = async (expoName: string): Promise<ScoreEntry[]> => {
     try {
-        const scores = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores_${challengeId}`);
-        return scores ? JSON.parse(scores) : [];
+        const rawScores = await AsyncStorage.getItem(`${STORAGE_KEY}_${expoName}_scores`);
+        return rawScores ? JSON.parse(rawScores) : [];
     } catch (e) {
-        console.error("Erreur lors de la récupération", e);
+        console.error("Erreur lors de la récupération des scores", e);
         return [];
     }
 };

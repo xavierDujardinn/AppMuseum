@@ -6,21 +6,23 @@ import Tutorial from '@/app/expos/carrie-fisher/tabs/tutorial';
 import Win from "@/app/expos/carrie-fisher/tabs/win";
 import Xavier from "@/app/expos/carrie-fisher/tabs/Xavier/game";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
-import { updateCompletedChallenge } from "@/utils/common/storage";
-import React, { useState } from 'react';
+import {saveNewScore, updateCompletedChallenge} from "@/utils/common/storage";
+import React, {useState} from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import {EXPO_STORAGE_NAME} from "@/utils/expo/carrie-fisher/utils";
+import {useUserSettings} from "@/app/common/hooks/userSettings";
 
 type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact';
 
 interface ChallengeProps {
   challengeId: number;
-  onNavigate: (screen: 'home' | 'settings' | 'error' | 'challenge', params?: any) => void;
-  onChallengeComplete: (challengeId: number, elapsedTime: number) => void;
+  onNavigate: (screen: 'home' | 'challenge', params?: any) => void;
 }
 
-const Challenge: React.FC<ChallengeProps> = ({ challengeId, onNavigate, onChallengeComplete }) => {
+const Challenge: React.FC<ChallengeProps> = ({ challengeId, onNavigate }) => {
   const [currentState, setCurrentState] = useState<ChallengeStates>('tutorial');
-  const [savedElaspedTime, setSavedElaspedTime] = React.useState<number>(-1);
+
+  const {settings} = useUserSettings();
 
   const handleStartPlaying = () => { setCurrentState('playing'); };
 
@@ -30,20 +32,20 @@ const Challenge: React.FC<ChallengeProps> = ({ challengeId, onNavigate, onChalle
       return;
     }
 
-    setSavedElaspedTime(elapsedTime);
+    const scores = await saveNewScore(EXPO_STORAGE_NAME, challengeId, elapsedTime, settings.userName);
+    console.log(scores);
+
     await updateCompletedChallenge("carrieFisher", finishedChallengeId);
     setCurrentState('win');
   };
 
   const handleSkip = () => {
-    setSavedElaspedTime(-1);
     setCurrentState('win');
   };
 
   const handleGoToFunfact = () => { setCurrentState('funfact'); };
 
   const handleBackToMenu = () => {
-    if (savedElaspedTime >= 0) onChallengeComplete(challengeId, savedElaspedTime);
     onNavigate('home', { skipIntro: true });
   };
 
@@ -78,7 +80,7 @@ const Challenge: React.FC<ChallengeProps> = ({ challengeId, onNavigate, onChalle
           case 'win':
             return <Win challengeId={challengeId} onCardPress={handleGoToFunfact} onBackToMenu={handleBackToMenu} />;
           case 'funfact':
-            return <Funfact challengeId={challengeId} onScoreboard={handleBackToMenu} />;
+            return <Funfact challengeId={challengeId} onMenu={handleBackToMenu} />;
           default:
             return null;
         }

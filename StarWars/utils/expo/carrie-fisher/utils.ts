@@ -15,3 +15,4 @@ export const formatTime = (totalSeconds: number) => {
 const expoConfigData = verifyCode("REBEL");
 
 export const EXPO_STORAGE_NAME: string = expoConfigData?.storage_name || "";
+export const EXPO_NB_CHALLENGES: number = expoConfigData?.nb_challenges || -1;
