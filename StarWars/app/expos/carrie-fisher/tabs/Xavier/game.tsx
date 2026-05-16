@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import { ImageBackground } from "expo-image";
 import { formatTime } from "@/utils/expo/carrie-fisher/utils";
@@ -78,7 +78,6 @@ const createWorld = (viewWidth: number, viewHeight: number) => {
     );
 
     const mazeWalls = [
-        // external walls
         [viewWidth / 2, outerT / 2, viewWidth, outerT],
         [viewWidth / 2, viewHeight - outerT / 2, viewWidth, outerT],
         [outerT / 2, viewHeight / 2, outerT, viewHeight],
@@ -138,6 +137,7 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
     const [gyroData, setGyroData] = useState({ x: 0, y: 0, z: 0 });
     const [layout, setLayout] = useState<{ width: number; height: number } | null>(null);
     const engineRef = useRef<any>(null);
+    const ballBodyRef = useRef<any>(null);
 
     useEffect(() => {
         Gyroscope.setUpdateInterval(16);
@@ -145,10 +145,28 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
         return () => subscription.remove();
     }, []);
 
+    const handleReset = () => {
+        if (ballBodyRef.current) {
+            const outerT = scale(30);
+            const startX = outerT + scale(20);
+            const startY = outerT + scale(20);
+
+            Matter.Body.setPosition(ballBodyRef.current, { x: startX, y: startY });
+            Matter.Body.setVelocity(ballBodyRef.current, { x: 0, y: 0 });
+            Matter.Body.setAngularVelocity(ballBodyRef.current, 0);
+        }
+    };
+
     const updatePhysics = (entities: any, { time }: any) => {
+        if (!entities || !entities.physics) return entities;
+
         const engine = entities.physics.engine;
         const ball = entities.ball.body;
         const goal = entities.goal.body;
+
+        if (!ballBodyRef.current) {
+            ballBodyRef.current = ball;
+        }
 
         Matter.Body.applyForce(ball, ball.position, {x: gyroData.y * 0.004, y: gyroData.x * 0.004});
 
@@ -160,7 +178,8 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
         }
 
         const subSteps = 2;
-        const stepTime = time.delta / subSteps;
+        let stepTime = time.delta / subSteps;
+        if (stepTime > 16.667) stepTime = 16.667;
         for (let i = 0; i < subSteps; i++) {
             Matter.Engine.update(engine, stepTime);
         }
@@ -182,6 +201,12 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
         >
             <View style={styles_starwars.playingLucasTopBar}>
                 <ThemedText style={styles_starwars.playingLucasTimerText} weight="bold">{formatTime(elapsedTime)}</ThemedText>
+                <TouchableOpacity
+                    onPress={handleReset}
+                    style={styles_starwars.resetButton}
+                >
+                    <ThemedText style={{ color: '#F0A820', fontSize: scale(14) }} weight="semibold">Reset</ThemedText>
+                </TouchableOpacity>
                 <Help challengeId={1} theme={'light'} onSkip={onWin} />
             </View>
 

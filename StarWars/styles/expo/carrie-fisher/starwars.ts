@@ -1,4 +1,4 @@
-import { normalize } from '@/styles/responsive';
+import {normalize, scale} from '@/styles/responsive';
 import { StyleSheet } from 'react-native';
 
 const styles_starwars = StyleSheet.create({
@@ -706,6 +706,15 @@ const styles_starwars = StyleSheet.create({
     fontSize: 14,
     opacity: 0.85,
     },
+
+    resetButton: {
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        paddingVertical: scale(6),
+        paddingHorizontal: scale(12),
+        borderRadius: scale(10),
+        borderWidth: 1,
+        borderColor: '#F0A820'
+    }
 });
 
 export default styles_starwars;
