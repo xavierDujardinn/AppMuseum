@@ -7,23 +7,35 @@ import Win from "@/app/expos/carrie-fisher/tabs/win";
 import Xavier from "@/app/expos/carrie-fisher/tabs/Xavier/game";
 import styles_starwars from "@/styles/expo/carrie-fisher/starwars";
 import {saveNewScore, updateCompletedChallenge} from "@/utils/common/storage";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import {EXPO_STORAGE_NAME} from "@/utils/expo/carrie-fisher/utils";
 import {useUserSettings} from "@/app/common/hooks/userSettings";
+import {ChallengeStates} from "@/app/expos/carrie-fisher/tabs/carrieFisher";
 
-type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact';
 
 interface ChallengeProps {
-  challengeId: number;
-  onNavigate: (screen: 'home' | 'challenge', params?: any) => void;
+    challengeId: number;
+    onNavigate: (screen: 'home' | 'challenge' | 'settings' | 'scoreboard' | 'error', params?: any) => void;
+    state: ChallengeStates;
+    updateGlobalRouteParams: (params: any) => void;
 }
 
-const Challenge: React.FC<ChallengeProps> = ({ challengeId, onNavigate }) => {
-  const [currentState, setCurrentState] = useState<ChallengeStates>('tutorial');
+const Challenge: React.FC<ChallengeProps> = ({ challengeId, onNavigate, state, updateGlobalRouteParams }) => {
+  const [currentState, setCurrentState] = useState<ChallengeStates>( state || 'tutorial');
 
   const {settings} = useUserSettings();
 
+    useEffect(() => {
+        updateGlobalRouteParams({ challengeState: currentState, challengeId: challengeId });
+    }, [currentState, challengeId]);
+
+    useEffect(() => {
+        if (state && state !== currentState) {
+            setCurrentState(state);
+        }
+    }, [state]);
+  
   const handleStartPlaying = () => { setCurrentState('playing'); };
 
   const handleWin = async (finishedChallengeId: number, elapsedTime: number) => {
@@ -32,8 +44,7 @@ const Challenge: React.FC<ChallengeProps> = ({ challengeId, onNavigate }) => {
       return;
     }
 
-    const scores = await saveNewScore(EXPO_STORAGE_NAME, challengeId, elapsedTime, settings.userName);
-    console.log(scores);
+    await saveNewScore(EXPO_STORAGE_NAME, challengeId, elapsedTime, settings.userName);
 
     await updateCompletedChallenge("carrieFisher", finishedChallengeId);
     setCurrentState('win');

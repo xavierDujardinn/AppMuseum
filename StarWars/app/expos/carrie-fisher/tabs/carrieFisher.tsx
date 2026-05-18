@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useNavigationLogic from "@/app/common/hooks/navigationLogic";
 import Scoreboard from "@/app/expos/carrie-fisher/tabs/scoreboard";
 
-export type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact' | 'scoreboard';
+export type ChallengeStates = 'tutorial' | 'playing' | 'win' | 'funfact' | 'scoreboard' | null;
 interface NavigationState {
     name: 'home' | 'settings' | 'error' | 'challenge' | 'scoreboard';
     params?: {
@@ -26,17 +26,24 @@ const CarrieFisherScreen = () => {
 
     const { route, handleNavigate, handleBack, canGoBack } = useNavigationLogic<NavigationState['name']>('challenge');
 
+    const handleNavigationWithState = (name: NavigationState['name'], params?: any) => {
+        if (route.name === 'challenge' && name === 'settings') {
+            handleNavigate(name, {
+                ...params,
+                challengeId: route.params?.challengeId,
+                challengeState: route.params?.challengeState
+            });
+        } else {
+            handleNavigate(name, params);
+        }
+    };
+
     const renderScreen = () => {
         const { name, params } = route;
 
         switch (name) {
             case 'home':
-                return (
-                    <Menu
-                        onNavigate={handleNavigate}
-                        skipIntro={params?.skipIntro}
-                    />
-                );
+                return <Menu onNavigate={handleNavigationWithState} skipIntro={params?.skipIntro} />;
 
             case 'settings':
                 return <Settings />;
@@ -45,25 +52,22 @@ const CarrieFisherScreen = () => {
                 return (
                     <Challenge
                         challengeId={params?.challengeId ?? 0}
-                        onNavigate={handleNavigate}
+                        onNavigate={(nextScreen, nextParams) => {
+                            handleNavigationWithState(nextScreen, nextParams);
+                        }}
+                        state={params?.challengeState}
+                        updateGlobalRouteParams={(updatedParams) => {
+                            route.params = { ...route.params, ...updatedParams };
+                        }}
                     />
                 );
 
             case 'scoreboard':
-                return(
-                    <Scoreboard
-                        onNavigate={handleNavigate}
-                    />
-                )
+                return <Scoreboard onNavigate={handleNavigationWithState} />;
 
             case 'error':
             default:
-                return (
-                    <Error
-                        onNavigate={handleNavigate}
-                        errorMessage={params?.message || "Unhandled error"}
-                    />
-                );
+                return <Error onNavigate={handleNavigationWithState} errorMessage={params?.message || "Unhandled error"} />;
         }
     };
 
