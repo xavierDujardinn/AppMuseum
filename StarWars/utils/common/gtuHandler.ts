@@ -138,7 +138,6 @@ Bei Fragen kann sich der Nutzer an das Personal vor Ort wenden oder die vom Vera
 
 // Loads gtu. We'll have to adapt it to the translation module later
 export const getGtuText = async (lang: string) => {
-    console.log(lang);
     switch (lang){
         case 'fr':
             return fr;
