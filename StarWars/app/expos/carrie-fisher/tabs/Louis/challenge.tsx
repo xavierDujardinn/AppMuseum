@@ -3,7 +3,7 @@ import { useTranslation } from '@/app/common/hooks/languageContext';
 import { useUserSettings } from '@/app/common/hooks/userSettings';
 import useTimer from '@/app/expos/carrie-fisher/hooks/useTimer';
 import Help from '@/app/expos/carrie-fisher/components/help';
-import HothBackdrop from '@/app/hub/components/HothBackdrop';
+import HothBackdrop from '@/app/expos/carrie-fisher/tabs/Louis/HothBackdrop';
 import styles_starwars from '@/styles/expo/carrie-fisher/starwars';
 import styles from '@/styles/hub/common';
 import { formatTime } from '@/utils/expo/carrie-fisher/utils';
