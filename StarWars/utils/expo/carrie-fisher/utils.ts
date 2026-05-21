@@ -2,8 +2,8 @@ import {verifyCode} from "@/utils/common/expoCodeVerifyer";
 
 export const BG_LIST = [
     require('@/assets/images/expos/carrieFisher/lucas/tatooine.png'),
-    require('@/assets/images/expos/carrieFisher/death_star.png'),
-    require('@/assets/images/hoth_challenge_bg.png')
+    require('@/assets/images/expos/carrieFisher/ds.png'),
+    require('@/assets/images/hoth.png')
 ]
 
 export const formatTime = (totalSeconds: number) => {

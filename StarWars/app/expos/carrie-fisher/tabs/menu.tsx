@@ -41,7 +41,7 @@ const Menu: React.FC<MenuProps> = ({onNavigate, skipIntro}) => {
 
   return (
     <ImageBackground
-      source={require('@/assets/images/expos/carrieFisher/space_background.jpg')}
+      source={require('@/assets/images/expos/carrieFisher/sb.jpg')}
       style={styles_starwars.menuBackgroundImage}
       contentFit="cover"
     >

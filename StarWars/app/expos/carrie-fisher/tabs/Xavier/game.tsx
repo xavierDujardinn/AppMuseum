@@ -196,7 +196,7 @@ const Game: React.FC<GameProps> = ({ onWin }) => {
 
     return (
         <ImageBackground
-            source={require('@/assets/images/expos/carrieFisher/death_star.png')}
+            source={require('@/assets/images/expos/carrieFisher/ds.png')}
             style={styles_starwars.menuBackgroundImage}
         >
             <View style={styles_starwars.playingLucasTopBar}>

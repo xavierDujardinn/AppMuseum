@@ -12,7 +12,7 @@ const HothBackdrop: React.FC<Props> = ({sceneHeight}) => (
         pointerEvents="none"
     >
         <Image
-            source={require('../../../../../assets/images/hoth_challenge_bg.png')}
+            source={require('../../../../../assets/images/hoth.png')}
             style={[StyleSheet.absoluteFillObject, {minHeight: sceneHeight}]}
             contentFit="cover"
             transition={0}

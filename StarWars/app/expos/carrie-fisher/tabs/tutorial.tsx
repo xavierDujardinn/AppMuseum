@@ -18,7 +18,7 @@ const Tutorial: React.FC<TutorialProps> = ({challengeId, onStart, onBack}) => {
     return (
         <View style={styles_starwars.tutorialLucasContainer}>
             <ImageBackground
-                source={require('@/assets/images/expos/carrieFisher/space_background.jpg')}
+                source={require('@/assets/images/expos/carrieFisher/sb.jpg')}
                 style={styles_starwars.tutorialLucasBackgroundImage}
             >
                 <View style={styles_starwars.tutorialLucasOverlay}>

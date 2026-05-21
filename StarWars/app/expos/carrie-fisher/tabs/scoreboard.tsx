@@ -35,7 +35,7 @@ const Scoreboard: React.FC<ScoreboardProps> = ({onNavigate }) => {
     return (
         <View style={styles_starwars.scoreboardLucasContainer}>
             <ImageBackground
-                source={require('@/assets/images/expos/carrieFisher/space_background.jpg')}
+                source={require('@/assets/images/expos/carrieFisher/sb.jpg')}
                 style={styles_starwars.scoreboardLucasBackgroundImage}
                 contentFit="cover"
             />
