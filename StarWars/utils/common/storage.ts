@@ -75,3 +75,21 @@ export const resetAllData = async () => {
         console.error("Erreur lors du reset des données", e);
     }
 }
+
+export const checkHasUsedSkip = async (name:string): Promise<boolean> => {
+    try {
+        const value = await AsyncStorage.getItem(`${STORAGE_KEY}_skip_${name}`);
+        return value === 'true';
+    } catch (error) {
+        console.error("Erreur lors de la lecture du verrou Skip :", error);
+        return false;
+    }
+};
+
+export const saveSkipUsage = async (name:string): Promise<void> => {
+    try {
+        await AsyncStorage.setItem(`${STORAGE_KEY}_skip_${name}`, 'true');
+    } catch (error) {
+        console.error("Erreur lors de l'écriture du verrou Skip :", error);
+    }
+};
