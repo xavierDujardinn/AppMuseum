@@ -1,0 +1,155 @@
+{
+  "common": {
+    "back": "Retour",
+    "error": "Erreur",
+    "confirm": "Confirmer",
+    "warning": "Attention"
+  },
+  "connect": {
+    "title": "Connexion",
+    "bluetooth": "Connexion Bluetooth",
+    "code": "Code d’exposition",
+    "choose" : "Choisissez une méthode de connexion",
+    "gallery": "Gallerie"
+  },
+  "home": {
+    "subtitle": "Découvrez nos \nexpositions",
+    "join": "Rejoindre une exposition"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "currentUserName": "Nom de l'utilisateur courant",
+    "userNamePlaceholder": "Ex: Leia Organa",
+    "fontSize": "Taille de police",
+    "fontSizeSmall": "Petite",
+    "fontSizeNormal": "Normale",
+    "fontSizeMedium": "Moyenne",
+    "fontSizeLarge": "Grande",
+    "fontFamily": "Police",
+    "fontExo": "Exo",
+    "fontSystem": "Systeme",
+    "fontSerif": "Serif",
+    "colorBlindMode": "Mode daltonien",
+    "darkMode": "Theme sombre",
+    "clearData": "Reinitialiser toutes les données"
+  },
+  "gtu": {
+    "error": "Erreur lors de la récupérations des conditions générales d'utilisation",
+    "later": "Erreur, réessayez plus tard.",
+    "title": "Conditions d'utilisation"
+  },
+  "code": {
+    "title": "Rejoindre une exposition",
+    "subtitle1": "Un code d’invitation devrait se trouver à l’entrée de l’exposition.",
+    "subtitle2": "Contactez un membre du personnel en cas de problème ou d’absence de ce code",
+    "enterCode": "Entrez le code de l'exposition",
+    "verify": "Vérifier le code"
+  },
+  "error": {
+    "title": "Erreur",
+    "retry": "Réessayer"
+  },
+  "preview": {
+    "title": "Exposition",
+    "desc": "Exposition temporaire",
+    "join" : "Rejoindre"
+  },
+  "gallery": {
+    "title": "Gallerie des expositions"
+  },
+  "expo" : {
+    "carrie-fisher": {
+      "common": {
+        "next": "Suivant",
+        "time": "Temps",
+        "backToChallenges": "Retour au menu des challenges",
+        "finish": "Terminer"
+      },
+      "menu": {
+        "intro": "Vous allez entrer dans un espace plein de challenges, préparez-vous !",
+        "challenge1": "Epreuve 1",
+        "challenge2": "Epreuve 2",
+        "challenge3": "Epreuve 3",
+        "backToMainMenu": "Retour au menu principal",
+        "finalScoreboardLocked": "Tableau des scores final (verrouillé)",
+        "finalScoreboard": "Tableau des scores final"
+      },
+      "tutorial": {
+        "start": "En avant !",
+        "backToChallengeChoice": "Retourner au choix de challenge"
+      },
+      "lucas": {
+        "title": "Retrouvez la bonne direction avec votre boussole",
+        "hintPrefix": "Indice : vers le",
+        "holdStill": "Ne bougez plus...",
+        "magnetometerUnavailable": "Magnétomètre indisponible",
+        "feedback": {
+          "freeze": "Bouge plus !",
+          "boiling": "Bouillant",
+          "hot": "Chaud",
+          "warm": "Tiède",
+          "cold": "Froid"
+        },
+        "direction": {
+          "north": "nord",
+          "south": "sud",
+          "east": "est",
+          "west": "ouest"
+        }
+      },
+      "louis": {
+        "title": "Cachez vous des prédateurs !",
+        "initializing": "Initialisation du capteur...",
+        "sim": {
+          "sensorUnavailable": "Capteur indisponible - luminosité simulée :",
+          "noSensor": "Luminosité simulée : (pas de capteur sur cet appareil) :"
+        },
+        "game": {
+          "tooBright": "Vous êtes baigné de lumière, cachez-vous vite !",
+          "almost": "Encore un petit effort, le prédateur arrive !",
+          "good": "Presque... un peu plus sombre!"
+        },
+        "success": {
+          "title": "Vous avez réussi !",
+          "body": "Le prédateur est parti... Tenez c'est quoi ça ?",
+          "continue": "Continuer"
+        }
+      },
+      "win": {
+        "title": "Bravo vous avez retrouvé\n R2D2 !",
+        "backToChallenges": "Retour au menu des challenges"
+      },
+      "funFact": {
+        "scoreboard": "Tableau des scores"
+      },
+      "scoreboard": {
+        "title": "Tableau des scores :",
+        "empty": "Aucun score enregistré",
+        "unknownUser": "Inconnu",
+        "finalTitle": "Tableau des scores final :",
+        "yourTime": "Votre temps est de :"
+      },
+      "challenges": {
+        "0" : {
+          "tutorial": "Pour cette épreuve, vous allez utiliser le magnetométre. Vous aurez besoin de bouger votre téléphone et d’avoir un espace dégagé autour de vous",
+          "fun-fact-1" : "Les scénes de Leia sur Tatooine dans Le Retour du Jedi ont été tournées dans le désert, avec des températures extrêmes.",
+          "fun-fact-2": "Mais Carrie Fisher tenait absolument à faire elle-même la scène où Leia étrangle Jaba ave sa chaîne.",
+          "hint": "Servez vous de votre téléphone comme d'une boussole, plus vous vous approchez du bon angle, plus le message affichera une température chaude."
+        },
+        "1": {
+          "tutorial": "Pour cette épreuve, vous allez utiliser le gyroscope. Vous aurez besoin de pencher votre téléphone pour avancer dans le jeu.",
+          "fun-fact-1" : "Lors du tournage du tout premier Star Wars, Carrie Fisher se coinçait sans arrêt dans les passages",
+          "fun-fact-2": "de l’étoile de la mort, faisant rire tout le monde sur le plateau.",
+          "hint": "Pencher votre téléphone dans la direction où vous voulez aller, votre position est celle dans le labyrinthe"
+        },
+        "2" : {
+          "tutorial": "Pour cette épreuve, vous allez utiliser le capteur de luminosité ambiante. Vous aurez besoin de trouver la luminosité parfaite",
+          "fun-fact-1" : "Pendant le tournage des scènes de la base rebelle sur Hoth dans L’Empire contre‑attaque, Carrie Fisher est arrivée sur le plateau de Finse en Norvège, ",
+          "fun-fact-2": "dans un décor quasi polaire, juste pour être avec l’équipe, alors que ses scènes à elle étaient surtout filmées en studio.",
+          "hint": "Pour réussir, il faut se placer dans un endroit plus sombre"
+        }
+      }
+    }
+  }
+}
