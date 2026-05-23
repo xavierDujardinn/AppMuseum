@@ -1,0 +1,154 @@
+{
+  "common": {
+    "back": "Back",
+    "error": "Error",
+    "confirm": "Confirm",
+    "warning": "Warning"
+  },
+  "connect": {
+    "title": "Connection",
+    "bluetooth": "Bluetooth Connection",
+    "code": "Exhibition Code",
+    "choose": "Choose a connection method"
+  },
+  "home": {
+    "subtitle": "Discover our \nexhibitions",
+    "join": "Join an exhibition"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "currentUserName": "Current user name",
+    "userNamePlaceholder": "e.g. Leia Organa",
+    "fontSize": "Font size",
+    "fontSizeSmall": "Small",
+    "fontSizeNormal": "Normal",
+    "fontSizeMedium": "Medium",
+    "fontSizeLarge": "Large",
+    "fontFamily": "Font",
+    "fontExo": "Exo",
+    "fontSystem": "System",
+    "fontSerif": "Serif",
+    "colorBlindMode": "Color-blind mode",
+    "darkMode": "Dark theme",
+    "clearData": "Reset all data"
+  },
+  "gtu": {
+    "error": "Error while retrieving the general terms of use",
+    "later": "Error, please try again later.",
+    "title": "Terms of Use"
+  },
+  "code": {
+    "title": "Join an exhibition",
+    "subtitle1": "An invitation code should be located at the entrance of the exhibition.",
+    "subtitle2": "Contact a staff member in case of a problem or if the code is missing",
+    "enterCode": "Enter the exhibition code",
+    "verify": "Verify code"
+  },
+  "error": {
+    "title": "Error",
+    "retry": "Retry"
+  },
+  "preview": {
+    "title": "Exhibition",
+    "desc": "Temporary exhibition",
+    "join": "Join"
+  },
+  "gallery": {
+    "title": "Exhibition Gallery"
+  },
+  "expo" : {
+    "common": {
+      "next": "Next",
+      "time": "Time",
+      "backToChallenges": "back to the challenge menu",
+      "finish": "Finish"
+    },
+    "lucas": {
+      "title": "Find the right direction with your compass",
+      "hintPrefix": "Hint: toward the",
+      "holdStill": "Hold still...",
+      "magnetometerUnavailable": "Magnetometer unavailable",
+      "feedback": {
+        "freeze": "Don't move!",
+        "boiling": "Burning hot",
+        "hot": "Hot",
+        "warm": "Warm",
+        "cold": "Cold"
+      },
+      "direction": {
+        "north": "north",
+        "south": "south",
+        "east": "east",
+        "west": "west"
+      }
+    },
+    "louis": {
+        "title": "Hide from the predators!",
+        "initializing": "Initializing sensor...",
+        "sim": {
+          "sensorUnavailable": "Sensor unavailable - simulated brightness :",
+          "noSensor": "Simulated brightness (no sensor on this device) :"
+        },
+        "game": {
+          "tooBright": "You are in bright light, hide quickly !",
+          "almost": "Almost there, the predator is getting close !",
+          "good": "Almost... a bit darker!"
+        },
+        "success": {
+          "title": "You did it!",
+          "body": "The predator is gone... Wait, what's that ?",
+          "continue": "Continue"
+        }
+    },
+    "win": {
+      "title": "Congratulations, you found\n R2D2!",
+      "backToChallenges": "Back to the challenge menu"
+    },
+    "funFact": {
+      "scoreboard": "Scoreboard"
+    },
+    "scoreboard": {
+      "title": "Scoreboard :",
+      "empty": "No scores recorded yet",
+      "unknownUser": "Unknown",
+      "finalTitle": "Final scoreboard :",
+      "yourTime": "Your time is :"
+    },
+    "menu": {
+      "intro": "You are about to enter a space full of challenges, get ready!",
+      "challenge1": "Challenge 1",
+      "challenge2": "Challenge 2",
+      "challenge3": "Challenge 3",
+      "backToMainMenu": "Back to the main menu",
+      "finalScoreboardLocked": "Final scoreboard (locked)",
+      "finalScoreboard": "Final scoreboard"
+    },
+    "tutorial": {
+      "start": "Let's go!",
+      "backToChallengeChoice": "Back to challenge selection"
+    },
+    "carrie-fisher": {
+      "challenges": {
+        "0" : {
+          "tutorial": "For this challenge, you will use the magnetometer. You will need to move your phone and have a clear space around you.",
+          "fun-fact-1" : "Leia's scenes on Tatooine in Return of the Jedi were filmed in the desert, under extreme temperatures.",
+          "fun-fact-2": "But Carrie Fisher insisted on doing the scene where Leia strangles Jabba with her chain herself.",
+          "hint": "When you have directed the phone correctly: 'boiling' will appear, you must move forward in that direction."
+        },
+        "1": {
+          "tutorial": "For this challenge, you will use the gyroscope. You will need to tilt your phone to move through the game.",
+          "fun-fact-1" : "During the filming of the very first Star Wars, Carrie Fisher constantly got stuck in the passages",
+          "fun-fact-2": "of the Death Star, making everyone on set laugh.",
+          "hint": "Tilt your phone in the direction you want to go; your position is the one in the labyrinth."
+        },
+        "2" : {
+          "tutorial": "For this challenge, you will use the ambient light sensor. You will need to find the perfect brightness.",
+          "fun-fact-1" : "While filming the Rebel base scenes on Hoth in The Empire Strikes Back, Carrie Fisher arrived on set in Finse, Norway,",
+          "fun-fact-2": "in a nearly polar setting, just to be with the crew, even though her own scenes were mostly filmed in a studio.",
+          "hint": "To succeed, you need to go to a darker place."
+        }
+      }
+    }
+  }
+}

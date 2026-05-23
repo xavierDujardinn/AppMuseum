@@ -1,0 +1,154 @@
+{
+  "common": {
+    "back": "Zurück",
+    "error": "Fehler",
+    "confirm": "Bestätigen",
+    "warning": "Warnung"
+  },
+  "connect": {
+    "title": "Anmeldung",
+    "bluetooth": "Bluetooth-Verbindung",
+    "code": "Ausstellungscode",
+    "choose": "Wählen Sie eine Verbindungsmethode"
+  },
+  "home": {
+    "subtitle": "Entdecken Sie unsere \nAusstellungen",
+    "join": "An einer Ausstellung teilnehmen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "currentUserName": "Name des aktuellen Benutzers",
+    "userNamePlaceholder": "z. B. Leia Organa",
+    "fontSize": "Schriftgroesse",
+    "fontSizeSmall": "Klein",
+    "fontSizeNormal": "Normal",
+    "fontSizeMedium": "Mittel",
+    "fontSizeLarge": "Gross",
+    "fontFamily": "Schriftart",
+    "fontExo": "Exo",
+    "fontSystem": "System",
+    "fontSerif": "Serif",
+    "colorBlindMode": "Farbenblindmodus",
+    "darkMode": "Dunkles Thema",
+    "clearData": "Alle Daten zurücksetzen"
+  },
+  "gtu": {
+    "error": "Fehler beim Abrufen der allgemeinen Geschäftsbedingungen",
+    "later": "Fehler, versuchen Sie es später noch einmal.",
+    "title": "Nutzungsbedingungen"
+  },
+  "code": {
+    "title": "An einer Ausstellung teilnehmen",
+    "subtitle1": "Ein Einladungscode sollte sich am Eingang der Ausstellung befinden.",
+    "subtitle2": "Kontaktieren Sie einen Mitarbeiter bei Problemen oder Fehlen dieses Codes",
+    "enterCode": "Geben Sie den Ausstellungscode ein",
+    "verify": "Code überprüfen"
+  },
+  "error": {
+    "title": "Fehler",
+    "retry": "Wiederholen"
+  },
+  "preview": {
+    "title": "Ausstellung",
+    "desc": "Temporäre Ausstellung",
+    "join": "Teilnehmen"
+  },
+  "gallery": {
+    "title": "Ausstellungsgalerie"
+  },
+  "expo" : {
+    "carrie-fisher": {
+      "common": {
+        "next": "Weiter",
+        "time": "Zeit",
+        "backToChallenges": "Zurück zum Challenge-Menü",
+        "finish": "Beenden"
+      },
+      "lucas": {
+        "title": "Finde mit deinem Kompass die richtige Richtung",
+        "hintPrefix": "Hinweis: nach",
+        "holdStill": "Nicht mehr bewegen...",
+        "magnetometerUnavailable": "Magnetometer nicht verfügbar",
+        "feedback": {
+          "freeze": "Nicht mehr bewegen!",
+          "boiling": "Sehr heiß!",
+          "hot": "Heiß",
+          "warm": "Warm",
+          "cold": "Kalt"
+        },
+        "direction": {
+          "north": "Norden",
+          "east": "Osten",
+          "south": "Süden",
+          "west": "Westen"
+        }
+      },
+      "louis": {
+        "title": "Versteck dich vor den Jägern!",
+        "initializing": "Sensor wird initialisiert...",
+        "sim": {
+          "sensorUnavailable": "Sensor nicht verfügbar - simulierte Helligkeit :",
+          "noSensor": "Simulierte Helligkeit (kein Sensor auf diesem Gerät) :"
+        },
+        "game": {
+          "tooBright": "Du stehst im grellen Licht, versteck dich schnell !",
+          "almost": "Fast geschafft, der Jäger kommt näher !",
+          "good": "Fast... noch ein bisschen dunkler !"
+        },
+        "success": {
+          "title": "Du hast es geschafft !",
+          "body": "Der Jäger ist weg... Moment, was ist das ?",
+          "continue": "Weiter"
+        }
+      },
+      "win": {
+        "title": "Glückwunsch, du hast\n R2D2 gefunden!",
+        "backToChallenges": "Zurück zum Challenge-Menü"
+      },
+      "funFact": {
+        "scoreboard": "Bestenliste"
+      },
+      "scoreboard": {
+        "title": "Bestenliste :",
+        "empty": "Kein Ergebnis gespeichert",
+        "unknownUser": "Unbekannt",
+        "finalTitle": "Endstand :",
+        "yourTime": "Ihre Zeit ist :"
+      },
+      "menu": {
+        "intro": "Du betrittst gleich einen Raum voller Herausforderungen, mach dich bereit!",
+        "challenge1": "Prüfung 1",
+        "challenge2": "Prüfung 2",
+        "challenge3": "Prüfung 3",
+        "backToMainMenu": "Zurück zum Hauptmenü",
+        "finalScoreboardLocked": "Endstand (verriegelt)",
+        "finalScoreboard": "Endstand"
+      },
+      "tutorial": {
+        "start": "Los geht's!",
+        "backToChallengeChoice": "Zurück zur Auswahl der Prüfung"
+      },
+      "challenges": {
+        "0" : {
+          "tutorial": "Für diese Prüfung verwenden Sie das Magnetometer. Sie müssen Ihr Telefon bewegen und einen freien Platz um sich herum haben.",
+          "fun-fact-1" : "Leias Szenen auf Tatooine in Die Rückkehr der Jedi-Ritter wurden in der Wüste bei extremen Temperaturen gedreht.",
+          "fun-fact-2": "Doch Carrie Fisher bestand darauf, die Szene, in der Leia Jabba mit ihrer Kette erwürgt, selbst zu spielen.",
+          "hint": "Wenn Sie das Telefon richtig ausgerichtet haben, erscheint 'kochend heiß'; Sie müssen dann in diese Richtung gehen."
+        },
+        "1": {
+          "tutorial": "Für diese Prüfung verwenden Sie das Gyroskop. Sie müssen Ihr Telefon neigen, um im Spiel voranzukommen.",
+          "fun-fact-1" : "Während der Dreharbeiten zum allerersten Star Wars blieb Carrie Fisher ständig in den Gängen",
+          "fun-fact-2": "des Todessterns stecken, was alle am Set zum Lachen brachte.",
+          "hint": "Neigen Sie Ihr Telefon in die Richtung, in die Sie gehen möchten; Ihre Position ist diejenige im Labyrinth."
+        },
+        "2" : {
+          "tutorial": "Für diese Prüfung verwenden Sie den Umgebungslichtsensor. Sie müssen die perfekte Helligkeit finden.",
+          "fun-fact-1" : "Während der Dreharbeiten zu den Szenen der Rebellenbasis auf Hoth in Das Imperium schlägt zurück kam Carrie Fisher zum Set in Finse, Norwegen,",
+          "fun-fact-2": "in einer fast polaren Umgebung, nur um beim Team zu sein, obwohl ihre eigenen Szenen hauptsächlich im Studio gefilmt wurden.",
+          "hint": "Um erfolgreich zu sein, müssen Sie sich an einen dunkleren Ort begeben."
+        }
+      }
+    }
+  }
+}
